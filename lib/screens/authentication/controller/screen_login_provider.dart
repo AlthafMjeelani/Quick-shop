@@ -1,5 +1,6 @@
 import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
 import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
+import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:ecommerse/screens/home/view/screen_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,9 @@ class ScreenLoginProvider with ChangeNotifier {
     ));
   }
 
-  void navigatorLoginToHome(context) {
+  void navigatorLoginTobottomNav(context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const ScreenHome(),
+      builder: (context) => const ScreenBottomNavbar(),
     ));
   }
 }

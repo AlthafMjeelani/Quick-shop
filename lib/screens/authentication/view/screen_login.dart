@@ -88,7 +88,7 @@ class ScreenLogin extends StatelessWidget {
                 LongButtonWidget(
                   text: 'Login',
                   onTap: () {
-                    data.navigatorLoginToHome(context);
+                    data.navigatorLoginTobottomNav(context);
                   },
                 ),
                 ConstentsItems.ksizedBox50,

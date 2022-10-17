@@ -1,6 +1,8 @@
 import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
+import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
+import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +25,13 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ScreenForgetPasswordProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ScreenSplashProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BottomNavProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
