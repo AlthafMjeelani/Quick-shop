@@ -35,6 +35,7 @@ dependencies:
   google_fonts: 3.0.1
   provider: 6.0.4
   sign_button: ^2.0.2
+  carousel_slider: 4.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -55,6 +56,10 @@ flutter:
     - assets/images/shirtimage.png
     - assets/images/t shirt.jpg
     - assets/images/pands.png
+    - assets/images/shopping 1.webp
+    - assets/images/track.webp
+    - assets/images/dressimage.png
+    - assets/images/womenimage.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

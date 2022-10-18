@@ -1,8 +1,10 @@
+import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
+import 'package:ecommerse/screens/home/view/screen_home.dart';
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,9 @@ class MyApp extends StatelessWidget {
           create: (context) => BottomNavProvider(),
         ),
         ChangeNotifierProvider(
+          create: (context) => ScreenAllProductProvider(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => ScreenHomeProvider(),
         ),
       ],
@@ -43,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ScreenSplash(),
+        home: const ScreenHome(),
       ),
     );
   }
