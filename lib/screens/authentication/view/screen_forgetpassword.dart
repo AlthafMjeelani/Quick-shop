@@ -23,21 +23,14 @@ class ScreenForgrtPassword extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.KBlackColor,
+            color: ConstentsItems.kBlackColor,
           ),
         ),
       ),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 101, 153, 231),
-              Color.fromARGB(255, 124, 239, 250)
-            ],
-          ),
+          gradient: ConstentsItems.kBgColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),

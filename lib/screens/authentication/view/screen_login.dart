@@ -18,14 +18,7 @@ class ScreenLogin extends StatelessWidget {
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 101, 153, 231),
-              Color.fromARGB(255, 124, 239, 250)
-            ],
-          ),
+          gradient: ConstentsItems.kBgColor,
         ),
         child: SingleChildScrollView(
           child: Padding(
@@ -39,10 +32,8 @@ class ScreenLogin extends StatelessWidget {
                   children: [
                     Text(
                       'Login',
-                      style: GoogleFonts.oswald(
-                          fontStyle: FontStyle.italic,
-                          fontSize: 42,
-                          fontWeight: FontWeight.w700),
+                      style: GoogleFonts.poppins(
+                          fontSize: 42, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
@@ -62,7 +53,7 @@ class ScreenLogin extends StatelessWidget {
                         value.passwordVisibility
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: ConstentsItems.KBlackColor,
+                        color: ConstentsItems.kBlackColor,
                       ),
                       onPressed: () {
                         value.passWordVisiblity();

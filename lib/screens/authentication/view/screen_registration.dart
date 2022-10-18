@@ -25,92 +25,88 @@ class ScreenRegistration extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.KBlackColor,
+            color: ConstentsItems.kBlackColor,
           ),
         ),
       ),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 101, 153, 231),
-              Color.fromARGB(255, 124, 239, 250)
-            ],
-          ),
+          gradient: ConstentsItems.kBgColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Sign up',
-                style: GoogleFonts.oswald(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 42,
-                    fontWeight: FontWeight.w700),
-              ),
-              ConstentsItems.ksizedBox50,
-              const TextfeildWidget(
-                text: 'User Name',
-                obscureText: false,
-              ),
-              ConstentsItems.ksizedBox10,
-              const TextfeildWidget(
-                text: 'Email Address',
-                obscureText: false,
-              ),
-              ConstentsItems.ksizedBox10,
-              const TextfeildWidget(
-                text: 'Mobile Phone',
-                obscureText: false,
-              ),
-              ConstentsItems.ksizedBox10,
-              Consumer(builder: (context, ScreenLoginProvider value, child) {
-                return TextfeildWidget(
-                  text: 'Password',
-                  obscureText: value.passwordVisibility,
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      value.passwordVisibility
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: ConstentsItems.KBlackColor,
-                    ),
-                    onPressed: () {
-                      value.passWordVisiblity();
-                    },
-                  ),
-                );
-              }),
-              ConstentsItems.ksizedBox10,
-              Consumer(builder: (context, ScreenLoginProvider value, child) {
-                return const TextfeildWidget(
-                  text: 'Conform Password',
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ConstentsItems.ksizedBox200,
+                Text(
+                  'Sign up',
+                  style: GoogleFonts.oswald(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 42,
+                      fontWeight: FontWeight.w700),
+                ),
+                ConstentsItems.ksizedBox50,
+                const TextfeildWidget(
+                  text: 'User Name',
                   obscureText: false,
-                  // suffixIcon: IconButton(
-                  //   icon: Icon(
-                  //     value.passwordVisibility
-                  //         ? Icons.visibility_off
-                  //         : Icons.visibility,
-                  //     color: ConstentsItems.KBlackColor,
-                  //   ),
-                  //   onPressed: () {
-                  //     value.passWordVisiblity();
-                  //   },
-                  // ),
-                );
-              }),
-              ConstentsItems.ksizedBox20,
-              LongButtonWidget(
-                text: 'Sign up',
-                onTap: () {},
-              ),
-            ],
+                ),
+                ConstentsItems.ksizedBox10,
+                const TextfeildWidget(
+                  text: 'Email Address',
+                  obscureText: false,
+                ),
+                ConstentsItems.ksizedBox10,
+                const TextfeildWidget(
+                  text: 'Mobile Phone',
+                  obscureText: false,
+                ),
+                ConstentsItems.ksizedBox10,
+                Consumer(builder: (context, ScreenLoginProvider value, child) {
+                  return TextfeildWidget(
+                    text: 'Password',
+                    obscureText: value.passwordVisibility,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        value.passwordVisibility
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: ConstentsItems.kBlackColor,
+                      ),
+                      onPressed: () {
+                        value.passWordVisiblity();
+                      },
+                    ),
+                  );
+                }),
+                ConstentsItems.ksizedBox10,
+                Consumer(builder: (context, ScreenLoginProvider value, child) {
+                  return const TextfeildWidget(
+                    text: 'Conform Password',
+                    obscureText: false,
+                    // suffixIcon: IconButton(
+                    //   icon: Icon(
+                    //     value.passwordVisibility
+                    //         ? Icons.visibility_off
+                    //         : Icons.visibility,
+                    //     color: ConstentsItems.k,
+                    //   ),
+                    //   onPressed: () {
+                    //     value.passWordVisiblity();
+                    //   },
+                    // ),
+                  );
+                }),
+                ConstentsItems.ksizedBox20,
+                LongButtonWidget(
+                  text: 'Sign up',
+                  onTap: () {},
+                ),
+              ],
+            ),
           ),
         ),
       ),

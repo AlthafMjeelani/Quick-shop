@@ -18,7 +18,7 @@ class LongButtonWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: ConstentsItems.KBlackColor,
+          color: ConstentsItems.kBlackColor,
         ),
         child: Center(
           child: Text(
