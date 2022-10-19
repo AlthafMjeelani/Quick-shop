@@ -1,4 +1,5 @@
 import 'package:ecommerse/core/bottomnavlist/bottom_nav_list.dart';
+import 'package:ecommerse/core/constents.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,7 @@ class ScreenBottomNavbar extends StatelessWidget {
         return Scaffold(
           body: BottomNavPageList.screens[value.currentPageIndex],
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: const Color.fromARGB(255, 124, 239, 250),
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             elevation: 0,
             selectedItemColor: const Color.fromARGB(255, 12, 133, 255),
             unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),

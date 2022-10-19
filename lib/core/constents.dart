@@ -8,6 +8,7 @@ class ConstentsItems {
   static const ksizedBoxW10 = SizedBox(width: 10);
   static const kBlackColor = Colors.black;
   static const kWhiteColor = Colors.white;
+  static const kWhiteBlue = Colors.blue;
   static const kTextBlack = TextStyle(color: Colors.black, fontSize: 18);
   static const kTextBlackLargeSize =
       TextStyle(color: Colors.black, fontSize: 20);
@@ -19,8 +20,8 @@ class ConstentsItems {
     begin: Alignment.topRight,
     end: Alignment.bottomCenter,
     colors: [
-      Color.fromARGB(255, 101, 153, 231),
-      Color.fromARGB(255, 124, 239, 250)
+      Colors.white,
+      Color.fromARGB(255, 255, 255, 255),
     ],
   );
   static const kTextBlack20Size =

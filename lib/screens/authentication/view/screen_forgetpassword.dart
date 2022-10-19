@@ -41,7 +41,9 @@ class ScreenForgrtPassword extends StatelessWidget {
               ConstentsItems.ksizedBox20,
               LongButtonWidget(
                 text: 'Continue',
-                onTap: () {},
+                onTap: () {
+                  data.navigatorForgetToOtp(context);
+                },
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:ecommerse/core/constents.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
+import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +18,6 @@ class ScreenHome extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-          //color: Colors.yellow
-
           gradient: ConstentsItems.kBgColor,
         ),
         child: SafeArea(
@@ -94,10 +93,19 @@ class ScreenHome extends StatelessWidget {
                     ],
                   ),
                   ConstentsItems.ksizedBox10,
-                  const ProductViewWidget(
-                    imageurl: 'assets/images/dressimage.png',
-                    productName: 'PRODUCT NAME',
-                    productPrice: '₹ 1,999',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ScreenProductView(),
+                        ),
+                      );
+                    },
+                    child: const ProductViewWidget(
+                      imageurl: 'assets/images/dressimage.png',
+                      productName: 'PRODUCT NAME',
+                      productPrice: '₹ 1,999',
+                    ),
                   )
                 ],
               ),

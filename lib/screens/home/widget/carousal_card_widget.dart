@@ -16,12 +16,12 @@ class CarouselCardWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.23,
           width: MediaQuery.of(context).size.width * 0.90,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(20),
             image: const DecorationImage(
               image: AssetImage('assets/images/shopping 1.webp'),
               fit: BoxFit.fill,
-              opacity: 0.6,
+              opacity: 0.7,
             ),
           ),
           child: const HomeCardWidget(),
