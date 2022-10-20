@@ -76,7 +76,21 @@ class ScreenHome extends StatelessWidget {
                     ],
                   ),
                   AppSpacing.ksizedBox10,
-                  const HomeCategoriesWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      HomeCategoriesWidget(
+                          image: 'assets/images/shirtimage.png',
+                          title: 'Shirts'),
+                      HomeCategoriesWidget(
+                          image: 'assets/images/t shirt.jpg',
+                          title: 'T Shirts'),
+                      HomeCategoriesWidget(
+                          image: 'assets/images/pands.png', title: 'Pants'),
+                      HomeCategoriesWidget(
+                          image: 'assets/images/track.webp', title: 'Tracks'),
+                    ],
+                  ),
                   AppSpacing.ksizedBox20,
                   Row(
                     children: [

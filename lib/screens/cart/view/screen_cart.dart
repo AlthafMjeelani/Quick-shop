@@ -34,12 +34,13 @@ class ScreeCart extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.grey),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Container(
                                 height: 150,
-                                width: 150,
+                                width: 120,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     color: Colors.white),
@@ -75,12 +76,19 @@ class ScreeCart extends StatelessWidget {
                                       '₹1999',
                                       style: AppTextStyle.kLongButtonBlack,
                                     ),
-                                    AppSpacing.ksizedBoxW30,
+                                    AppSpacing.ksizedBoxW20,
                                     CartCountWidget(),
                                   ],
                                 )
                               ],
-                            )
+                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.delete_outlined,
+                                  color: Colors.red,
+                                  size: 32,
+                                ))
                           ],
                         ),
                       );

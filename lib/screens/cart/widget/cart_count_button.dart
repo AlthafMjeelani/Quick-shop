@@ -16,7 +16,8 @@ class CartCountWidget extends StatelessWidget {
       height: 40,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5), color: Colors.black),
+          borderRadius: BorderRadius.circular(20),
+          color: const Color.fromARGB(255, 54, 54, 54)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -32,8 +33,8 @@ class CartCountWidget extends StatelessWidget {
           Container(
             width: 30,
             height: 30,
-            margin: const EdgeInsets.symmetric(horizontal: 3),
-            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3), color: Colors.white),
             child: Center(
