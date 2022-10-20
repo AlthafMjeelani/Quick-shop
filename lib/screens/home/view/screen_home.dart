@@ -1,4 +1,6 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
@@ -20,7 +22,7 @@ class ScreenHome extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: ConstentsItems.kBgColor,
+          gradient: AppColors.kBgColor,
         ),
         child: SafeArea(
           child: Padding(
@@ -32,17 +34,17 @@ class ScreenHome extends StatelessWidget {
                     children: const [
                       Text(
                         'Welcome\nAlthaf m',
-                        style: ConstentsItems.kTextBlack,
+                        style: AppTextStyle.kTextBlack,
                       ),
                       Spacer(),
                       CircleAvatar(
                         radius: 30,
                         child: Icon(Icons.person),
                       ),
-                      ConstentsItems.ksizedBoxW10,
+                      AppSpacing.ksizedBoxW10,
                     ],
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   TextFormField(
                     decoration: const InputDecoration(
                       prefixIcon: Icon(
@@ -61,26 +63,26 @@ class ScreenHome extends StatelessWidget {
                       hintText: 'Search Tech Talk',
                     ),
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   const CarouselCardWidget(),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
                         'Categories',
-                        style: ConstentsItems.kTextBlackLargeSize,
+                        style: AppTextStyle.kTextBlackLargeSize,
                       ),
                     ],
                   ),
-                  ConstentsItems.ksizedBox10,
+                  AppSpacing.ksizedBox10,
                   const HomeCategoriesWidget(),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   Row(
                     children: [
                       const Text(
                         'Latest Products',
-                        style: ConstentsItems.kTextBlack20Size,
+                        style: AppTextStyle.kTextBlack20Size,
                       ),
                       const Spacer(),
                       InkWell(
@@ -89,12 +91,12 @@ class ScreenHome extends StatelessWidget {
                         },
                         child: const Text(
                           'View All',
-                          style: ConstentsItems.kTextBlack20Size,
+                          style: AppTextStyle.kTextBlack20Size,
                         ),
                       )
                     ],
                   ),
-                  ConstentsItems.ksizedBox10,
+                  AppSpacing.ksizedBox10,
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(

@@ -1,4 +1,4 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +73,7 @@ class AllProductViewWidget extends StatelessWidget {
                                     Widget? child) {
                                   return Icon(
                                     CupertinoIcons.heart_fill,
-                                    size: ConstentsItems.kIconsize32,
+                                    size: AppTextStyle.kIconsize32,
                                     color: value.favoriteListOfAllProduct[index]
                                         ? Colors.red
                                         : Colors.grey,
@@ -87,11 +87,11 @@ class AllProductViewWidget extends StatelessWidget {
                     ),
                     Text(
                       productName,
-                      style: ConstentsItems.kTextsize16,
+                      style: AppTextStyle.kTextsize16,
                     ),
                     Text(
                       productPrice,
-                      style: ConstentsItems.kTextSize18Black,
+                      style: AppTextStyle.kTextSize18Black,
                     ),
                   ],
                 ),

@@ -1,4 +1,6 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.kBlackColor,
+            color: AppColors.kBlackColor,
           ),
         ),
       ),
@@ -53,18 +55,18 @@ class _ScreenOtpState extends State<ScreenOtp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ConstentsItems.ksizedBox50,
+                  AppSpacing.ksizedBox50,
                   const Text("Code has been sent to +91 9999999999"),
-                  ConstentsItems.ksizedBox50,
+                  AppSpacing.ksizedBox50,
                   OtpTextField(
                     numberOfFields: 4,
                     showFieldAsBox: true,
                     autoFocus: true,
-                    borderColor: ConstentsItems.kBlackColor,
-                    disabledBorderColor: ConstentsItems.kBlackColor,
-                    enabledBorderColor: ConstentsItems.kBlackColor,
-                    cursorColor: ConstentsItems.kBlackColor,
-                    focusedBorderColor: ConstentsItems.kWhiteBlue,
+                    borderColor: AppColors.kBlackColor,
+                    disabledBorderColor: AppColors.kBlackColor,
+                    enabledBorderColor: AppColors.kBlackColor,
+                    cursorColor: AppColors.kBlackColor,
+                    focusedBorderColor: AppColors.kWhiteBlue,
                     borderWidth: 1.5,
                     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                     fieldWidth: 60.0,
@@ -72,7 +74,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
                       otpController.setCode(code);
                     },
                   ),
-                  ConstentsItems.ksizedBox50,
+                  AppSpacing.ksizedBox50,
                   Consumer<ScreenForgetPasswordProvider>(
                     builder: (BuildContext context, value, Widget? child) {
                       return value.timeRemaining != 0
@@ -83,12 +85,12 @@ class _ScreenOtpState extends State<ScreenOtp> {
                               },
                               child: const Text(
                                 "Resend OTP",
-                                style: ConstentsItems.kTextsize16,
+                                style: AppTextStyle.kTextsize16,
                               ),
                             );
                     },
                   ),
-                  ConstentsItems.ksizedBox50,
+                  AppSpacing.ksizedBox50,
                   LongButtonWidget(
                     text: 'Verify',
                     onTap: () {

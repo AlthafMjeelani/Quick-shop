@@ -1,4 +1,4 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,12 +12,13 @@ class CartCountWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenCartProvider>(context, listen: false);
     return Container(
-      width: 150,
-      height: 50,
+      width: 100,
+      height: 40,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5), color: Colors.black),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
               onTap: () {
@@ -26,11 +27,11 @@ class CartCountWidget extends StatelessWidget {
               child: const Icon(
                 Icons.remove,
                 color: Colors.white,
-                size: 40,
+                size: 25,
               )),
           Container(
-            width: 50,
-            height: 40,
+            width: 30,
+            height: 30,
             margin: const EdgeInsets.symmetric(horizontal: 3),
             padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
             decoration: BoxDecoration(
@@ -38,7 +39,7 @@ class CartCountWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 context.watch<ScreenCartProvider>().count.toString(),
-                style: ConstentsItems.kTextSize18Black,
+                style: AppTextStyle.kTextSize18Black,
               ),
             ),
           ),
@@ -49,7 +50,7 @@ class CartCountWidget extends StatelessWidget {
               child: const Icon(
                 Icons.add,
                 color: Colors.white,
-                size: 40,
+                size: 25,
               )),
         ],
       ),

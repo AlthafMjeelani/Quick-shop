@@ -1,4 +1,5 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
@@ -25,14 +26,14 @@ class ScreenRegistration extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.kBlackColor,
+            color: AppColors.kBlackColor,
           ),
         ),
       ),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: ConstentsItems.kBgColor,
+          gradient: AppColors.kBgColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -41,7 +42,7 @@ class ScreenRegistration extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ConstentsItems.ksizedBox200,
+                AppSpacing.ksizedBox200,
                 Text(
                   'Sign up',
                   style: GoogleFonts.poppins(
@@ -49,22 +50,22 @@ class ScreenRegistration extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                ConstentsItems.ksizedBox50,
+                AppSpacing.ksizedBox50,
                 const TextfeildWidget(
                   text: 'User Name',
                   obscureText: false,
                 ),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 const TextfeildWidget(
                   text: 'Email Address',
                   obscureText: false,
                 ),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 const TextfeildWidget(
                   text: 'Mobile Phone',
                   obscureText: false,
                 ),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 Consumer(builder: (context, ScreenLoginProvider value, child) {
                   return TextfeildWidget(
                     text: 'Password',
@@ -74,7 +75,7 @@ class ScreenRegistration extends StatelessWidget {
                         value.passwordVisibility
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: ConstentsItems.kBlackColor,
+                        color: AppColors.kBlackColor,
                       ),
                       onPressed: () {
                         value.passWordVisiblity();
@@ -82,7 +83,7 @@ class ScreenRegistration extends StatelessWidget {
                     ),
                   );
                 }),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 Consumer(builder: (context, ScreenLoginProvider value, child) {
                   return const TextfeildWidget(
                     text: 'Conform Password',
@@ -100,7 +101,7 @@ class ScreenRegistration extends StatelessWidget {
                     // ),
                   );
                 }),
-                ConstentsItems.ksizedBox20,
+                AppSpacing.ksizedBox20,
                 LongButtonWidget(
                   text: 'Sign up',
                   onTap: () {},

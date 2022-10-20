@@ -39,7 +39,7 @@ class ScreenBottomNavbar extends StatelessWidget {
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite),
-                label: 'favorite',
+                label: 'Wishlist',
               ),
               BottomNavigationBarItem(
                 icon: Icon(

@@ -1,4 +1,5 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
@@ -23,14 +24,14 @@ class ScreenNewPassword extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.kBlackColor,
+            color: AppColors.kBlackColor,
           ),
         ),
       ),
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: ConstentsItems.kBgColor,
+          gradient: AppColors.kBgColor,
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -38,10 +39,10 @@ class ScreenNewPassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const TextfeildWidget(text: 'New Password', obscureText: false),
-              ConstentsItems.ksizedBox10,
+              AppSpacing.ksizedBox10,
               const TextfeildWidget(
                   text: 'Conform Password', obscureText: false),
-              ConstentsItems.ksizedBox20,
+              AppSpacing.ksizedBox20,
               LongButtonWidget(
                 text: 'SAVE',
                 onTap: () {},

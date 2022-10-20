@@ -1,4 +1,4 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class ProductViewWidget extends StatelessWidget {
                             ScreenHomeProvider value, Widget? child) {
                           return Icon(
                             CupertinoIcons.heart_fill,
-                            size: ConstentsItems.kIconsize32,
+                            size: AppTextStyle.kIconsize32,
                             color: value.favoriteBoolList[index]
                                 ? Colors.red
                                 : Colors.grey,
@@ -71,11 +71,11 @@ class ProductViewWidget extends StatelessWidget {
               ),
               Text(
                 productName,
-                style: ConstentsItems.kTextsize16,
+                style: AppTextStyle.kTextsize16,
               ),
               Text(
                 productPrice,
-                style: ConstentsItems.kTextSize18Black,
+                style: AppTextStyle.kTextSize18Black,
               ),
             ],
           ),

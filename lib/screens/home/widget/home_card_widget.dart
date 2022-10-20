@@ -1,4 +1,5 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeCardWidget extends StatelessWidget {
@@ -19,11 +20,11 @@ class HomeCardWidget extends StatelessWidget {
             children: [
               const Text(
                 'New Inspiration',
-                style: ConstentsItems.kTextsize16,
+                style: AppTextStyle.kTextsize16,
               ),
               const Text(
                 'CLOTHING MADE\nFOR YOU!',
-                style: ConstentsItems.kTextBlack20Size,
+                style: AppTextStyle.kTextBlack20Size,
               ),
               Container(
                 width: 120,
@@ -34,7 +35,7 @@ class HomeCardWidget extends StatelessWidget {
                 ),
                 child: const Center(
                   child: Text('Shope Now',
-                      style: TextStyle(color: ConstentsItems.kWhiteColor)),
+                      style: TextStyle(color: AppColors.kWhiteColor)),
                 ),
               )
             ],
@@ -53,7 +54,7 @@ class HomeCardWidget extends StatelessWidget {
               children: const [
                 Text(
                   '50%\nOff',
-                  style: ConstentsItems.kTextBlack50Size,
+                  style: AppTextStyle.kTextBlack50Size,
                 ),
               ],
             ),

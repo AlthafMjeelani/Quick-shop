@@ -1,4 +1,4 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:flutter/material.dart';
 
 class ScreenProductDetailsProvider with ChangeNotifier {
@@ -13,7 +13,7 @@ class ScreenProductDetailsProvider with ChangeNotifier {
         child: ChoiceChip(
           label: Text(
             chipsList[i].toString(),
-            style: ConstentsItems.kTextBlack20Size,
+            style: AppTextStyle.kTextBlack20Size,
           ),
           labelStyle: const TextStyle(
             color: Color.fromARGB(255, 14, 6, 6),

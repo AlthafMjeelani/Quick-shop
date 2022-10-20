@@ -1,4 +1,6 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
@@ -18,7 +20,7 @@ class ScreenLogin extends StatelessWidget {
       body: Container(
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: ConstentsItems.kBgColor,
+          gradient: AppColors.kBgColor,
         ),
         child: SingleChildScrollView(
           child: Padding(
@@ -26,7 +28,7 @@ class ScreenLogin extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ConstentsItems.ksizedBox200,
+                AppSpacing.ksizedBox200,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -37,12 +39,12 @@ class ScreenLogin extends StatelessWidget {
                     ),
                   ],
                 ),
-                ConstentsItems.ksizedBox20,
+                AppSpacing.ksizedBox20,
                 const TextfeildWidget(
                   text: 'Email',
                   obscureText: false,
                 ),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 Consumer(builder: (context, ScreenLoginProvider value, child) {
                   return TextfeildWidget(
                     text: 'Enter Password',
@@ -53,7 +55,7 @@ class ScreenLogin extends StatelessWidget {
                         value.passwordVisibility
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: ConstentsItems.kBlackColor,
+                        color: AppColors.kBlackColor,
                       ),
                       onPressed: () {
                         value.passWordVisiblity();
@@ -70,25 +72,25 @@ class ScreenLogin extends StatelessWidget {
                       },
                       child: const Text(
                         'Forget Password?',
-                        style: ConstentsItems.kTextBlack,
+                        style: AppTextStyle.kTextBlack,
                       ),
                     ),
                   ],
                 ),
-                ConstentsItems.ksizedBox10,
+                AppSpacing.ksizedBox10,
                 LongButtonWidget(
                   text: 'Login',
                   onTap: () {
                     data.navigatorLoginTobottomNav(context);
                   },
                 ),
-                ConstentsItems.ksizedBox50,
+                AppSpacing.ksizedBox50,
                 SignInButton(
                   buttonType: ButtonType.google,
                   buttonSize: ButtonSize.large, // small(default), medium, large
                   onPressed: () {},
                 ),
-                ConstentsItems.ksizedBox20,
+                AppSpacing.ksizedBox20,
                 Row(
                   children: const [
                     Expanded(
@@ -106,7 +108,7 @@ class ScreenLogin extends StatelessWidget {
                     ),
                   ],
                 ),
-                ConstentsItems.ksizedBox20,
+                AppSpacing.ksizedBox20,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

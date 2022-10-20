@@ -1,6 +1,6 @@
 import 'dart:developer';
-
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/allproducts/view/men_all_product.dart';
 import 'package:ecommerse/screens/allproducts/view/screen_all_product.dart';
@@ -27,7 +27,7 @@ class ScreenallCategory extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: ConstentsItems.kBlackColor,
+            color: AppColors.kBlackColor,
           ),
         ),
       ),
@@ -40,7 +40,7 @@ class ScreenallCategory extends StatelessWidget {
           decoration: const BoxDecoration(
             //color: Colors.yellow
 
-            gradient: ConstentsItems.kBgColor,
+            gradient: AppColors.kBgColor,
           ),
           child: SafeArea(
             child: Padding(
@@ -62,7 +62,7 @@ class ScreenallCategory extends StatelessWidget {
                       hintText: 'Search Tech Talk',
                     ),
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   TabbarWidget(
                     tabController: tabController,
                     tabs: const [
@@ -71,7 +71,7 @@ class ScreenallCategory extends StatelessWidget {
                       Tab(text: 'WOMEN'),
                     ],
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   Expanded(
                     child: TabBarView(
                       controller: tabController,

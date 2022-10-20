@@ -1,4 +1,5 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -61,7 +62,7 @@ class ScreenProductView extends StatelessWidget {
                     },
                     child: const Icon(
                       CupertinoIcons.heart_fill,
-                      size: ConstentsItems.kIconsize32,
+                      size: AppTextStyle.kIconsize32,
                       color: Colors.grey,
                     ),
                   ),
@@ -75,37 +76,37 @@ class ScreenProductView extends StatelessWidget {
                 children: [
                   Text(
                     brandName,
-                    style: ConstentsItems.kTextBlackLargeSize,
+                    style: AppTextStyle.kTextBlackLargeSize,
                   ),
                   Text(
                     productName,
-                    style: ConstentsItems.kTextBlack,
+                    style: AppTextStyle.kTextBlack,
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   const Text(
                     'Special price',
-                    style: ConstentsItems.kPriceColor,
+                    style: AppTextStyle.kPriceColor,
                   ),
-                  ConstentsItems.ksizedBox5,
+                  AppSpacing.ksizedBox5,
                   Row(
                     children: [
                       Text(
                         price,
-                        style: ConstentsItems.kTextBlack40Size,
+                        style: AppTextStyle.kTextBlack40Size,
                       ),
-                      ConstentsItems.ksizedBoxW10,
+                      AppSpacing.ksizedBoxW10,
                       Text(
                         productDisprice,
-                        style: ConstentsItems.kTextsizecrossLine,
+                        style: AppTextStyle.kTextsizecrossLine,
                       ),
-                      ConstentsItems.ksizedBoxW10,
+                      AppSpacing.ksizedBoxW10,
                       const Text(
                         '60% off',
-                        style: ConstentsItems.kPriceColor,
+                        style: AppTextStyle.kPriceColor,
                       ),
                     ],
                   ),
-                  ConstentsItems.ksizedBox20,
+                  AppSpacing.ksizedBox20,
                   // const Text(
                   //   "Quantity",
                   // ),
@@ -114,13 +115,13 @@ class ScreenProductView extends StatelessWidget {
                   // ConstentsItems.ksizedBox10,
                   const Text(
                     "Descriptioin",
-                    style: ConstentsItems.kTextBlack20Size,
+                    style: AppTextStyle.kTextBlack20Size,
                   ),
                   const Text(
                     ' iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
                     // style: AppTextStyle.body1,
                   ),
-                  ConstentsItems.ksizedBox10,
+                  AppSpacing.ksizedBox10,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -138,7 +139,7 @@ class ScreenProductView extends StatelessWidget {
                           );
                         },
                       ),
-                      ConstentsItems.ksizedBox20,
+                      AppSpacing.ksizedBox20,
                       GestureDetector(
                         onTap: () {},
                         child: const LongButtonWidget(text: 'ADD TO CART'),

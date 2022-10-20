@@ -1,4 +1,5 @@
-import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/helpers/colors_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:flutter/material.dart';
 
 class LongButtonWidget extends StatelessWidget {
@@ -18,12 +19,12 @@ class LongButtonWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: ConstentsItems.kBlackColor,
+          color: AppColors.kBlackColor,
         ),
         child: Center(
           child: Text(
             text,
-            style: ConstentsItems.kLongButton,
+            style: AppTextStyle.kLongButtonWite,
           ),
         ),
       ),
