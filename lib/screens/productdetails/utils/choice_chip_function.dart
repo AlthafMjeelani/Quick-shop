@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 
-// class ChoiceChipFunction {
-//   static List<Widget> techChips(List<Widget> chipsList, selectedIndex) {
+// class techChips {
+//    List<dynamic> techChips(List chipsList, selectedIndex) {
 //     List<Widget> chips = [];
 //     for (int i = 0; i < chipsList.length; i++) {
 //       Widget item = Padding(
@@ -18,6 +18,6 @@
 //       );
 //       chips.add(item);
 //     }
-//     return chips;
+
 //   }
 // }

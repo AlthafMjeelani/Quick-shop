@@ -5,12 +5,12 @@ import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ScreenForgrtPassword extends StatelessWidget {
-  const ScreenForgrtPassword({super.key});
+class ScreenNewPassword extends StatelessWidget {
+  const ScreenNewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final data =
+    final otpController =
         Provider.of<ScreenForgetPasswordProvider>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -19,7 +19,7 @@ class ScreenForgrtPassword extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            data.navigatorForgePop(context);
+            otpController.navigatorForgePop(context);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -37,13 +37,14 @@ class ScreenForgrtPassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextfeildWidget(text: 'email/phone', obscureText: false),
+              const TextfeildWidget(text: 'New Password', obscureText: false),
+              ConstentsItems.ksizedBox10,
+              const TextfeildWidget(
+                  text: 'Conform Password', obscureText: false),
               ConstentsItems.ksizedBox20,
               LongButtonWidget(
-                text: 'Continue',
-                onTap: () {
-                  data.navigatorForgetToOtp(context);
-                },
+                text: 'SAVE',
+                onTap: () {},
               ),
             ],
           ),

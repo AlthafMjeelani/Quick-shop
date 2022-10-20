@@ -37,7 +37,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            otpController.navigatorForgetotpPop(context);
+            otpController.navigatorForgePop(context);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -49,7 +49,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -92,7 +92,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
                   LongButtonWidget(
                     text: 'Verify',
                     onTap: () {
-                      otpController.navigatorForgetToLogin(context);
+                      otpController.navigatorForgetToNewPassword(context);
                     },
                   ),
                 ],

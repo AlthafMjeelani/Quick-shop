@@ -2,8 +2,6 @@ import 'package:ecommerse/core/constents.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 class WomenAllProduct extends StatelessWidget {

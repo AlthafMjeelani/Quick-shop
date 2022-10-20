@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+  const ScreenHome({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,14 +99,20 @@ class ScreenHome extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => ScreenProductView(),
-                        ),
+                            builder: (context) => ScreenProductView(
+                                  imageUrl: 'assets/images/dressimage.png',
+                                  price: '₹ 1,999'.toString(),
+                                  brandName: 'VAN HEUSEN',
+                                  productName:
+                                      'Men Slim Fit Solid Spread Collar Casual Shirt',
+                                  productDisprice: '2499',
+                                )),
                       );
                     },
                     child: const ProductViewWidget(
                       imageurl: 'assets/images/dressimage.png',
-                      productName: 'PRODUCT NAME',
-                      productPrice: '₹ 1,999',
+                      productName: 'VAN HEUSEN SHIRT',
+                      productPrice: '₹1,999',
                     ),
                   )
                 ],

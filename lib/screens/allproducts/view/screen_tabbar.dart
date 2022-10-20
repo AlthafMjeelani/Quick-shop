@@ -5,12 +5,6 @@ import 'package:ecommerse/screens/allproducts/controller/all_product_provider.da
 import 'package:ecommerse/screens/allproducts/view/men_all_product.dart';
 import 'package:ecommerse/screens/allproducts/view/screen_all_product.dart';
 import 'package:ecommerse/screens/allproducts/view/women_all_product.dart';
-import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
-import 'package:ecommerse/screens/authentication/view/screen_login.dart';
-import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
-import 'package:ecommerse/screens/home/view/screen_home.dart';
-import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
-import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:ecommerse/widget/tabbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,9 +78,12 @@ class ScreenallCategory extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       children: const [
                         AllProductViewWidget(
-                            imageurl: 'assets/images/shirtimage.png',
-                            productName: 'productName',
-                            productPrice: 'productPrice'),
+                          imageurl: 'assets/images/shirtimage.png',
+                          productName: 'Classic Polo ',
+                          productPrice: '₹399',
+                          brandName: 'Solid Men Polo Neck Green T-Shirt',
+                          productDisPrice: '₹999',
+                        ),
                         MenAllProduct(
                             imageurl: 'assets/images/dressimage.png',
                             productName: 'productName',

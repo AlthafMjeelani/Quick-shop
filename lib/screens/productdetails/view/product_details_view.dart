@@ -1,18 +1,35 @@
 import 'package:ecommerse/core/constents.dart';
+import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
+import 'package:ecommerse/widget/long_button_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ScreenProductView extends StatelessWidget {
   const ScreenProductView({
     super.key,
+    required this.imageUrl,
+    required this.price,
+    required this.brandName,
+    required this.productName,
+    required this.productDisprice,
   });
-
+  final String imageUrl;
+  final String price;
+  final String productDisprice;
+  final String brandName;
+  final String productName;
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final data =
+        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
+    data.selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            data.popPage(context);
+          },
           icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -21,152 +38,118 @@ class ScreenProductView extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 400,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              // color: Colors.blue,
-              image: DecorationImage(
-                image: AssetImage('assets/images/dressimage.png'),
-                fit: BoxFit.fill,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 400,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                // color: Colors.blue,
+                image: DecorationImage(
+                  image: AssetImage(imageUrl),
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      "product name",
-                      style: ConstentsItems.kTextBlackLargeSize,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      // data.isFaved(index);
+                    },
+                    child: const Icon(
+                      CupertinoIcons.heart_fill,
+                      size: ConstentsItems.kIconsize32,
+                      color: Colors.grey,
                     ),
-                    Spacer(),
-                    Text(
-                      '₹1,999',
-                      style: ConstentsItems.kTextsize16,
-                    )
-                  ],
-                ),
-                ConstentsItems.ksizedBox10,
-                Row(
-                  children: const [
-                    Text(
-                      "Quantity",
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        //color: AppColors.mainColor,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.remove,
-                            ),
-                          ),
-                          Text("0"),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.add,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: size.width * 0.3,
-                  child: const Text(
-                    '₹1,999',
-                    style: ConstentsItems.kTextsize16,
                   ),
                 ),
-                const Text(
-                  "Descriptioin",
-                  style: ConstentsItems.kTextBlack20Size,
-                ),
-                const Text(
-                  ' iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
-                  // style: AppTextStyle.body1,
-                ),
-                ConstentsItems.ksizedBox10,
-                Text('sss'),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Size",
-                      // style: AppTextStyle.body1
-                    ),
-                    Row(
-                      children: [
-                        ChoiceChip(
-                          side: BorderSide(),
-                          onSelected: (valuee) {},
-                          selected: true,
-                          label: Text(
-                            'S',
-                            //style: AppTextStyle.bodySmall,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        ChoiceChip(
-                          side: BorderSide(),
-                          onSelected: (valuee) {},
-                          selected: true,
-                          label: Text(
-                            'M',
-                            //style: AppTextStyle.bodySmall,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        ChoiceChip(
-                          side: BorderSide(),
-                          onSelected: (valuee) {},
-                          selected: true,
-                          label: Text(
-                            'L',
-                            //style: AppTextStyle.bodySmall,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    // Expanded(
-                    //   child: CustomButtonWidget(
-                    //     text: "Add to cart",
-                    //     onTap: () {
-                    //       cartController.addProductToCart(product);
-                    //       Navigator.of(context).pop();
-                    //     },
-                    //   ),
-                    // )
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    brandName,
+                    style: ConstentsItems.kTextBlackLargeSize,
+                  ),
+                  Text(
+                    productName,
+                    style: ConstentsItems.kTextBlack,
+                  ),
+                  ConstentsItems.ksizedBox20,
+                  const Text(
+                    'Special price',
+                    style: ConstentsItems.kPriceColor,
+                  ),
+                  ConstentsItems.ksizedBox5,
+                  Row(
+                    children: [
+                      Text(
+                        price,
+                        style: ConstentsItems.kTextBlack40Size,
+                      ),
+                      ConstentsItems.ksizedBoxW10,
+                      Text(
+                        productDisprice,
+                        style: ConstentsItems.kTextsizecrossLine,
+                      ),
+                      ConstentsItems.ksizedBoxW10,
+                      const Text(
+                        '60% off',
+                        style: ConstentsItems.kPriceColor,
+                      ),
+                    ],
+                  ),
+                  ConstentsItems.ksizedBox20,
+                  // const Text(
+                  //   "Quantity",
+                  // ),
+                  // ConstentsItems.ksizedBox10,
+                  // const CartCountWidget(),
+                  // ConstentsItems.ksizedBox10,
+                  const Text(
+                    "Descriptioin",
+                    style: ConstentsItems.kTextBlack20Size,
+                  ),
+                  const Text(
+                    ' iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
+                    // style: AppTextStyle.body1,
+                  ),
+                  ConstentsItems.ksizedBox10,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Size",
+                        // style: AppTextStyle.body1
+                      ),
+                      Consumer(
+                        builder: (BuildContext context,
+                            ScreenProductDetailsProvider value, Widget? child) {
+                          return Wrap(
+                            spacing: 10,
+                            direction: Axis.horizontal,
+                            children: value.chipselection(),
+                          );
+                        },
+                      ),
+                      ConstentsItems.ksizedBox20,
+                      GestureDetector(
+                        onTap: () {},
+                        child: const LongButtonWidget(text: 'ADD TO CART'),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:ecommerse/screens/authentication/view/screen_login.dart';
+
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,8 +32,7 @@ class ScreenSplash extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                   image: const DecorationImage(
-                      image: AssetImage(
-                          'assets/images/shopping_cart-removebg-preview.png'),
+                      image: AssetImage('assets/images/logo.png'),
                       fit: BoxFit.fill),
                   borderRadius: BorderRadius.circular(50)),
             ),

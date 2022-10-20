@@ -1,5 +1,4 @@
 import 'package:ecommerse/core/bottomnavlist/bottom_nav_list.dart';
-import 'package:ecommerse/core/constents.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

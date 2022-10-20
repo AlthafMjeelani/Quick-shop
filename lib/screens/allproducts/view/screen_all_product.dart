@@ -1,6 +1,5 @@
 import 'package:ecommerse/core/constents.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
-import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +10,14 @@ class AllProductViewWidget extends StatelessWidget {
     required this.imageurl,
     required this.productName,
     required this.productPrice,
+    required this.brandName,
+    required this.productDisPrice,
   }) : super(key: key);
   final String imageurl;
   final String productName;
   final String productPrice;
+  final String productDisPrice;
+  final String brandName;
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenAllProductProvider>(context, listen: false);
@@ -39,38 +42,44 @@ class AllProductViewWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 180,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 58, 72, 77)
-                            .withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                          image: AssetImage(imageurl),
-                          fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: () {
+                        data.navigatorAllToView(context, imageurl, brandName,
+                            productPrice, productName, productDisPrice);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 58, 72, 77)
+                              .withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: AssetImage(imageurl),
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              data.isFavedAllProduct(index);
-                            },
-                            child: Consumer(
-                              builder: (BuildContext context,
-                                  ScreenAllProductProvider value,
-                                  Widget? child) {
-                                return Icon(
-                                  CupertinoIcons.heart_fill,
-                                  size: ConstentsItems.kIconsize32,
-                                  color: value.favoriteListOfAllProduct[index]
-                                      ? Colors.red
-                                      : Colors.grey,
-                                );
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () {
+                                data.isFavedAllProduct(index);
                               },
+                              child: Consumer(
+                                builder: (BuildContext context,
+                                    ScreenAllProductProvider value,
+                                    Widget? child) {
+                                  return Icon(
+                                    CupertinoIcons.heart_fill,
+                                    size: ConstentsItems.kIconsize32,
+                                    color: value.favoriteListOfAllProduct[index]
+                                        ? Colors.red
+                                        : Colors.grey,
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),

@@ -44,10 +44,10 @@ class ScreenRegistration extends StatelessWidget {
                 ConstentsItems.ksizedBox200,
                 Text(
                   'Sign up',
-                  style: GoogleFonts.oswald(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 42,
-                      fontWeight: FontWeight.w700),
+                  style: GoogleFonts.poppins(
+                    fontSize: 42,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
                 ConstentsItems.ksizedBox50,
                 const TextfeildWidget(

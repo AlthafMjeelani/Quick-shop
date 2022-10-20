@@ -36,7 +36,7 @@ class ProductViewWidget extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: 180,
+                height: 200,
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 58, 72, 77).withOpacity(0.5),
                   borderRadius: BorderRadius.circular(20),

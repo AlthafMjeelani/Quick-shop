@@ -1,17 +1,18 @@
 import 'dart:async';
 
 import 'package:ecommerse/screens/authentication/view/screen_forget_otp.dart';
-import 'package:ecommerse/screens/authentication/view/screen_login.dart';
+import 'package:ecommerse/screens/authentication/view/screen_new_password.dart';
+import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
 
 class ScreenForgetPasswordProvider with ChangeNotifier {
-  void navigatorForgetToLogin(context) {
+  void navigatorForgetToNewPassword(context) {
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const ScreenLogin(),
+      builder: (context) => const ScreenNewPassword(),
     ));
   }
 
-  void navigatorForgetotpPop(context) {
+  void navigatorForgePop(context) {
     Navigator.of(context).pop();
   }
 
@@ -48,7 +49,8 @@ class ScreenForgetPasswordProvider with ChangeNotifier {
     if (code.length != 4) {
       return;
     }
-    // await AppPopUps.showToast("Otp verified", AppColors.successColor);
+    await AppPopUps.showToast("Otp verified", Colors.green);
+    // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
 
