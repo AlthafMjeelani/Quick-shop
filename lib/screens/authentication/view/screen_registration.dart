@@ -2,6 +2,7 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
+import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class ScreenRegistration extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppSpacing.ksizedBox200,
+                AppSpacing.ksizedBox80,
                 Text(
                   'Sign up',
                   style: GoogleFonts.poppins(
@@ -52,17 +53,12 @@ class ScreenRegistration extends StatelessWidget {
                 ),
                 AppSpacing.ksizedBox50,
                 const TextfeildWidget(
-                  text: 'User Name',
+                  text: 'Full Name',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox10,
                 const TextfeildWidget(
                   text: 'Email Address',
-                  obscureText: false,
-                ),
-                AppSpacing.ksizedBox10,
-                const TextfeildWidget(
-                  text: 'Mobile Phone',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox10,
@@ -88,23 +84,21 @@ class ScreenRegistration extends StatelessWidget {
                   return const TextfeildWidget(
                     text: 'Conform Password',
                     obscureText: false,
-                    // suffixIcon: IconButton(
-                    //   icon: Icon(
-                    //     value.passwordVisibility
-                    //         ? Icons.visibility_off
-                    //         : Icons.visibility,
-                    //     color: ConstentsItems.k,
-                    //   ),
-                    //   onPressed: () {
-                    //     value.passWordVisiblity();
-                    //   },
-                    // ),
                   );
                 }),
                 AppSpacing.ksizedBox20,
                 LongButtonWidget(
                   text: 'Sign up',
                   onTap: () {},
+                ),
+                AppSpacing.ksizedBox40,
+                ButtonBottomSide(
+                  onTap: () {
+                    data.navigatorRegisterBack(context);
+                  },
+                  richText: 'Sign in',
+                  text: "Already Have an Account?",
+                  height: 80,
                 ),
               ],
             ),

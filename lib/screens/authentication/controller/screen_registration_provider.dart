@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class ScreenRegistrationProvider with ChangeNotifier {
   void navigatorRegisterBack(context) {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const ScreenLogin(),
-    ));
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+      builder: (context) {
+        return const ScreenLogin();
+      },
+    ), (route) => false);
   }
 }

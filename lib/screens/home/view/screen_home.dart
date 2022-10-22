@@ -60,37 +60,57 @@ class ScreenHome extends StatelessWidget {
                           Radius.circular(30),
                         ),
                       ),
-                      hintText: 'Search Tech Talk',
+                      hintText: 'Search',
                     ),
                   ),
                   AppSpacing.ksizedBox20,
-                  const CarouselCardWidget(),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: const [
+                  //     Text(
+                  //       'Categories',
+                  //       style: AppTextStyle.kTextBlackLargeSize,
+                  //     ),
+                  //   ],
+                  // ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.17,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: const [
+                        HomeCategoriesWidget(
+                            image: 'assets/images/shirtimage.png',
+                            title: 'Shirts'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/t shirt.jpg',
+                            title: 'T Shirts'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/pands.png', title: 'Pants'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/track.webp', title: 'Tracks'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/pands.png', title: 'Pants'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/track.webp', title: 'Tracks'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/pands.png', title: 'Pants'),
+                        HomeCategoriesWidget(
+                            image: 'assets/images/track.webp', title: 'Tracks'),
+                      ],
+                    ),
+                  ),
                   AppSpacing.ksizedBox20,
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Categories',
-                        style: AppTextStyle.kTextBlackLargeSize,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Special Offer',
+                        style: AppTextStyle.kTextBlack20Size,
                       ),
                     ],
                   ),
-                  AppSpacing.ksizedBox10,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      HomeCategoriesWidget(
-                          image: 'assets/images/shirtimage.png',
-                          title: 'Shirts'),
-                      HomeCategoriesWidget(
-                          image: 'assets/images/t shirt.jpg',
-                          title: 'T Shirts'),
-                      HomeCategoriesWidget(
-                          image: 'assets/images/pands.png', title: 'Pants'),
-                      HomeCategoriesWidget(
-                          image: 'assets/images/track.webp', title: 'Tracks'),
-                    ],
-                  ),
+                  AppSpacing.ksizedBox5,
+                  const CarouselCardWidget(),
                   AppSpacing.ksizedBox20,
                   Row(
                     children: [

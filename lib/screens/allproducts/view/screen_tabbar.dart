@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/allproducts/view/men_all_product.dart';
 import 'package:ecommerse/screens/allproducts/view/screen_all_product.dart';
@@ -29,6 +30,11 @@ class ScreenallCategory extends StatelessWidget {
             Icons.arrow_back_ios,
             color: AppColors.kBlackColor,
           ),
+        ),
+        centerTitle: true,
+        title: Text(
+          'PRODUCTS',
+          style: AppTextStyle.kTextSize18Black,
         ),
       ),
       body: Builder(builder: (context) {

@@ -1,4 +1,4 @@
-import 'package:ecommerse/core/bottomnavlist/bottom_nav_list.dart';
+import 'package:ecommerse/core/bottomnav_screens.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,7 @@ class ScreenBottomNavbar extends StatelessWidget {
                 icon: Icon(
                   Icons.person,
                 ),
-                label: 'person',
+                label: 'Account',
               ),
             ],
           ),

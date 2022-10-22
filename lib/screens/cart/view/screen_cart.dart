@@ -3,13 +3,16 @@ import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/widget/cart_count_button.dart';
 import 'package:ecommerse/screens/cart/widget/chechout_button.dart';
+import 'package:ecommerse/utils/checkout_bottomsheet.dart';
+import 'package:ecommerse/utils/delete_items.dart';
 import 'package:flutter/material.dart';
 
-class ScreeCart extends StatelessWidget {
-  const ScreeCart({super.key});
+class ScreenCart extends StatelessWidget {
+  const ScreenCart({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -19,92 +22,116 @@ class ScreeCart extends StatelessWidget {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ListView.separated(
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
                       return Container(
-                        height: 180,
+                        height: size * 0.18,
                         width: double.infinity,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.grey),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Container(
-                                height: 150,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.white),
-                                child: const Image(
-                                  image: AssetImage(
-                                      'assets/images/dressimage.png'),
-                                ),
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AppSpacing.ksizedBox40,
-                                const Text(
-                                  'VAN HEUSEN',
-                                  style: AppTextStyle.kTextBlack20Size,
-                                ),
-                                const FittedBox(
-                                  child: Text(
-                                    'Men Slim Fit Solid Spread\nCollar Casual Shirt',
+                        child: FittedBox(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Container(
+                                  height: 150,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.white),
+                                  child: const Image(
+                                    image: AssetImage(
+                                        'assets/images/dressimage.png'),
                                   ),
                                 ),
-                                AppSpacing.ksizedBox5,
-                                const Text(
-                                  'Size  :  M',
-                                  style: AppTextStyle.kTextBlack,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Text(
-                                      '₹1999',
-                                      style: AppTextStyle.kLongButtonBlack,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppSpacing.ksizedBox20,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        'VAN HEUSEN',
+                                        style: AppTextStyle.kTextBlack20Size,
+                                      ),
+                                      AppSpacing.ksizedBoxW120,
+                                      IconButton(
+                                          onPressed: () {
+                                            DeleteItem.deleteItems(
+                                              context,
+                                              'Continue',
+                                              'Are you sure to Delete Item?',
+                                            );
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete_outlined,
+                                            color: Colors.red,
+                                            size: 32,
+                                          ))
+                                    ],
+                                  ),
+                                  const Text(
+                                    'Men Slim Fit Solid Spread\nCollar Casual Shirt',
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  AppSpacing.ksizedBox5,
+                                  const Text(
+                                    'Size  :  M',
+                                    style: AppTextStyle.kTextBlack20Size,
+                                  ),
+                                  AppSpacing.ksizedBoxW20,
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const [
+                                        Text(
+                                          '₹1999',
+                                          style: AppTextStyle.kTextBlack30Size,
+                                        ),
+                                        AppSpacing.ksizedBoxW120,
+                                        CartCountWidget(),
+                                      ],
                                     ),
-                                    AppSpacing.ksizedBoxW20,
-                                    CartCountWidget(),
-                                  ],
-                                )
-                              ],
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.delete_outlined,
-                                  color: Colors.red,
-                                  size: 32,
-                                ))
-                          ],
+                                  ),
+                                  // Align(
+                                  //     alignment: Alignment.bottomRight,
+                                  //     child: CartCountWidget()),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
                     separatorBuilder: (context, index) {
                       return const Divider();
                     },
-                    itemCount: 3,
+                    itemCount: 10,
                   ),
-                  AppSpacing.ksizedBox20,
-                  GestureDetector(
-                    onTap: () {},
-                    child: const CheckOutButton(),
-                  ),
-                ],
-              ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    CheckOutBottomSheet.checkOut(context);
+                  },
+                  child: const CheckOutButton(),
+                ),
+              ],
             ),
           ),
         ),

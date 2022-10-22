@@ -1,7 +1,7 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -49,56 +49,55 @@ class _ScreenOtpState extends State<ScreenOtp> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppSpacing.ksizedBox50,
-                  const Text("Code has been sent to +91 9999999999"),
-                  AppSpacing.ksizedBox50,
-                  OtpTextField(
-                    numberOfFields: 4,
-                    showFieldAsBox: true,
-                    autoFocus: true,
-                    borderColor: AppColors.kBlackColor,
-                    disabledBorderColor: AppColors.kBlackColor,
-                    enabledBorderColor: AppColors.kBlackColor,
-                    cursorColor: AppColors.kBlackColor,
-                    focusedBorderColor: AppColors.kWhiteBlue,
-                    borderWidth: 1.5,
-                    borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                    fieldWidth: 60.0,
-                    onSubmit: (String code) {
-                      otpController.setCode(code);
-                    },
-                  ),
-                  AppSpacing.ksizedBox50,
-                  Consumer<ScreenForgetPasswordProvider>(
-                    builder: (BuildContext context, value, Widget? child) {
-                      return value.timeRemaining != 0
-                          ? Text("Resend code in ${value.timeRemaining} s")
-                          : TextButton(
-                              onPressed: () {
-                                value.setResendVisibility(false);
-                              },
-                              child: const Text(
-                                "Resend OTP",
-                                style: AppTextStyle.kTextsize16,
-                              ),
-                            );
-                    },
-                  ),
-                  AppSpacing.ksizedBox50,
-                  LongButtonWidget(
-                    text: 'Verify',
-                    onTap: () {
-                      otpController.navigatorForgetToNewPassword(context);
-                    },
-                  ),
-                ],
-              ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AppSpacing.ksizedBox150,
+                const Text("Code has been sent to +91 80xxxxxx84"),
+                AppSpacing.ksizedBox50,
+                OtpTextField(
+                  numberOfFields: 4,
+                  showFieldAsBox: true,
+                  autoFocus: true,
+                  borderColor: AppColors.kBlackColor,
+                  disabledBorderColor: AppColors.kBlackColor,
+                  enabledBorderColor: AppColors.kBlackColor,
+                  cursorColor: AppColors.kBlackColor,
+                  focusedBorderColor: AppColors.kBlueColor,
+                  borderWidth: 1.5,
+                  borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                  fieldWidth: 60.0,
+                  onSubmit: (String code) {
+                    otpController.setCode(code);
+                  },
+                ),
+                AppSpacing.ksizedBox20,
+                Consumer<ScreenForgetPasswordProvider>(
+                  builder: (BuildContext context, value, Widget? child) {
+                    return value.timeRemaining != 0
+                        ? Text("Resend code in ${value.timeRemaining} s")
+                        : TextButton(
+                            onPressed: () {
+                              value.setResendVisibility(false);
+                            },
+                            child: const Text(
+                              "Resend OTP",
+                              style: AppTextStyle.kTextsize16,
+                            ),
+                          );
+                  },
+                ),
+                AppSpacing.ksizedBox40,
+                LongButtonWidget(
+                  text: 'Verify',
+                  onTap: () {
+                    otpController.submitOtp(context);
+                  },
+                ),
+              ],
             ),
           ),
         ),

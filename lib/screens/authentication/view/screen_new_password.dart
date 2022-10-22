@@ -1,6 +1,6 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
+import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class ScreenNewPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final otpController =
-        Provider.of<ScreenForgetPasswordProvider>(context, listen: false);
+        Provider.of<ScreenNewPasswordProvider>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -45,7 +45,9 @@ class ScreenNewPassword extends StatelessWidget {
               AppSpacing.ksizedBox20,
               LongButtonWidget(
                 text: 'SAVE',
-                onTap: () {},
+                onTap: () {
+                  otpController.show(context);
+                },
               ),
             ],
           ),

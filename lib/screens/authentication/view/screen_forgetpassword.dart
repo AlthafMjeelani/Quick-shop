@@ -1,6 +1,6 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class ScreenForgrtPassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextfeildWidget(text: 'email/phone', obscureText: false),
+              const TextfeildWidget(text: 'email', obscureText: false),
               AppSpacing.ksizedBox20,
               LongButtonWidget(
                 text: 'Continue',

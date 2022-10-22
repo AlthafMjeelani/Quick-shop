@@ -17,7 +17,7 @@ class CartCountWidget extends StatelessWidget {
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromARGB(255, 54, 54, 54)),
+          color: const Color.fromARGB(255, 130, 121, 121)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

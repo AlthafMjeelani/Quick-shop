@@ -36,6 +36,11 @@ class ScreenProductView extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+        centerTitle: true,
+        title: Text(
+          'PRODUCT DETAILS',
+          style: AppTextStyle.kTextSize18Black,
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -107,18 +112,12 @@ class ScreenProductView extends StatelessWidget {
                     ],
                   ),
                   AppSpacing.ksizedBox20,
-                  // const Text(
-                  //   "Quantity",
-                  // ),
-                  // ConstentsItems.ksizedBox10,
-                  // const CartCountWidget(),
-                  // ConstentsItems.ksizedBox10,
                   const Text(
                     "Descriptioin",
                     style: AppTextStyle.kTextBlack20Size,
                   ),
                   const Text(
-                    ' iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
+                    'iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
                     // style: AppTextStyle.body1,
                   ),
                   AppSpacing.ksizedBox10,
@@ -126,23 +125,47 @@ class ScreenProductView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Size",
-                        // style: AppTextStyle.body1
+                        "Size : ",
+                        style: AppTextStyle.kTextSize18Black,
                       ),
-                      Consumer(
-                        builder: (BuildContext context,
-                            ScreenProductDetailsProvider value, Widget? child) {
-                          return Wrap(
-                            spacing: 10,
-                            direction: Axis.horizontal,
-                            children: value.chipselection(),
-                          );
-                        },
+                      Row(
+                        children: [
+                          for (int i = 0; i < data.chipsList.length; i++)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 5),
+                              child: Consumer(
+                                builder: (BuildContext context,
+                                    ScreenProductDetailsProvider detailsvalue,
+                                    Widget? child) {
+                                  return ChoiceChip(
+                                    label: Text(
+                                      detailsvalue.chipsList[i].toString(),
+                                      style: AppTextStyle.kTextBlack20Size,
+                                    ),
+                                    labelStyle: const TextStyle(
+                                      color: Color.fromARGB(255, 14, 6, 6),
+                                    ),
+                                    selectedColor: Colors.blue,
+                                    selected: detailsvalue.selectedIndex == i,
+                                    onSelected: (bool value) {
+                                      detailsvalue.choiceshipselect(i);
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                        ],
                       ),
                       AppSpacing.ksizedBox20,
                       GestureDetector(
                         onTap: () {},
                         child: const LongButtonWidget(text: 'ADD TO CART'),
+                      ),
+                      AppSpacing.ksizedBox20,
+                      GestureDetector(
+                        onTap: () {},
+                        child: const LongButtonWidget(text: 'BUY NOW'),
                       )
                     ],
                   ),

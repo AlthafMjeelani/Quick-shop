@@ -2,13 +2,12 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
+import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:sign_button/constants.dart';
-import 'package:sign_button/create_button.dart';
 
 class ScreenLogin extends StatelessWidget {
   const ScreenLogin({super.key});
@@ -28,18 +27,18 @@ class ScreenLogin extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppSpacing.ksizedBox200,
+                AppSpacing.ksizedBox150,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Login',
+                      'Sign in',
                       style: GoogleFonts.poppins(
                           fontSize: 42, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
-                AppSpacing.ksizedBox20,
+                AppSpacing.ksizedBox30,
                 const TextfeildWidget(
                   text: 'Email',
                   obscureText: false,
@@ -71,59 +70,43 @@ class ScreenLogin extends StatelessWidget {
                         data.navigatorLoginToForget(context);
                       },
                       child: const Text(
-                        'Forget Password?',
-                        style: AppTextStyle.kTextBlack,
+                        'Forgot Password?',
+                        style: AppTextStyle.kTextBlack16,
                       ),
                     ),
                   ],
                 ),
                 AppSpacing.ksizedBox10,
                 LongButtonWidget(
-                  text: 'Login',
+                  text: 'Sign in',
                   onTap: () {
                     data.navigatorLoginTobottomNav(context);
                   },
                 ),
-                AppSpacing.ksizedBox50,
-                SignInButton(
-                  buttonType: ButtonType.google,
-                  buttonSize: ButtonSize.large, // small(default), medium, large
-                  onPressed: () {},
-                ),
-                AppSpacing.ksizedBox20,
-                Row(
-                  children: const [
-                    Expanded(
-                        child: Divider(
-                      thickness: 2,
-                    )),
-                    SizedBox(
-                      width: 40,
-                      child: Center(child: Text('OR')),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                      ),
-                    ),
-                  ],
-                ),
-                AppSpacing.ksizedBox20,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Don't Have an Account?"),
-                    TextButton(
-                      onPressed: () {
-                        data.navigatorLoginToRegister(context);
-                      },
-                      child: const Text(
-                        'Sign up',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    )
-                  ],
+                AppSpacing.ksizedBox40,
+                ButtonBottomSide(
+                  onTap: () {
+                    data.navigatorLoginToRegister(context);
+                  },
+                  richText: 'Sign up',
+                  text: "Don't Have an Account?",
+                  height: 125,
                 )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     const Text("Don't Have an Account?"),
+                //     TextButton(
+                //       onPressed: () {
+                //         data.navigatorLoginToRegister(context);
+                //       },
+                //       child: const Text(
+                //         'Sign up',
+                //         style: TextStyle(fontSize: 20),
+                //       ),
+                //     )
+                //   ],
+                // ),
               ],
             ),
           ),

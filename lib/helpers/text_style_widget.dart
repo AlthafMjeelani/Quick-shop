@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTextStyle {
   static const kTextBlack = TextStyle(color: Colors.black, fontSize: 18);
+  static const kTextBlack16 = TextStyle(color: Colors.black, fontSize: 16);
   static const kTextBlackLargeSize =
       TextStyle(color: Colors.black, fontSize: 20);
   static const kLongButtonWite =
@@ -13,6 +14,8 @@ class AppTextStyle {
 
   static const kTextBlack20Size =
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+  static const kTextBlack30Size =
+      TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold);
   static const kTextBlack50Size =
       TextStyle(color: Colors.black, fontSize: 50, fontWeight: FontWeight.bold);
   static const kTextBlack40Size =
@@ -25,4 +28,6 @@ class AppTextStyle {
       TextStyle(decoration: TextDecoration.lineThrough, fontSize: 18);
 
   static const ktextWhite16 = TextStyle(color: Colors.white, fontSize: 16);
+  static const kTextBlack50SizeForget =
+      TextStyle(color: Colors.green, fontSize: 50, fontWeight: FontWeight.bold);
 }

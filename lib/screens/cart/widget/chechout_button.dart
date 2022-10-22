@@ -14,7 +14,7 @@ class CheckOutButton extends StatelessWidget {
       height: 65,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(5),
         color: AppColors.kBlackColor,
       ),
       child: Center(
