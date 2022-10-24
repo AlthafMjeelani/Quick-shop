@@ -9,6 +9,7 @@ class TextfeildWidget extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.suffixIcon,
+    this.autovalidateMode,
     required this.obscureText,
   }) : super(key: key);
 
@@ -19,10 +20,18 @@ class TextfeildWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final bool obscureText;
+  final AutovalidateMode? autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enableInteractiveSelection: false,
+      toolbarOptions: const ToolbarOptions(
+        copy: true,
+        cut: true,
+        paste: false,
+        selectAll: false,
+      ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
       validator: validator,

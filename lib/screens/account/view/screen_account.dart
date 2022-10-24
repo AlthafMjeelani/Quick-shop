@@ -1,3 +1,4 @@
+import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/account/controller/screen_account_privider.dart';
 import 'package:ecommerse/widget/list_tile_widget.dart';
@@ -15,15 +16,31 @@ class ScreenAccount extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AppSpacing.ksizedBox20,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'ALTHAF M',
+                  style: AppTextStyle.kTextBlack30Size,
+                ),
+                Text(
+                  'althafjeelani159@gmail.com',
+                  style: AppTextStyle.kTextBlack,
+                ),
+              ],
+            ),
+            AppSpacing.ksizedBox20,
             ListTileWidget(
               title: const Text(
-                'Profile',
+                'Edit Profile',
                 style: AppTextStyle.kTextsize16,
               ),
               leading: const Icon(Icons.person),
               onTap: () {
-                data.navogationToProfile(context);
+                data.navigationToProfile(context);
               },
               trailing: const Icon(
                 Icons.arrow_forward_ios,
@@ -48,7 +65,9 @@ class ScreenAccount extends StatelessWidget {
                 style: AppTextStyle.kTextsize16,
               ),
               leading: const Icon(Icons.location_on_outlined),
-              onTap: () {},
+              onTap: () {
+                data.navigationToAdress(context);
+              },
               trailing: const Icon(
                 Icons.arrow_forward_ios,
                 size: 18,

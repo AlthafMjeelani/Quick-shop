@@ -6,8 +6,8 @@ import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ScreenProfile extends StatelessWidget {
-  const ScreenProfile({super.key});
+class ScreenChangePassword extends StatelessWidget {
+  const ScreenChangePassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ScreenProfile extends StatelessWidget {
           ),
         ),
         title: const Text(
-          'EDIT PROFILE',
+          'CHANGE PASSWORD',
           style: AppTextStyle.kTextSize18Black,
         ),
         centerTitle: true,
@@ -33,46 +33,25 @@ class ScreenProfile extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: SingleChildScrollView(
-          child: Column(
+        child: Center(
+          child: SingleChildScrollView(
+              child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppSpacing.ksizedBox30,
-              const TextfeildWidget(text: 'FULL NAME', obscureText: false),
+              const TextfeildWidget(
+                  text: 'CURRENT PASSWORD', obscureText: false),
+              AppSpacing.ksizedBox10,
+              const TextfeildWidget(text: 'NEW PASSWORD', obscureText: true),
               AppSpacing.ksizedBox10,
               const TextfeildWidget(
-                text: 'EMAIL',
-                obscureText: false,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              AppSpacing.ksizedBox10,
-              const TextfeildWidget(
-                text: 'MOBILE NUMBER',
-                obscureText: false,
-                keyboardType: TextInputType.phone,
-              ),
+                  text: 'CONFORM PASSWORD', obscureText: false),
               AppSpacing.ksizedBox30,
               GestureDetector(
                   onTap: () {}, child: const LongButtonWidget(text: 'UPDATE')),
               AppSpacing.ksizedBox130,
-              TextButton(
-                onPressed: () {
-                  data.navogationToChangePassword(context);
-                },
-                child: const Text(
-                  'Change Passsword',
-                  style: AppTextStyle.kTextBlack,
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Log Out',
-                  style: AppTextStyle.kTextBlack,
-                ),
-              ),
             ],
-          ),
+          )),
         ),
       ),
     );

@@ -8,7 +8,7 @@ class ScreenSplashProvider with ChangeNotifier {
     );
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (ctx) => const ScreenLogin(),
+        builder: (ctx) => ScreenLogin(),
       ),
     );
   }

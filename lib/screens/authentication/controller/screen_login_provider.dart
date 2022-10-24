@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 class ScreenLoginProvider with ChangeNotifier {
   bool passwordVisibility = true;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void passWordVisiblity() {
     passwordVisibility = !passwordVisibility;
@@ -13,7 +15,7 @@ class ScreenLoginProvider with ChangeNotifier {
 
   void navigatorLoginToRegister(context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const ScreenRegistration(),
+      builder: (context) => ScreenRegistration(),
     ));
   }
 
@@ -23,9 +25,23 @@ class ScreenLoginProvider with ChangeNotifier {
     ));
   }
 
-  void navigatorLoginTobottomNav(context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const ScreenBottomNavbar(),
-    ));
+  String? validator(String? value, String text) {
+    if (value == null || value.isEmpty) {
+      return text;
+    }
+    return null;
+  }
+
+  void userSignIn(context,formKey) {
+    if (formKey.currentState!.validate()) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const ScreenBottomNavbar(),
+      ));
+    }
+  }
+
+  void disposeFeildText() {
+    passwordController.clear();
+    emailController.clear();
   }
 }

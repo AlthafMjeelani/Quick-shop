@@ -19,7 +19,7 @@ class ScreenNewPasswordProvider with ChangeNotifier {
   void navigatorNewPassToLogin(context) {
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
       builder: (context) {
-        return const ScreenLogin();
+        return ScreenLogin();
       },
     ), (route) => false);
   }

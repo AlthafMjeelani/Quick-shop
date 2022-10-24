@@ -10,6 +10,7 @@ class ScreenBottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<BottomNavProvider>(context, listen: false).currentPageIndex = 0;
     return Consumer<BottomNavProvider>(
       builder: (BuildContext context, BottomNavProvider value, Widget? child) {
         return Scaffold(

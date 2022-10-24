@@ -32,7 +32,7 @@ class ScreenallCategory extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'PRODUCTS',
           style: AppTextStyle.kTextSize18Black,
         ),

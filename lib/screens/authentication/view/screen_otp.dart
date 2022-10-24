@@ -1,25 +1,33 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
+import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:provider/provider.dart';
 
 class ScreenOtp extends StatefulWidget {
-  const ScreenOtp({super.key});
+  const ScreenOtp({
+    super.key,
+    required this.otpNumber,
+  });
 
+  final String otpNumber;
   @override
   State<ScreenOtp> createState() => _ScreenOtpState();
 }
 
 class _ScreenOtpState extends State<ScreenOtp> {
-  late ScreenForgetPasswordProvider otpController;
+  late ScreenOtpProvider otpController;
+  late ScreenRegistrationProvider signUpController;
   @override
   void initState() {
-    otpController =
-        Provider.of<ScreenForgetPasswordProvider>(context, listen: false);
+    otpController = Provider.of<ScreenOtpProvider>(context, listen: false);
+    signUpController =
+        Provider.of<ScreenRegistrationProvider>(context, listen: false);
     otpController.changeTimer();
     super.initState();
   }
@@ -55,8 +63,8 @@ class _ScreenOtpState extends State<ScreenOtp> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                AppSpacing.ksizedBox150,
-                const Text("Code has been sent to +91 80xxxxxx84"),
+                AppSpacing.ksizedBox130,
+                Text("Code has been sent to +91${widget.otpNumber}"),
                 AppSpacing.ksizedBox50,
                 OtpTextField(
                   numberOfFields: 4,
@@ -75,7 +83,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
                   },
                 ),
                 AppSpacing.ksizedBox20,
-                Consumer<ScreenForgetPasswordProvider>(
+                Consumer<ScreenOtpProvider>(
                   builder: (BuildContext context, value, Widget? child) {
                     return value.timeRemaining != 0
                         ? Text("Resend code in ${value.timeRemaining} s")
@@ -91,10 +99,25 @@ class _ScreenOtpState extends State<ScreenOtp> {
                   },
                 ),
                 AppSpacing.ksizedBox40,
-                LongButtonWidget(
-                  text: 'Verify',
-                  onTap: () {
-                    otpController.submitOtp(context);
+                Consumer<ScreenOtpProvider>(
+                  builder: (context, value, child) {
+                    return value.isLoading
+                        ? const CircularProgressIndicator(
+                            strokeWidth: 2,
+                          )
+                        : LongButtonWidget(
+                            text: 'Verify',
+                            onTap: () {
+                              final userModal = UserModel(
+                                  email: signUpController.emailController.text,
+                                  password:
+                                      signUpController.passwordController.text,
+                                  phone: signUpController.phoneController.text,
+                                  username:
+                                      signUpController.userNameController.text);
+                              otpController.submitOtp(context, userModal);
+                            },
+                          );
                   },
                 ),
               ],

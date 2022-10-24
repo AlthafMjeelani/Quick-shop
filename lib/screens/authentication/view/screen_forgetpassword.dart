@@ -1,6 +1,6 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class ScreenForgrtPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data =
-        Provider.of<ScreenForgetPasswordProvider>(context, listen: false);
+        Provider.of<ScreenOtpProvider>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

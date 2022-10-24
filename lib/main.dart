@@ -1,7 +1,8 @@
 import 'package:ecommerse/screens/account/controller/screen_account_privider.dart';
+import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_forgetpassword_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
@@ -29,8 +30,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenLoginProvider()),
         ChangeNotifierProvider(
             create: (context) => ScreenRegistrationProvider()),
-        ChangeNotifierProvider(
-            create: (context) => ScreenForgetPasswordProvider()),
+        ChangeNotifierProvider(create: (context) => ScreenOtpProvider()),
         ChangeNotifierProvider(create: (context) => ScreenSplashProvider()),
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
         ChangeNotifierProvider(create: (context) => ScreenAllProductProvider()),
@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
             create: (context) => ScreenNewPasswordProvider()),
         ChangeNotifierProvider(create: (context) => ScreenAccountProvider()),
         ChangeNotifierProvider(create: (context) => ScreenProfileProvider()),
+        ChangeNotifierProvider(create: (context) => ScreenAddressProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
