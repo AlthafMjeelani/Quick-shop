@@ -31,15 +31,20 @@ class ScreenHome extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Welcome\nAlthaf m',
                         style: AppTextStyle.kTextBlack,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       CircleAvatar(
                         radius: 30,
-                        child: Icon(Icons.person),
+                        child: IconButton(
+                          icon: const Icon(Icons.person),
+                          onPressed: () {
+                            data.navigatorkillAll(context);
+                          },
+                        ),
                       ),
                       AppSpacing.ksizedBoxW10,
                     ],

@@ -19,9 +19,10 @@ class VerifyotpService {
         data: model.toJson(),
       );
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        log(response.data.toString());
+        //log(response.data.toString());
 
-        await UserSecureStorage.setToken(response.data);
+        await UserSecureStorage.setToken(response.data['token']);
+        log(response.data['token']);
         final token = await UserSecureStorage.getToken();
         log('get token $token');
 

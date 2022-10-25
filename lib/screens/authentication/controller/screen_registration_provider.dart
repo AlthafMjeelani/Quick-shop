@@ -24,19 +24,18 @@ class ScreenRegistrationProvider with ChangeNotifier {
   Future<void> registerUser(context, GlobalKey<FormState> formKey) async {
     log('called register function');
     if (formKey.currentState!.validate()) {
-      // isLoading = true;
-      // notifyListeners();
+      isLoading = true;
+      notifyListeners();
       final user = UserModel(
         email: emailController.text,
         password: passwordController.text,
         phone: phoneController.text,
         username: userNameController.text,
       );
+      await SignUpApiService.signUpService(user, context, phoneController.text);
 
-      await SignUpApiService.signUpService(
-          user, context, phoneController.text);
-      // isLoading = false;
-      // notifyListeners();
+      isLoading = false;
+      notifyListeners();
     }
     //notifyListeners();
   }

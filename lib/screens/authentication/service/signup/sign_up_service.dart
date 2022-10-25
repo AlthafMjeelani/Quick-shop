@@ -15,11 +15,13 @@ class SignUpApiService {
     final dio = Dio();
     try {
       log('called reg api fetch fuction');
-      Response response = await dio.post(
-        'http://172.16.1.168:5000/api/v1/register',
-        
-        //ApiBaseUrl.baseUrl + ApiEndPoints.register,
+      final Response response = await dio.post(
+        ApiBaseUrl.baseUrl + ApiEndPoints.register,
         data: model.toJson(),
+        queryParameters: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
       );
       log('message');
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {

@@ -1,4 +1,5 @@
 import 'package:ecommerse/screens/allproducts/view/screen_tabbar.dart';
+import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
@@ -17,5 +18,14 @@ class ScreenHomeProvider with ChangeNotifier {
         },
       ),
     );
+  }
+  void navigatorkillAll(context) {
+    Navigator.of(context).pushAndRemoveUntil(  MaterialPageRoute(
+        builder: (context) {
+          return  ScreenLogin();
+        },
+      ), (route) => false);
+    
+    
   }
 }

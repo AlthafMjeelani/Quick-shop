@@ -13,7 +13,7 @@ class DioExceptionhandler {
       if (e.response?.statusCode == 401) {
         AppPopUps.showToast('Server not found !', Colors.red);
       } else if (e.response?.statusCode == 400) {
-        AppPopUps.showToast('User already exists', Colors.red);
+        AppPopUps.showToast(e.response?.data['message'], Colors.red);
       }else if (e.type == DioErrorType.connectTimeout) {
         AppPopUps.showToast('Connection Timout', Colors.red);
       } else if (e.type == DioErrorType.receiveTimeout) {
