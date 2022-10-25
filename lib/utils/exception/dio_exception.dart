@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 
 class DioExceptionhandler {
   static void errorHandler(Object e) {
-    if (e is HttpException) {
+    if (e is SocketException) {
       AppPopUps.showToast('No Internet Connection', Colors.red);
     }
     if (e is DioError) {
       if (e.response?.statusCode == 401) {
         AppPopUps.showToast('Server not found !', Colors.red);
-      } else if (e.type == DioErrorType.connectTimeout) {
+      } else if (e.response?.statusCode == 400) {
+        AppPopUps.showToast('User already exists', Colors.red);
+      }else if (e.type == DioErrorType.connectTimeout) {
         AppPopUps.showToast('Connection Timout', Colors.red);
       } else if (e.type == DioErrorType.receiveTimeout) {
         AppPopUps.showToast('Recieve Timout', Colors.red);

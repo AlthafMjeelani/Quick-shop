@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/service/signup/sign_up_service.dart';
 import 'package:ecommerse/screens/authentication/view/screen_login.dart';
@@ -9,7 +11,7 @@ class ScreenRegistrationProvider with ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confrPasswordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final bool isLoading = false;
+  bool isLoading = false;
 
   void navigatorRegisterBack(context) {
     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
@@ -19,8 +21,11 @@ class ScreenRegistrationProvider with ChangeNotifier {
     ), (route) => false);
   }
 
-  Future<void> registerUser(context, formKey) async {
+  Future<void> registerUser(context, GlobalKey<FormState> formKey) async {
+    log('called register function');
     if (formKey.currentState!.validate()) {
+      // isLoading = true;
+      // notifyListeners();
       final user = UserModel(
         email: emailController.text,
         password: passwordController.text,
@@ -29,9 +34,11 @@ class ScreenRegistrationProvider with ChangeNotifier {
       );
 
       await SignUpApiService.signUpService(
-          user, context, phoneController.text, isLoading);
+          user, context, phoneController.text);
+      // isLoading = false;
+      // notifyListeners();
     }
-    notifyListeners();
+    //notifyListeners();
   }
 
   String? validator(String? value, String text) {

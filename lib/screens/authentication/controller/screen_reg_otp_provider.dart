@@ -7,7 +7,7 @@ import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
 
 class ScreenOtpProvider with ChangeNotifier {
-  final bool isLoading = false;
+   bool isLoading = false;
 
   void navigatorForgePop(context) {
     Navigator.of(context).pop();
@@ -49,6 +49,8 @@ class ScreenOtpProvider with ChangeNotifier {
     if (code.length != 4) {
       await AppPopUps.showToast("Enter Otp", Colors.red);
     } else {
+      isLoading=true;
+       notifyListeners();
       final verifyOtp = UserVerifyOtpModel(
         code: code,
         email: model.email,
@@ -57,9 +59,11 @@ class ScreenOtpProvider with ChangeNotifier {
         username: model.username,
       );
 
-      await VerifyotpService.signUpVerifyOtp(verifyOtp, context, isLoading);
+      await VerifyotpService.signUpVerifyOtp(verifyOtp, context);
+      isLoading=false;
+       notifyListeners();
     }
-    notifyListeners();
+   
   }
 
   void navigatorForgetToOtp(context) {

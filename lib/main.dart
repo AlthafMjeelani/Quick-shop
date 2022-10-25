@@ -6,18 +6,17 @@ import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provi
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
-import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
-import 'package:ecommerse/screens/profile/view/screen_profile.dart';
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

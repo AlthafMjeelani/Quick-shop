@@ -11,15 +11,18 @@ class SignUpApiService {
   //------------------- Create UserAccount ----------------------
 
   static Future<void> signUpService(
-      UserModel model, context, phoneController, bool isLoading) async {
+      UserModel model, context, phoneController) async {
+    final dio = Dio();
     try {
-      isLoading = true;
-      final response = await Dio().post(
-        ApiBaseUrl.baseUrl + ApiEndPoints.register,
+      log('called reg api fetch fuction');
+      Response response = await dio.post(
+        'http://172.16.1.168:5000/api/v1/register',
+        
+        //ApiBaseUrl.baseUrl + ApiEndPoints.register,
         data: model.toJson(),
       );
+      log('message');
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        isLoading = false;
         log(response.data.toString());
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -28,7 +31,7 @@ class SignUpApiService {
         );
       }
     } catch (e) {
-      isLoading = false;
+      log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
     }
   }

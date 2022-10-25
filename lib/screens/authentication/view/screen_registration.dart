@@ -120,10 +120,12 @@ class ScreenRegistration extends StatelessWidget {
                   AppSpacing.ksizedBox20,
                   Consumer<ScreenRegistrationProvider>(
                     builder: (context, value, child) {
-                      return value.isLoading
-                          ? const CircularProgressIndicator(
-                              strokeWidth: 2,
-                            )
+                      return value.isLoading==true
+                          ? const Center(
+                            child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                          )
                           : LongButtonWidget(
                               text: 'Sign up',
                               onTap: () async {
