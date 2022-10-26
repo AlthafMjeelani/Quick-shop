@@ -6,6 +6,9 @@ import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:flutter/material.dart';
 
 class ScreenRegistrationProvider with ChangeNotifier {
+
+
+
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -33,6 +36,7 @@ class ScreenRegistrationProvider with ChangeNotifier {
         username: userNameController.text,
       );
       await SignUpApiService.signUpService(user, context, phoneController.text);
+      disposeFeild();
 
       isLoading = false;
       notifyListeners();

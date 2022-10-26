@@ -25,103 +25,105 @@ class ScreenLogin extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: AppColors.kBgColor,
         ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppSpacing.ksizedBox130,
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sign in',
-                          style: GoogleFonts.poppins(
-                              fontSize: 42, fontWeight: FontWeight.w700),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AppSpacing.ksizedBox150,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        //'Sign in',
+                        'Login to your\nAccount',
+                        style: GoogleFonts.poppins(
+                          letterSpacing: 1,
+                          fontSize: 42,
+                          fontWeight: FontWeight.w700,
                         ),
-                      ],
-                    ),
-                    AppSpacing.ksizedBox30,
-                    TextfeildWidget(
-                      keyboardType: TextInputType.emailAddress,
-                      controller: data.emailController,
-                      validator: (value) =>
-                          EmailValidator.validate(value.toString())
-                              ? null
-                              : "Please enter a valid email",
-                      text: 'Email',
-                      obscureText: false,
-                    ),
-                    AppSpacing.ksizedBox10,
-                    Consumer(
-                      builder: (context, ScreenLoginProvider value, child) {
-                        return TextfeildWidget(
-                          controller: data.passwordController,
-                          validator: (value) =>
-                              data.validator(value, 'Please Enter Password'),
-                          text: 'Enter Password',
-                          keyboardType: TextInputType.text,
-                          obscureText: value.passwordVisibility,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              value.passwordVisibility
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                              color: AppColors.kBlackColor,
-                            ),
-                            onPressed: () {
-                              value.passWordVisiblity();
-                            },
+                      ),
+                    ],
+                  ),
+                  AppSpacing.ksizedBox30,
+                  TextfeildWidget(
+                    keyboardType: TextInputType.emailAddress,
+                    controller: data.emailController,
+                    validator: (value) =>
+                        EmailValidator.validate(value.toString())
+                            ? null
+                            : "Please enter a valid email",
+                    text: 'Enter Email Id',
+                    obscureText: false,
+                  ),
+                  AppSpacing.ksizedBox10,
+                  Consumer(
+                    builder: (context, ScreenLoginProvider value, child) {
+                      return TextfeildWidget(
+                        controller: data.passwordController,
+                        validator: (value) =>
+                            data.validator(value, 'Please Enter Password'),
+                        text: 'Enter Password',
+                        keyboardType: TextInputType.text,
+                        obscureText: value.passwordVisibility,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            value.passwordVisibility
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.kBlackColor,
                           ),
-                        );
-                      },
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
                           onPressed: () {
-                            data.navigatorLoginToForget(context);
+                            value.passWordVisiblity();
                           },
-                          child: const Text(
-                            'Forgot Password?',
-                            style: AppTextStyle.kTextBlack16,
-                          ),
                         ),
-                      ],
-                    ),
-                    AppSpacing.ksizedBox10,
-                    Consumer<ScreenLoginProvider>(
-                      builder: (context, value, child) {
-                        return value.isLoading == true
-                            ? const Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : LongButtonWidget(
-                                text: 'Sign in',
-                                onTap: () {
-                                  data.userSignIn(context, formKey);
-                                },
-                              );
-                      },
-                    ),
-                    AppSpacing.ksizedBox40,
-                    ButtonBottomSide(
-                      onTap: () {
-                        data.navigatorLoginToRegister(context);
-                      },
-                      richText: 'Sign up',
-                      text: "Don't Have an Account?",
-                      height: 125,
-                    ),
-                  ],
-                ),
+                      );
+                    },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          data.navigatorLoginToForget(context);
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: AppTextStyle.kTextBlack16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  AppSpacing.ksizedBox10,
+                  Consumer<ScreenLoginProvider>(
+                    builder: (context, value, child) {
+                      return value.isLoading == true
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : LongButtonWidget(
+                              text: 'Sign in',
+                              onTap: () {
+                                data.userSignIn(context, formKey);
+                              },
+                            );
+                    },
+                  ),
+                  AppSpacing.ksizedBox40,
+                  ButtonBottomSide(
+                    onTap: () {
+                      data.navigatorLoginToRegister(context);
+                    },
+                    richText: 'Sign up',
+                    text: "Don't Have an Account?",
+                    height: MediaQuery.of(context).size.height * 0.15,
+                  ),
+                ],
               ),
             ),
           ),

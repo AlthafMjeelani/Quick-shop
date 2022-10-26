@@ -24,11 +24,15 @@ class VerifyotpService {
       /*  check status code is Successs or bad requist   */
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        //log(response.data.toString());
+
+
+        
+        /*  store the token in secure storage   */
+
         await UserSecureStorage.setToken(response.data['token']);
         log(response.data['token']);
         final token = await UserSecureStorage.getToken();
-        log('get token $token');
+        log('get token :$token');
 
         AppPopUps.showToast('Created Successfully', Colors.green);
         Navigator.of(context).pushAndRemoveUntil(

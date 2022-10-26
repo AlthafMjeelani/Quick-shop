@@ -4,12 +4,12 @@ class UserSecureStorage {
   static const storage = FlutterSecureStorage();
   static const keyName = 'token';
 
-  static Future<void> setToken(String token) async {
+  static Future<void> setToken(String? token) async {
     await storage.write(key: keyName, value: token);
   }
 
   static Future<String?> getToken() async {
-    await storage.read(key: keyName);
-    return null;
+   final token =  await storage.read(key: keyName);
+   return token;
   }
 }

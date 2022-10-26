@@ -10,7 +10,6 @@ class CheckOutBottomSheet {
     showModalBottomSheet<void>(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
-        // <-- SEE HERE
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25.0),
         ),

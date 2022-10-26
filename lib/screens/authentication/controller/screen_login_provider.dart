@@ -2,7 +2,6 @@ import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart
 import 'package:ecommerse/screens/authentication/service/signin/sign_in_service.dart';
 import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
 import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
-import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 class ScreenLoginProvider with ChangeNotifier {
@@ -47,7 +46,7 @@ class ScreenLoginProvider with ChangeNotifier {
       await SignInService.signUpService(signInUser, context);
       isLoading = false;
     }
-    notifyListeners();
+    notifyListeners(); 
   }
 
   void disposeFeildText() {

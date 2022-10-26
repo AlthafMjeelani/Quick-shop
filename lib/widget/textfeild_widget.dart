@@ -40,7 +40,7 @@ class TextfeildWidget extends StatelessWidget {
       decoration: InputDecoration(
         label: Text(text),
         suffixIcon: suffixIcon,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

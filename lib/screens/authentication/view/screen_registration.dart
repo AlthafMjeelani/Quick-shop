@@ -17,9 +17,9 @@ class ScreenRegistration extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenRegistrationProvider>(context, listen: false);
-    data.disposeFeild();
+    
     return Scaffold(
-      extendBodyBehindAppBar: true,
+     extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -49,13 +49,14 @@ class ScreenRegistration extends StatelessWidget {
                 children: [
                   AppSpacing.ksizedBox80,
                   Text(
-                    'Sign up',
+                    'Create Account',
                     style: GoogleFonts.poppins(
-                      fontSize: 42,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 40,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  AppSpacing.ksizedBox50,
+                  AppSpacing.ksizedBox30,
                   TextfeildWidget(
                     validator: (value) =>
                         data.validator(value, 'Please Enter Name'),
@@ -117,15 +118,15 @@ class ScreenRegistration extends StatelessWidget {
                       obscureText: false,
                     );
                   }),
-                  AppSpacing.ksizedBox20,
+                  AppSpacing.ksizedBox30,
                   Consumer<ScreenRegistrationProvider>(
                     builder: (context, value, child) {
-                      return value.isLoading==true
+                      return value.isLoading == true
                           ? const Center(
-                            child: CircularProgressIndicator(
+                              child: CircularProgressIndicator(
                                 strokeWidth: 2,
                               ),
-                          )
+                            )
                           : LongButtonWidget(
                               text: 'Sign up',
                               onTap: () async {
@@ -141,7 +142,7 @@ class ScreenRegistration extends StatelessWidget {
                     },
                     richText: 'Sign in',
                     text: "Already Have an Account?",
-                    height: 15,
+                    height: MediaQuery.of(context).size.height * 0.09,
                   ),
                 ],
               ),

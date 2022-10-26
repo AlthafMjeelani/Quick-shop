@@ -42,7 +42,7 @@ class ScreenHome extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.person),
                           onPressed: () {
-                            data.navigatorkillAll(context);
+                            data.logOut(context);
                           },
                         ),
                       ),

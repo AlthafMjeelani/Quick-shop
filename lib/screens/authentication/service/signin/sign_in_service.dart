@@ -6,6 +6,7 @@ import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
 import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
+import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 class SignInService {
@@ -31,6 +32,13 @@ class SignInService {
       /*  check status code is Succes or bad requist   */
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
+        /*  store the token in secure storage   */
+
+        await UserSecureStorage.setToken(response.data['token']);
+        log(response.data['token']);
+        final token = await UserSecureStorage.getToken();
+        log('get token :$token');
+
         log(response.data.toString());
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
