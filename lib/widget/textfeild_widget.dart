@@ -25,7 +25,7 @@ class TextfeildWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enableInteractiveSelection: false,
+      //enableInteractiveSelection: false,
       toolbarOptions: const ToolbarOptions(
         copy: true,
         cut: true,

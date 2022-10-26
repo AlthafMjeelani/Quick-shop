@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ecommerse/screens/allproducts/view/screen_tabbar.dart';
 import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
@@ -24,7 +22,7 @@ class ScreenHomeProvider with ChangeNotifier {
   }
 
   void logOut(context) async {
-    /*  set token as NULL  in secure storage   */
+    /* token  set as NULL  into secure storage   */
 
     await UserSecureStorage.setToken(null);
 

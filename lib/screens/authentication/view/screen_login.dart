@@ -16,9 +16,6 @@ class ScreenLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenLoginProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      data.disposeFeildText();
-    });
     return Scaffold(
       body: Container(
         height: double.infinity,

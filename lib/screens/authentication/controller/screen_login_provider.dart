@@ -38,15 +38,19 @@ class ScreenLoginProvider with ChangeNotifier {
   void userSignIn(context, formKey) async {
     if (formKey.currentState!.validate()) {
       isLoading = true;
+      notifyListeners();
       final signInUser = SignInModel(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      await SignInService.signUpService(signInUser, context);
+      await SignInService.signUpService(signInUser, context).then(
+        (value) => disposeFeildText(),
+      );
+
       isLoading = false;
+      notifyListeners();
     }
-    notifyListeners(); 
   }
 
   void disposeFeildText() {

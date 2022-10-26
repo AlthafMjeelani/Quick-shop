@@ -5,6 +5,7 @@ import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
 import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
+import 'package:ecommerse/utils/app_popups.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,10 @@ class SignInService {
         log('get token :$token');
 
         log(response.data.toString());
+
+
+
+        AppPopUps.showToast('Logged Successfully', Colors.green);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
               builder: (context) => const ScreenBottomNavbar(),

@@ -11,7 +11,7 @@ class DioExceptionhandler {
     }
     if (e is DioError) {
       if (e.response?.statusCode == 401) {
-        AppPopUps.showToast('Server not found !', Colors.red);
+        AppPopUps.showToast(e.response?.data['message'], Colors.red);
       } else if (e.response?.statusCode == 400) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
       } else if (e.response?.statusCode == 404) {
