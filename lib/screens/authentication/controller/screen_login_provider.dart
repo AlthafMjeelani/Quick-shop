@@ -1,3 +1,5 @@
+import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
+import 'package:ecommerse/screens/authentication/service/signin/sign_in_service.dart';
 import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
 import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
 import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
@@ -7,6 +9,8 @@ class ScreenLoginProvider with ChangeNotifier {
   bool passwordVisibility = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
 
   void passWordVisiblity() {
     passwordVisibility = !passwordVisibility;
@@ -32,12 +36,18 @@ class ScreenLoginProvider with ChangeNotifier {
     return null;
   }
 
-  void userSignIn(context,formKey) {
+  void userSignIn(context, formKey) async {
     if (formKey.currentState!.validate()) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const ScreenBottomNavbar(),
-      ));
+      isLoading = true;
+      final signInUser = SignInModel(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      await SignInService.signUpService(signInUser, context);
+      isLoading = false;
     }
+    notifyListeners();
   }
 
   void disposeFeildText() {

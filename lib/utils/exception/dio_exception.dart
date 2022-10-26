@@ -14,7 +14,9 @@ class DioExceptionhandler {
         AppPopUps.showToast('Server not found !', Colors.red);
       } else if (e.response?.statusCode == 400) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
-      }else if (e.type == DioErrorType.connectTimeout) {
+      } else if (e.response?.statusCode == 404) {
+        AppPopUps.showToast(e.response?.data['message'], Colors.red);
+      } else if (e.type == DioErrorType.connectTimeout) {
         AppPopUps.showToast('Connection Timout', Colors.red);
       } else if (e.type == DioErrorType.receiveTimeout) {
         AppPopUps.showToast('Recieve Timout', Colors.red);

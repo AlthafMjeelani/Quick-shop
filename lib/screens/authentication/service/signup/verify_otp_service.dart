@@ -10,17 +10,21 @@ import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 class VerifyotpService {
-  //------------------- Verify Otp ----------------------
+  /*------------------- Verify Otp ----------------------*/
 
   static Future<void> signUpVerifyOtp(UserVerifyOtpModel model, context) async {
     try {
+      /*  call api key   */
+
       final response = await Dio().post(
         ApiBaseUrl.baseUrl + ApiEndPoints.verifyOtp,
         data: model.toJson(),
       );
+
+      /*  check status code is Successs or bad requist   */
+
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         //log(response.data.toString());
-
         await UserSecureStorage.setToken(response.data['token']);
         log(response.data['token']);
         final token = await UserSecureStorage.getToken();
@@ -33,6 +37,9 @@ class VerifyotpService {
             ),
             (route) => false);
       }
+
+      /*  Catch error   */
+
     } catch (e) {
       DioExceptionhandler.errorHandler(e);
     }

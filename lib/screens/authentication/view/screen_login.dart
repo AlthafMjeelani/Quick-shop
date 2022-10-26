@@ -25,90 +25,103 @@ class ScreenLogin extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: AppColors.kBgColor,
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Form(
-              key: formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppSpacing.ksizedBox130,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sign in',
-                        style: GoogleFonts.poppins(
-                            fontSize: 42, fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  AppSpacing.ksizedBox30,
-                  TextfeildWidget(
-                    controller: data.emailController,
-                    validator: (value) =>
-                        EmailValidator.validate(value.toString())
-                            ? null
-                            : "Please enter a valid email",
-                    text: 'Email',
-                    obscureText: false,
-                  ),
-                  AppSpacing.ksizedBox10,
-                  Consumer(
-                    builder: (context, ScreenLoginProvider value, child) {
-                      return TextfeildWidget(
-                        controller: data.passwordController,
-                        validator: (value) =>
-                            data.validator(value, 'Please Enter Password'),
-                        text: 'Enter Password',
-                        keyboardType: TextInputType.text,
-                        obscureText: value.passwordVisibility,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            value.passwordVisibility
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: AppColors.kBlackColor,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppSpacing.ksizedBox130,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Sign in',
+                          style: GoogleFonts.poppins(
+                              fontSize: 42, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    AppSpacing.ksizedBox30,
+                    TextfeildWidget(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: data.emailController,
+                      validator: (value) =>
+                          EmailValidator.validate(value.toString())
+                              ? null
+                              : "Please enter a valid email",
+                      text: 'Email',
+                      obscureText: false,
+                    ),
+                    AppSpacing.ksizedBox10,
+                    Consumer(
+                      builder: (context, ScreenLoginProvider value, child) {
+                        return TextfeildWidget(
+                          controller: data.passwordController,
+                          validator: (value) =>
+                              data.validator(value, 'Please Enter Password'),
+                          text: 'Enter Password',
+                          keyboardType: TextInputType.text,
+                          obscureText: value.passwordVisibility,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              value.passwordVisibility
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: AppColors.kBlackColor,
+                            ),
+                            onPressed: () {
+                              value.passWordVisiblity();
+                            },
                           ),
+                        );
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
                           onPressed: () {
-                            value.passWordVisiblity();
+                            data.navigatorLoginToForget(context);
                           },
+                          child: const Text(
+                            'Forgot Password?',
+                            style: AppTextStyle.kTextBlack16,
+                          ),
                         ),
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          data.navigatorLoginToForget(context);
-                        },
-                        child: const Text(
-                          'Forgot Password?',
-                          style: AppTextStyle.kTextBlack16,
-                        ),
-                      ),
-                    ],
-                  ),
-                  AppSpacing.ksizedBox10,
-                  LongButtonWidget(
-                    text: 'Sign in',
-                    onTap: () {
-                      data.userSignIn(context, formKey);
-                    },
-                  ),
-                  AppSpacing.ksizedBox40,
-                  ButtonBottomSide(
-                    onTap: () {
-                      data.navigatorLoginToRegister(context);
-                    },
-                    richText: 'Sign up',
-                    text: "Don't Have an Account?",
-                    height: 125,
-                  ),
-                ],
+                      ],
+                    ),
+                    AppSpacing.ksizedBox10,
+                    Consumer<ScreenLoginProvider>(
+                      builder: (context, value, child) {
+                        return value.isLoading == true
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : LongButtonWidget(
+                                text: 'Sign in',
+                                onTap: () {
+                                  data.userSignIn(context, formKey);
+                                },
+                              );
+                      },
+                    ),
+                    AppSpacing.ksizedBox40,
+                    ButtonBottomSide(
+                      onTap: () {
+                        data.navigatorLoginToRegister(context);
+                      },
+                      richText: 'Sign up',
+                      text: "Don't Have an Account?",
+                      height: 125,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
