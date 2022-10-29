@@ -2,11 +2,13 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
+import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,7 @@ class ScreenRegistration extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final size =MediaQuery.of(context).size;
     final data =
         Provider.of<ScreenRegistrationProvider>(context, listen: false);
     
@@ -25,7 +28,8 @@ class ScreenRegistration extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            data.navigatorRegisterBack(context);
+           Get.back();
+           data.isLoading=false;
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -47,7 +51,9 @@ class ScreenRegistration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppSpacing.ksizedBox80,
+                SizedBox(
+                  height:  size.height*0.08,
+                ),
                   Text(
                     'Create Account',
                     style: GoogleFonts.poppins(
@@ -56,7 +62,7 @@ class ScreenRegistration extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  AppSpacing.ksizedBox30,
+                  AppSpacing.ksizedBox20,
                   TextfeildWidget(
                     validator: (value) =>
                         data.validator(value, 'Please Enter Name'),
@@ -138,11 +144,11 @@ class ScreenRegistration extends StatelessWidget {
                   AppSpacing.ksizedBox40,
                   ButtonBottomSide(
                     onTap: () {
-                      data.navigatorRegisterBack(context);
+                      Get.offAll(ScreenLogin());
                     },
                     richText: 'Sign in',
                     text: "Already Have an Account?",
-                    height: MediaQuery.of(context).size.height * 0.09,
+                    height: MediaQuery.of(context).size.height * 0.06,
                   ),
                 ],
               ),

@@ -4,6 +4,7 @@ import 'package:ecommerse/screens/authentication/controller/new_password_provide
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 class ScreenNewPassword extends StatelessWidget {
@@ -20,7 +21,7 @@ class ScreenNewPassword extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            otpController.navigatorForgePop(context);
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_ios,

@@ -2,11 +2,14 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
+import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
+import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
 import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +19,7 @@ class ScreenLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenLoginProvider>(context, listen: false);
+    final size =MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -30,7 +34,10 @@ class ScreenLogin extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AppSpacing.ksizedBox150,
+                       SizedBox(
+                  height:  size.height*0.12,
+                ),
+                 // AppSpacing.ksizedBox150,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -85,7 +92,7 @@ class ScreenLogin extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          data.navigatorLoginToForget(context);
+                          Get.to(const ScreenForgrtPassword());
                         },
                         child: const Text(
                           'Forgot Password?',
@@ -114,7 +121,7 @@ class ScreenLogin extends StatelessWidget {
                   AppSpacing.ksizedBox40,
                   ButtonBottomSide(
                     onTap: () {
-                      data.navigatorLoginToRegister(context);
+                      Get.to(ScreenRegistration());
                     },
                     richText: 'Sign up',
                     text: "Don't Have an Account?",

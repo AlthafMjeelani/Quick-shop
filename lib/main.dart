@@ -13,6 +13,7 @@ import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dar
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -43,11 +44,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenProfileProvider()),
         ChangeNotifierProvider(create: (context) => ScreenAddressProvider()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColorLight:const Color.fromARGB(255, 255, 255, 255)
         ),
         home: const ScreenSplash(),
       ),

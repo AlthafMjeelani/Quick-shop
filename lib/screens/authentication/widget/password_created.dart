@@ -1,13 +1,12 @@
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
+import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/route_manager.dart';
 
 class SuccessDialouge extends StatelessWidget {
   const SuccessDialouge({super.key});
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<ScreenNewPasswordProvider>(context, listen: false);
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Center(
@@ -26,7 +25,7 @@ class SuccessDialouge extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      data.navigatorNewPassToLogin(context);
+                      Get.offAll(ScreenLogin());
                     },
                     icon: const Icon(
                       Icons.close,

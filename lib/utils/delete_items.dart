@@ -11,11 +11,11 @@ class DeleteItem {
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text('No'),
+              child: const Text('No'),
             ),
             TextButton(
               onPressed: () {},
-              child: Text('Yes'),
+              child: const Text('Yes'),
             )
           ],
         );

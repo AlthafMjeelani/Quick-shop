@@ -1,9 +1,11 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
+import 'package:ecommerse/screens/authentication/view/screen_otp.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 class ScreenForgrtPassword extends StatelessWidget {
@@ -11,8 +13,7 @@ class ScreenForgrtPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data =
-        Provider.of<ScreenOtpProvider>(context, listen: false);
+   
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -20,7 +21,7 @@ class ScreenForgrtPassword extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            data.navigatorForgePop(context);
+           Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -43,7 +44,7 @@ class ScreenForgrtPassword extends StatelessWidget {
               LongButtonWidget(
                 text: 'Continue',
                 onTap: () {
-                  data.navigatorForgetToOtp(context);
+                  Get.to(const ScreenOtp(otpNumber: '8086689184'));
                 },
               ),
             ],

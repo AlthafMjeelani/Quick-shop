@@ -13,42 +13,48 @@ class ScreenBottomNavbar extends StatelessWidget {
     Provider.of<BottomNavProvider>(context, listen: false).currentPageIndex = 0;
     return Consumer<BottomNavProvider>(
       builder: (BuildContext context, BottomNavProvider value, Widget? child) {
-        return Scaffold(
-          body: BottomNavPageList.screens[value.currentPageIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-            elevation: 0,
-            selectedItemColor: const Color.fromARGB(255, 12, 133, 255),
-            unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-            currentIndex: value.currentPageIndex,
-            onTap: (newIndex) {
-              value.bottomShift(newIndex);
-            },
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
+        return WillPopScope(
+          onWillPop: () async {
+            await value.bottomNavbar();
+            return false;
+          },
+          child: Scaffold(
+            body: BottomNavPageList.screens[value.currentPageIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              elevation: 0,
+              selectedItemColor: const Color.fromARGB(255, 12, 133, 255),
+              unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+              currentIndex: value.currentPageIndex,
+              onTap: (newIndex) {
+                value.bottomShift(newIndex);
+              },
+              type: BottomNavigationBarType.fixed,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  label: 'Home',
                 ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.shopping_bag,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.shopping_bag,
+                  ),
+                  label: 'Cart',
                 ),
-                label: 'Cart',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Wishlist',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.person,
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite),
+                  label: 'Wishlist',
                 ),
-                label: 'Account',
-              ),
-            ],
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                  label: 'Account',
+                ),
+              ],
+            ),
           ),
         );
       },

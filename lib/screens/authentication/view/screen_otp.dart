@@ -7,6 +7,7 @@ import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dar
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 class ScreenOtp extends StatefulWidget {
@@ -47,7 +48,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            otpController.navigatorForgePop(context);
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_ios,

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/home_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CarouselCardWidget extends StatelessWidget {
   const CarouselCardWidget({
@@ -9,7 +11,9 @@ class CarouselCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<ScreenHomeProvider>(context,listen: false);
     return CarouselSlider.builder(
+      carouselController:data.carouselController ,
       itemCount: 3,
       itemBuilder: (context, index, realIndex) {
         return Container(

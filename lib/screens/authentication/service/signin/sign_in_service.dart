@@ -4,18 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
-import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
-import 'package:ecommerse/utils/app_popups.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
-import 'package:flutter/material.dart';
 
 class SignInService {
   /*------------------- Sign In  UserAccount ----------------------*/
 
-  static Future<void> signUpService(SignInModel model, context) async {
+  static Future<SignInModel?> signUpService(SignInModel model) async {
     final dio = Dio();
     try {
+      SignInModel? signInModel;
       log('called login api fetch fuction');
 
       /*  call api key   */
@@ -39,17 +37,9 @@ class SignInService {
         log(response.data['token']);
         final token = await UserSecureStorage.getToken();
         log('get token :$token');
-
+        signInModel = SignInModel.fromJson(response.data);
         log(response.data.toString());
-
-
-
-        AppPopUps.showToast('Logged Successfully', Colors.green);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const ScreenBottomNavbar(),
-            ),
-            (route) => false);
+        return signInModel;
       }
 
       /*  Catch error   */
@@ -58,5 +48,6 @@ class SignInService {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
     }
+    return null;
   }
 }

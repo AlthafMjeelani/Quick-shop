@@ -1,5 +1,4 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_button/constants.dart';

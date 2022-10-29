@@ -1,14 +1,21 @@
 class SignInModel {
-    SignInModel({
-        this.password,
-        this.email,
-    });
+  SignInModel({
+    this.password,
+    this.email,
+  });
 
-    String? password;
-    String? email;
+  String? password;
+  String? email;
 
-    Map<String, dynamic> toJson() => {
+  factory SignInModel.fromJson(Map<String, dynamic> json) {
+    return SignInModel(
+      email: json['email'],
+      password: json['password'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
         "password": password,
         "email": email,
-    };
+      };
 }

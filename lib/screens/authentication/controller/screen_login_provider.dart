@@ -1,8 +1,9 @@
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
 import 'package:ecommerse/screens/authentication/service/signin/sign_in_service.dart';
-import 'package:ecommerse/screens/authentication/view/screen_forgetpassword.dart';
-import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
+import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
+import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ScreenLoginProvider with ChangeNotifier {
   bool passwordVisibility = true;
@@ -14,18 +15,6 @@ class ScreenLoginProvider with ChangeNotifier {
   void passWordVisiblity() {
     passwordVisibility = !passwordVisibility;
     notifyListeners();
-  }
-
-  void navigatorLoginToRegister(context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => ScreenRegistration(),
-    ));
-  }
-
-  void navigatorLoginToForget(context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const ScreenForgrtPassword(),
-    ));
   }
 
   String? validator(String? value, String text) {
@@ -44,10 +33,17 @@ class ScreenLoginProvider with ChangeNotifier {
         password: passwordController.text,
       );
 
-      await SignInService.signUpService(signInUser, context).then(
-        (value) => disposeFeildText(),
+      await SignInService.signUpService(signInUser).then(
+        (value) {
+          if (value != null) {
+            AppPopUps.showToast('Logged Successfully', Colors.green);
+            Get.offAll(const ScreenBottomNavbar());
+            disposeFeildText();
+          } else {
+            return;
+          }
+        },
       );
-
       isLoading = false;
       notifyListeners();
     }

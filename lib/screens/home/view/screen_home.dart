@@ -107,8 +107,8 @@ class ScreenHome extends StatelessWidget {
                   AppSpacing.ksizedBox20,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         'Special Offer',
                         style: AppTextStyle.kTextBlack20Size,
                       ),
@@ -116,6 +116,7 @@ class ScreenHome extends StatelessWidget {
                   ),
                   AppSpacing.ksizedBox5,
                   const CarouselCardWidget(),
+
                   AppSpacing.ksizedBox20,
                   Row(
                     children: [

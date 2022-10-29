@@ -37,7 +37,7 @@ class ScreenProductView extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'PRODUCT DETAILS',
           style: AppTextStyle.kTextSize18Black,
         ),

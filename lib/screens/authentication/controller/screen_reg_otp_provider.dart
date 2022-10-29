@@ -2,16 +2,13 @@ import 'dart:async';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/verify_otp_model.dart';
 import 'package:ecommerse/screens/authentication/service/signup/verify_otp_service.dart';
-import 'package:ecommerse/screens/authentication/view/screen_otp.dart';
+import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ScreenOtpProvider with ChangeNotifier {
   bool isLoading = false;
-
-  void navigatorForgePop(context) {
-    Navigator.of(context).pop();
-  }
 
   int timeRemaining = 30;
   Timer? timer;
@@ -42,10 +39,7 @@ class ScreenOtpProvider with ChangeNotifier {
     });
   }
 
-  void submitOtp(
-    BuildContext context,
-    UserModel model,
-  ) async {
+  void submitOtp(BuildContext context, UserModel? model) async {
     if (code.length != 4) {
       await AppPopUps.showToast("Enter Otp", Colors.red);
     } else {
@@ -53,20 +47,18 @@ class ScreenOtpProvider with ChangeNotifier {
       notifyListeners();
       final verifyOtp = UserVerifyOtpModel(
         code: code,
-        email: model.email,
-        password: model.password,
-        phone: model.phone,
-        username: model.username,
+        userModel: model,
       );
-      await VerifyotpService.signUpVerifyOtp(verifyOtp, context);
+      await VerifyotpService.signUpVerifyOtp(verifyOtp, context).then((value) {
+        if (value != null) {
+          AppPopUps.showToast('Created Successfully', Colors.green);
+          Get.offAll(const ScreenBottomNavbar());
+        } else {
+          return;
+        }
+      });
       isLoading = false;
       notifyListeners();
     }
-  }
-
-  void navigatorForgetToOtp(context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const ScreenOtp(otpNumber: '8086689484'),
-    ));
   }
 }
