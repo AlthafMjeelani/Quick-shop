@@ -2,7 +2,8 @@ import 'package:ecommerse/screens/account/controller/screen_account_privider.dar
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
@@ -43,13 +44,14 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenAccountProvider()),
         ChangeNotifierProvider(create: (context) => ScreenProfileProvider()),
         ChangeNotifierProvider(create: (context) => ScreenAddressProvider()),
+        ChangeNotifierProvider(
+            create: (context) => ScreenNewPasswordProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColorLight:const Color.fromARGB(255, 255, 255, 255)
-        ),
+            primaryColorLight: const Color.fromARGB(255, 255, 255, 255)),
         home: const ScreenSplash(),
       ),
     );

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/verify_otp_model.dart';
@@ -12,13 +13,10 @@ import 'package:get/route_manager.dart';
 
 class ScreenOtpProvider with ChangeNotifier {
   UserVerifyOtpModel? userVerifyOtpModel;
-  Actiontype? type;
   bool isLoading = false;
-
   int timeRemaining = 30;
   Timer? timer;
   bool enableResend = false;
-
   String code = '';
 
   void setCode(String newCode) {
@@ -44,12 +42,14 @@ class ScreenOtpProvider with ChangeNotifier {
     });
   }
 
-  void submitOtp(BuildContext context, UserModel? model) async {
+  void submitOtp(UserModel? model, Actiontype type,
+      ScreenRegistrationProvider signUpController) async {
     if (code.length != 4) {
       await AppPopUps.showToast("Enter Otp", Colors.red);
     } else if (type == Actiontype.forgetPassword) {
+      log('called');
       Get.to(
-        () => const ScreenNewPassword(),
+        () => ScreenNewPassword(),
       );
     } else if (type == Actiontype.register) {
       isLoading = true;
@@ -60,7 +60,6 @@ class ScreenOtpProvider with ChangeNotifier {
         phone: model?.phone,
         userName: model?.username,
       );
-      log("This is code${code.toString()} , This is ");
       userVerifyOtpModel =
           await VerifyotpService.signUpVerifyOtp(verifyOtp, code);
 
@@ -69,9 +68,9 @@ class ScreenOtpProvider with ChangeNotifier {
         Get.offAll(() => const ScreenBottomNavbar());
         isLoading = false;
         notifyListeners();
+        signUpController.disposeFeild();
       } else {
         log('return called');
-
         isLoading = false;
         notifyListeners();
         return;

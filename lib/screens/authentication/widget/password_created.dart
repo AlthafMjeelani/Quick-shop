@@ -25,7 +25,7 @@ class SuccessDialouge extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      Get.offAll(ScreenLogin());
+                      Get.offAll(()=>ScreenLogin());
                     },
                     icon: const Icon(
                       Icons.close,

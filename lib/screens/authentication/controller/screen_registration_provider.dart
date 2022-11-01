@@ -81,11 +81,11 @@ class ScreenRegistrationProvider with ChangeNotifier {
     return null;
   }
 
-  // void disposeFeild() {
-  //   userNameController.clear();
-  //   passwordController.clear();
-  //   confrPasswordController.clear();
-  //   phoneController.clear();
-  //   emailController.clear();
-  // }
+  void disposeFeild() {
+    userNameController.clear();
+    passwordController.clear();
+    confrPasswordController.clear();
+    phoneController.clear();
+    emailController.clear();
+  }
 }

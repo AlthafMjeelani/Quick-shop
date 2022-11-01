@@ -20,13 +20,19 @@ class VerifyotpService {
       UserVerifyOtpModel? userVerifyOtpModel;
       final response = await Dio().post(
         ApiBaseUrl.baseUrl + ApiEndPoints.verifyOtp,
-        data: {"user":model.toJson(),"code":code},
+        data: {
+          "user": model.toJson(),
+          "code": code,
+        },
+        queryParameters: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
       );
 
       /*  check status code is Successs or Badrequist   */
-      
+
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        
         /*  store token into secure storage   */
         log('status code Ok');
         await UserSecureStorage.setToken(response.data['token']);
@@ -35,7 +41,7 @@ class VerifyotpService {
         log('get token :$token');
 
         userVerifyOtpModel = UserVerifyOtpModel.fromJson(response.data);
-       
+
         return userVerifyOtpModel;
       } else {
         log("error with Status Code${response.statusCode}");

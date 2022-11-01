@@ -19,7 +19,7 @@ class ScreenLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenLoginProvider>(context, listen: false);
-    final size =MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -34,10 +34,10 @@ class ScreenLogin extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                       SizedBox(
-                  height:  size.height*0.12,
-                ),
-                 // AppSpacing.ksizedBox150,
+                  SizedBox(
+                    height: size.height * 0.12,
+                  ),
+                  // AppSpacing.ksizedBox150,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -56,10 +56,14 @@ class ScreenLogin extends StatelessWidget {
                   TextfeildWidget(
                     keyboardType: TextInputType.emailAddress,
                     controller: data.emailController,
-                    validator: (value) =>
-                        EmailValidator.validate(value.toString())
-                            ? null
-                            : "Please enter a valid email",
+                    validator: (value) {
+                      // if (value == null || value.isEmpty) {
+                      //   return "Please enter email";
+                      // }
+                      return EmailValidator.validate(value.toString())
+                          ? null
+                          : "Please enter a valid email";
+                    },
                     text: 'Enter Email Id',
                     obscureText: false,
                   ),
@@ -92,7 +96,7 @@ class ScreenLogin extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.to(const ScreenForgrtPassword());
+                          Get.to( ScreenForgrtPassword());
                         },
                         child: const Text(
                           'Forgot Password?',

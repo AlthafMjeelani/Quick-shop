@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
@@ -16,9 +16,10 @@ import 'package:provider/provider.dart';
 class ScreenOtp extends StatefulWidget {
   const ScreenOtp({
     super.key,
-    required this.otpEmail, required this.type,
+    required this.otpEmail,
+    required this.type,
   });
-final Actiontype type;
+  final Actiontype type;
   final String otpEmail;
   @override
   State<ScreenOtp> createState() => _ScreenOtpState();
@@ -112,15 +113,21 @@ class _ScreenOtpState extends State<ScreenOtp> {
                         : LongButtonWidget(
                             text: 'Verify',
                             onTap: () {
-                              log("This is ${signUpController.emailController.text}");
                               final userModal = UserModel(
-                                  email: signUpController.emailController.text,
-                                  password:
-                                      signUpController.passwordController.text,
-                                  phone: signUpController.phoneController.text,
-                                  username:
-                                      signUpController.userNameController.text);
-                              otpController.submitOtp(context, userModal);
+                                email: signUpController.emailController.text,
+                                password:
+                                    signUpController.passwordController.text,
+                                phone: signUpController.phoneController.text,
+                                username:
+                                    signUpController.userNameController.text,
+                              );
+                              otpController.submitOtp(
+                                userModal,
+                                widget.type,
+                                signUpController
+                              );
+
+                              
                             },
                           );
                   },

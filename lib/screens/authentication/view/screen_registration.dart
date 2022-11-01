@@ -17,19 +17,19 @@ class ScreenRegistration extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final size =MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     final data =
         Provider.of<ScreenRegistrationProvider>(context, listen: false);
-    
+
     return Scaffold(
-     extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-           Get.back();
-           data.isLoading=false;
+            Get.back();
+            data.isLoading = false;
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -51,9 +51,9 @@ class ScreenRegistration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                SizedBox(
-                  height:  size.height*0.08,
-                ),
+                  SizedBox(
+                    height: size.height * 0.08,
+                  ),
                   Text(
                     'Create Account',
                     style: GoogleFonts.poppins(
@@ -92,27 +92,28 @@ class ScreenRegistration extends StatelessWidget {
                   ),
                   AppSpacing.ksizedBox10,
                   Consumer(
-                      builder: (context, ScreenLoginProvider value, child) {
-                    return TextfeildWidget(
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value) =>
-                          data.passValidator(value, 'Please Enter Password'),
-                      controller: data.passwordController,
-                      text: 'Password',
-                      obscureText: value.passwordVisibility,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          value.passwordVisibility
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: AppColors.kBlackColor,
+                    builder: (context, ScreenLoginProvider value, child) {
+                      return TextfeildWidget(
+                        keyboardType: TextInputType.visiblePassword,
+                        validator: (value) =>
+                            data.passValidator(value, 'Please Enter Password'),
+                        controller: data.passwordController,
+                        text: 'Password',
+                        obscureText: value.passwordVisibility,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            value.passwordVisibility
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: AppColors.kBlackColor,
+                          ),
+                          onPressed: () {
+                            value.passWordVisiblity();
+                          },
                         ),
-                        onPressed: () {
-                          value.passWordVisiblity();
-                        },
-                      ),
-                    );
-                  }),
+                      );
+                    },
+                  ),
                   AppSpacing.ksizedBox10,
                   Consumer(
                       builder: (context, ScreenLoginProvider value, child) {
