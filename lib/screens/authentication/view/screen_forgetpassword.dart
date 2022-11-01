@@ -1,6 +1,7 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
+import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/view/screen_otp.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
@@ -13,7 +14,8 @@ class ScreenForgrtPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
+    final data =
+        Provider.of<ScreenForgotPasswordProvider>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -21,7 +23,7 @@ class ScreenForgrtPassword extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-           Get.back();
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -39,12 +41,16 @@ class ScreenForgrtPassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextfeildWidget(text: 'email', obscureText: false),
+              TextfeildWidget(
+                controller: data.emailController,
+                text: 'email',
+                obscureText: false,
+              ),
               AppSpacing.ksizedBox20,
               LongButtonWidget(
                 text: 'Continue',
                 onTap: () {
-                  Get.to(const ScreenOtp(otpNumber: '8086689184'));
+                  data.navigatorToOtp();
                 },
               ),
             ],

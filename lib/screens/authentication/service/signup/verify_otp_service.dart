@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
@@ -10,27 +11,34 @@ class VerifyotpService {
   /*------------------- Verify Otp ----------------------*/
 
   static Future<UserVerifyOtpModel?> signUpVerifyOtp(
-      UserVerifyOtpModel model, context) async {
+    UserVerifyOtpModel model,
+    String code,
+  ) async {
     try {
+      log("try");
       /*  call api key   */
       UserVerifyOtpModel? userVerifyOtpModel;
       final response = await Dio().post(
         ApiBaseUrl.baseUrl + ApiEndPoints.verifyOtp,
-        data: model.toJson(),
+        data: {"user":model.toJson(),"code":code},
       );
 
       /*  check status code is Successs or Badrequist   */
-
+      
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
+        
         /*  store token into secure storage   */
-
+        log('status code Ok');
         await UserSecureStorage.setToken(response.data['token']);
         log(response.data['token']);
         final token = await UserSecureStorage.getToken();
         log('get token :$token');
 
         userVerifyOtpModel = UserVerifyOtpModel.fromJson(response.data);
+       
         return userVerifyOtpModel;
+      } else {
+        log("error with Status Code${response.statusCode}");
       }
 
       /*  Catch error   */

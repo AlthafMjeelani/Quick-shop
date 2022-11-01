@@ -1,5 +1,5 @@
 class ApiEndPoints {
   static String register = '/register';
-  static String verifyOtp = '/verifyOtp';
+  static String verifyOtp = '/verify';
   static String login = '/login';
 }

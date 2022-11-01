@@ -4,6 +4,9 @@ import 'package:ecommerse/screens/productdetails/controller/screen_product_detai
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_slider/carousel_slider.dart';
+import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
+import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:provider/provider.dart';
 
 class ScreenProductView extends StatelessWidget {
@@ -47,31 +50,46 @@ class ScreenProductView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 400,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                // color: Colors.blue,
-                image: DecorationImage(
-                  image: AssetImage(imageUrl),
-                  fit: BoxFit.fill,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.45,
+              width: MediaQuery.of(context).size.width * 0.90,
+              child: CarouselSlider.builder(
+                slideIndicator: CircularSlideIndicator(
+                  currentIndicatorColor: Colors.blue,
+                  itemSpacing: 25,
+                  indicatorRadius: 7,
+                  padding: const EdgeInsets.only(bottom: 12),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      // data.isFaved(index);
-                    },
-                    child: const Icon(
-                      CupertinoIcons.heart_fill,
-                      size: AppTextStyle.kIconsize32,
-                      color: Colors.grey,
+                itemCount: 3,
+                slideBuilder: (index) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.35,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      // color: Colors.blue,
+                      image: DecorationImage(
+                        image: AssetImage(imageUrl),
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                  ),
-                ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            // data.isFaved(index);
+                          },
+                          child: const Icon(
+                            CupertinoIcons.heart_fill,
+                            size: AppTextStyle.kIconsize32,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(

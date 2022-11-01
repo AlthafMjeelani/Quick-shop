@@ -1,23 +1,31 @@
-import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
-
 class UserVerifyOtpModel {
-  UserModel? userModel;
-  String? code;
+  final String? userName;
+  final String? email;
+  final String? phone;
+  final String? password;
 
   UserVerifyOtpModel({
-    this.userModel,
-    this.code,
+    required this.userName,
+    required this.email,
+    required this.phone,
+    required this.password,
   });
 
   factory UserVerifyOtpModel.fromJson(Map<String, dynamic> json) {
     return UserVerifyOtpModel(
-      userModel: json['user'],
-      code: json['code'],
+      userName: json["username"] ?? "",
+      email: json["email"] ?? "",
+      phone: json["phone"] ?? "",
+      password: json["password"] ?? "",
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        "code": code,
-        "user": userModel,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      "username": userName,
+      "email": email,
+      "phone": phone,
+      "password": password,
+    };
+  }
 }

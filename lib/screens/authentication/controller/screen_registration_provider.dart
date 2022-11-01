@@ -1,7 +1,7 @@
 import 'dart:developer';
+import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/service/signup/sign_up_service.dart';
-import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:ecommerse/screens/authentication/view/screen_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -29,7 +29,10 @@ class ScreenRegistrationProvider with ChangeNotifier {
           .then((value) {
         if (value != null) {
           Get.to(
-            ScreenOtp(otpNumber: passwordController.text),
+            () => ScreenOtp(
+              otpEmail: emailController.text,
+              type: Actiontype.register,
+            ),
           );
         } else {
           return;
@@ -78,11 +81,11 @@ class ScreenRegistrationProvider with ChangeNotifier {
     return null;
   }
 
-  void disposeFeild() {
-    userNameController.clear();
-    passwordController.clear();
-    confrPasswordController.clear();
-    phoneController.clear();
-    emailController.clear();
-  }
+  // void disposeFeild() {
+  //   userNameController.clear();
+  //   passwordController.clear();
+  //   confrPasswordController.clear();
+  //   phoneController.clear();
+  //   emailController.clear();
+  // }
 }

@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_reg_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
+import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +16,10 @@ import 'package:provider/provider.dart';
 class ScreenOtp extends StatefulWidget {
   const ScreenOtp({
     super.key,
-    required this.otpNumber,
+    required this.otpEmail, required this.type,
   });
-
-  final String otpNumber;
+final Actiontype type;
+  final String otpEmail;
   @override
   State<ScreenOtp> createState() => _ScreenOtpState();
 }
@@ -65,7 +68,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AppSpacing.ksizedBox130,
-                Text("Code has been sent to +91${widget.otpNumber}"),
+                Text("Code has been sent to ${widget.otpEmail}"),
                 AppSpacing.ksizedBox50,
                 OtpTextField(
                   numberOfFields: 4,
@@ -109,6 +112,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
                         : LongButtonWidget(
                             text: 'Verify',
                             onTap: () {
+                              log("This is ${signUpController.emailController.text}");
                               final userModal = UserModel(
                                   email: signUpController.emailController.text,
                                   password:

@@ -73,6 +73,7 @@ class ScreenCart extends StatelessWidget {
                                               context,
                                               'Continue',
                                               'Are you sure to Delete Item?',
+                                              () {},
                                             );
                                           },
                                           icon: const Icon(
@@ -122,7 +123,7 @@ class ScreenCart extends StatelessWidget {
                     separatorBuilder: (context, index) {
                       return const Divider();
                     },
-                    itemCount: 10,
+                    itemCount: 3,
                   ),
                 ),
                 GestureDetector(

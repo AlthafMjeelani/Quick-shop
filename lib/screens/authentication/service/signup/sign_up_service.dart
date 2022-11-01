@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
@@ -19,7 +20,7 @@ class SignUpApiService {
 
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.register,
-        data: model.toJson(),
+        data: jsonEncode(model.toJson()),
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',

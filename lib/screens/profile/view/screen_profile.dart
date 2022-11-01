@@ -1,6 +1,7 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
+import 'package:ecommerse/utils/delete_items.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,16 @@ class ScreenProfile extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  DeleteItem.deleteItems(
+                    context,
+                    'Continue',
+                    'Are you sure to Log Out?',
+                    () {
+                      data.logOut(context);
+                    },
+                  );
+                },
                 child: const Text(
                   'Log Out',
                   style: AppTextStyle.kTextBlack,

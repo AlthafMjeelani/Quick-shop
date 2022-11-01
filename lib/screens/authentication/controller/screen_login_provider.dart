@@ -24,7 +24,7 @@ class ScreenLoginProvider with ChangeNotifier {
     return null;
   }
 
-  void userSignIn(context, formKey) async {
+  void userSignIn(context, GlobalKey<FormState> formKey) async {
     if (formKey.currentState!.validate()) {
       isLoading = true;
       notifyListeners();
@@ -37,7 +37,7 @@ class ScreenLoginProvider with ChangeNotifier {
         (value) {
           if (value != null) {
             AppPopUps.showToast('Logged Successfully', Colors.green);
-            Get.offAll(const ScreenBottomNavbar());
+            Get.offAll(() => const ScreenBottomNavbar());
             disposeFeildText();
           } else {
             return;

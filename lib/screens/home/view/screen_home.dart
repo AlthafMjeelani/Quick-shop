@@ -3,6 +3,7 @@ import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
+import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
 import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
@@ -41,43 +42,33 @@ class ScreenHome extends StatelessWidget {
                         radius: 30,
                         child: IconButton(
                           icon: const Icon(Icons.person),
-                          onPressed: () {
-                            data.logOut(context);
-                          },
+                          onPressed: () {},
                         ),
                       ),
                       AppSpacing.ksizedBoxW10,
                     ],
                   ),
                   AppSpacing.ksizedBox20,
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
+                  InkWell(
+                    onTap: () => Delegate.showSearchfn(context),
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      suffixIcon: Icon(
-                        Icons.sort_sharp,
-                        color: Colors.black,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
+                      child: const ListTile(
+                        title: Text('Enter a Product name'),
+                        trailing: Icon(
+                          Icons.search,
+                          size: 32,
+                          color: Colors.black,
                         ),
                       ),
-                      hintText: 'Search',
                     ),
                   ),
                   AppSpacing.ksizedBox20,
-                  // Row(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: const [
-                  //     Text(
-                  //       'Categories',
-                  //       style: AppTextStyle.kTextBlackLargeSize,
-                  //     ),
-                  //   ],
-                  // ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.17,
                     child: ListView(
@@ -116,7 +107,6 @@ class ScreenHome extends StatelessWidget {
                   ),
                   AppSpacing.ksizedBox5,
                   const CarouselCardWidget(),
-
                   AppSpacing.ksizedBox20,
                   Row(
                     children: [

@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
+import 'package:ecommerse/utils/app_popups.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
+import 'package:flutter/material.dart';
 
 class SignInService {
   /*------------------- Sign In  UserAccount ----------------------*/
@@ -20,7 +24,7 @@ class SignInService {
 
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.login,
-        data: model.toJson(),
+        data: jsonEncode(model.toJson()),
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -44,6 +48,8 @@ class SignInService {
 
       /*  Catch error   */
 
+    } on SocketException catch (_) {
+      AppPopUps.showToast('No Internet Connection', Colors.red);
     } catch (e) {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
