@@ -3,4 +3,5 @@ class ApiEndPoints {
   static String verifyOtp = '/verify';
   static String login = '/login';
   static String forgotpassword = '/accounts/password';
+  static String fogotOtpverification = '/verifyOtp';
 }

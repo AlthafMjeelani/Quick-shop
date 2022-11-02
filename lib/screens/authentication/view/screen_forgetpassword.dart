@@ -43,6 +43,7 @@ class ScreenForgrtPassword extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextfeildWidget(
+                  keyboardType: TextInputType.emailAddress,
                   validator: (value) =>
                       EmailValidator.validate(value.toString())
                           ? null
@@ -52,10 +53,20 @@ class ScreenForgrtPassword extends StatelessWidget {
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox20,
-                LongButtonWidget(
-                  text: 'Find Your Email',
-                  onTap: () {
-                    data.navigatorToOtp(formKey);
+                Consumer<ScreenForgotPasswordProvider>(
+                  builder: (context, value, child) {
+                    return value.isLoading == true
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : LongButtonWidget(
+                            text: 'Find Your Email',
+                            onTap: () {
+                              data.navigatorToOtp(formKey);
+                            },
+                          );
                   },
                 ),
               ],

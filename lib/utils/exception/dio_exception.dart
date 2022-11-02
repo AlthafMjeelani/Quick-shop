@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 
 class DioExceptionhandler {
   static void errorHandler(Object e) {
-    if (e == SocketException) {
-      AppPopUps.showToast('No Internet Connection', Colors.red);
-    }
     if (e is DioError) {
       if (e.response?.statusCode == 401) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
+      } else if (e.error is SocketException) {
+        AppPopUps.showToast('No Internet Connection', Colors.red);
       } else if (e.response?.statusCode == 400) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
       } else if (e.response?.statusCode == 404) {

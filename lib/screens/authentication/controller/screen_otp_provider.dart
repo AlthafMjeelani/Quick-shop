@@ -4,6 +4,7 @@ import 'package:ecommerse/screens/authentication/controller/screen_registration_
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/verify_otp_model.dart';
+import 'package:ecommerse/screens/authentication/service/forgotpassword/otp_verification_service.dart';
 import 'package:ecommerse/screens/authentication/service/signup/verify_otp_service.dart';
 import 'package:ecommerse/screens/authentication/view/screen_new_password.dart';
 import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
@@ -42,15 +43,30 @@ class ScreenOtpProvider with ChangeNotifier {
     });
   }
 
-  void submitOtp(UserModel? model, Actiontype type,
+  void submitOtp(
+      UserModel? model,
+      Actiontype type,
+      TextEditingController emailController,
       ScreenRegistrationProvider signUpController) async {
     if (code.length != 4) {
       await AppPopUps.showToast("Enter Otp", Colors.red);
     } else if (type == Actiontype.forgetPassword) {
-      log('called');
-      Get.to(
-        () => ScreenNewPassword(),
+      isLoading = true;
+      notifyListeners();
+      await ForgetPasswordOtpverificationServices.forgetPasswordOtpverification(
+              emailController.text, code)
+          .then(
+        (value) {
+          if (value != null) {
+            log('called');
+            Get.off(
+              () => ScreenNewPassword(),
+            );
+          }
+        },
       );
+      isLoading = false;
+      notifyListeners();
     } else if (type == Actiontype.register) {
       isLoading = true;
       notifyListeners();

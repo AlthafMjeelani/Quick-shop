@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
@@ -28,11 +29,14 @@ class ScreenOtp extends StatefulWidget {
 class _ScreenOtpState extends State<ScreenOtp> {
   late ScreenOtpProvider otpController;
   late ScreenRegistrationProvider signUpController;
+  late ScreenForgotPasswordProvider forgotController;
   @override
   void initState() {
     otpController = Provider.of<ScreenOtpProvider>(context, listen: false);
     signUpController =
         Provider.of<ScreenRegistrationProvider>(context, listen: false);
+    forgotController =
+        Provider.of<ScreenForgotPasswordProvider>(context, listen: false);
     otpController.changeTimer();
     super.initState();
   }
@@ -124,10 +128,9 @@ class _ScreenOtpState extends State<ScreenOtp> {
                               otpController.submitOtp(
                                 userModal,
                                 widget.type,
-                                signUpController
+                                forgotController.emailController,
+                                signUpController,
                               );
-
-                              
                             },
                           );
                   },

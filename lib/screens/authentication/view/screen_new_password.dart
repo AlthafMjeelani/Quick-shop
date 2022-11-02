@@ -2,7 +2,6 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
-import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/model/forgotpassword/forgot_password_model.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
@@ -19,8 +18,6 @@ class ScreenNewPassword extends StatelessWidget {
         Provider.of<ScreenNewPasswordProvider>(context, listen: false);
     final forgetPassword =
         Provider.of<ScreenForgotPasswordProvider>(context, listen: false);
-    final otpController =
-        Provider.of<ScreenOtpProvider>(context, listen: false);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -78,19 +75,27 @@ class ScreenNewPassword extends StatelessWidget {
                     text: 'Conform Password',
                     obscureText: false),
                 AppSpacing.ksizedBox20,
-                LongButtonWidget(
-                  text: 'SAVE',
-                  onTap: () {
-                    final newPsswordModel = SaveNewPasswordModel(
-                      email: forgetPassword.emailController.text,
-                      password: newPassword.passwordController.text,
-                      code: otpController.code,
-                    );
-                    newPassword.submitnewPassword(
-                      context,
-                      formKey,
-                      newPsswordModel,
-                    );
+                Consumer(
+                  builder: (BuildContext context,
+                      ScreenNewPasswordProvider value, Widget? child) {
+                    return value.isLoading == true
+                        ? const CircularProgressIndicator()
+                        : LongButtonWidget(
+                            text: 'SAVE',
+                            onTap: () {
+                              final newPsswordModel = SaveNewPasswordModel(
+                                email: forgetPassword.emailController.text,
+                                password: value.passwordController.text,
+                              );
+                              value.submitnewPassword(
+                                forgetPassword.emailController,
+                                context,
+                                formKey,
+                                newPsswordModel,
+                              );
+                          
+                            },
+                          );
                   },
                 ),
               ],

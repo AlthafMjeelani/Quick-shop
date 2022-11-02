@@ -3,15 +3,17 @@ import 'dart:developer';
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
 import 'package:ecommerse/screens/authentication/service/forgotpassword/forgot_password_service.dart';
 import 'package:ecommerse/screens/authentication/view/screen_otp.dart';
-import 'package:ecommerse/screens/authentication/widget/password_created.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class ScreenForgotPasswordProvider with ChangeNotifier {
   TextEditingController emailController = TextEditingController();
+  bool isLoading = false;
 
   void navigatorToOtp(GlobalKey<FormState> formKey) async {
     if (formKey.currentState!.validate()) {
+      isLoading = true;
+      notifyListeners();
       await ForgetPasswordServices.getOtp(emailController.text).then((value) {
         if (value != null) {
           Get.to(
@@ -20,8 +22,13 @@ class ScreenForgotPasswordProvider with ChangeNotifier {
               type: Actiontype.forgetPassword,
             ),
           );
+          isLoading = false;
+          notifyListeners();
         } else {
+          isLoading = false;
+          notifyListeners();
           log('called');
+          return;
         }
       });
     }
