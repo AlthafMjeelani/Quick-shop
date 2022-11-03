@@ -15,14 +15,15 @@ class ScreenSplash extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 101, 153, 231),
-              Color.fromARGB(255, 124, 239, 250)
-            ],
-          ),
+          color: Colors.black
+          // gradient: LinearGradient(
+          //   begin: Alignment.topRight,
+          //   end: Alignment.bottomCenter,
+          //   colors: [
+          //     Color.fromARGB(255, 101, 153, 231),
+          //     Color.fromARGB(255, 124, 239, 250)
+          //   ],
+          // ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

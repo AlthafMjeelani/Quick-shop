@@ -96,7 +96,7 @@ class ScreenLogin extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.to( ScreenForgrtPassword());
+                          Get.to(ScreenForgrtPassword());
                         },
                         child: const Text(
                           'Forgot Password?',
@@ -125,7 +125,9 @@ class ScreenLogin extends StatelessWidget {
                   AppSpacing.ksizedBox40,
                   ButtonBottomSide(
                     onTap: () {
-                      Get.to(ScreenRegistration());
+                      Get.to(
+                        () => ScreenRegistration(),
+                      );
                     },
                     richText: 'Sign up',
                     text: "Don't Have an Account?",

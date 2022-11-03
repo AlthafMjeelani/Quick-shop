@@ -1,6 +1,8 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
+import 'package:ecommerse/screens/authentication/controller/google_signin_provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
 
@@ -18,6 +20,7 @@ class ButtonBottomSide extends StatelessWidget {
   final double height;
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<GoogleSignInProvider>(context, listen: false);
     return Column(
       children: [
         Row(
@@ -40,10 +43,19 @@ class ButtonBottomSide extends StatelessWidget {
           ],
         ),
         AppSpacing.ksizedBox20,
-        SignInButton(
-          buttonType: ButtonType.google,
-          buttonSize: ButtonSize.large, // small(default), medium, large
-          onPressed: () {},
+        Consumer(
+          builder: (BuildContext context, GoogleSignInProvider value,
+              Widget? child) {
+            return value.isLoading == true
+                ? const CircularProgressIndicator()
+                : SignInButton(
+                    buttonType: ButtonType.google,
+                    buttonSize: ButtonSize.large,
+                    onPressed: () {
+                      data.googleSignin();
+                    },
+                  );
+          },
         ),
         SizedBox(
           height: height,

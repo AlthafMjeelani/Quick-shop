@@ -2,6 +2,7 @@ import 'package:ecommerse/screens/account/controller/screen_account_privider.dar
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
+import 'package:ecommerse/screens/authentication/controller/google_signin_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_login_provider.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenLoginProvider()),
         ChangeNotifierProvider(
             create: (context) => ScreenRegistrationProvider()),
+        ChangeNotifierProvider(create: (context) => GoogleSignInProvider()),
         ChangeNotifierProvider(create: (context) => ScreenOtpProvider()),
         ChangeNotifierProvider(create: (context) => ScreenSplashProvider()),
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
