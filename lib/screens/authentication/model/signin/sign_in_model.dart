@@ -13,9 +13,4 @@ class SignInModel {
       password: json['password'],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "password": password,
-        "email": email,
-      };
 }

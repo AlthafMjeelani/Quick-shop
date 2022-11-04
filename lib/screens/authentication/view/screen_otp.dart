@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
-import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_otp_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
@@ -91,22 +88,22 @@ class _ScreenOtpState extends State<ScreenOtp> {
                     otpController.setCode(code);
                   },
                 ),
-                AppSpacing.ksizedBox20,
-                Consumer<ScreenOtpProvider>(
-                  builder: (BuildContext context, value, Widget? child) {
-                    return value.timeRemaining != 0
-                        ? Text("Resend code in ${value.timeRemaining} s")
-                        : TextButton(
-                            onPressed: () {
-                              value.setResendVisibility(false);
-                            },
-                            child: const Text(
-                              "Resend OTP",
-                              style: AppTextStyle.kTextsize16,
-                            ),
-                          );
-                  },
-                ),
+                //AppSpacing.ksizedBox20,
+                // Consumer<ScreenOtpProvider>(
+                //   builder: (BuildContext context, value, Widget? child) {
+                //     return value.timeRemaining != 0
+                //         ? Text("Resend code in ${value.timeRemaining} s")
+                //         : TextButton(
+                //             onPressed: () {
+                //               value.setResendVisibility(false);
+                //             },
+                //             child: const Text(
+                //               "Resend OTP",
+                //               style: AppTextStyle.kTextsize16,
+                //             ),
+                //           );
+                //   },
+                // ),
                 AppSpacing.ksizedBox40,
                 Consumer<ScreenOtpProvider>(
                   builder: (context, value, child) {
@@ -128,6 +125,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
                               otpController.submitOtp(
                                 userModal,
                                 widget.type,
+                                forgotController.emailController.text,
                                 forgotController.emailController,
                                 signUpController,
                               );

@@ -6,7 +6,6 @@ import 'package:ecommerse/screens/authentication/view/screen_login.dart';
 import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,10 +72,7 @@ class ScreenRegistration extends StatelessWidget {
                   AppSpacing.ksizedBox10,
                   TextfeildWidget(
                     keyboardType: TextInputType.emailAddress,
-                    validator: (value) =>
-                        EmailValidator.validate(value.toString())
-                            ? null
-                            : "Please enter a valid email",
+                    validator: (value) => data.emailValidation(value),
                     controller: data.emailController,
                     text: 'Email Address',
                     obscureText: false,

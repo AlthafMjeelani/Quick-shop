@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:ecommerse/screens/authentication/model/forgotpassword/forgot_password_model.dart';
 import 'package:ecommerse/screens/authentication/service/forgotpassword/save_new_password_service.dart';
 import 'package:ecommerse/screens/authentication/widget/password_created.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +34,12 @@ class ScreenNewPasswordProvider with ChangeNotifier {
     return null;
   }
 
-  void submitnewPassword(TextEditingController controller, context,
-      GlobalKey<FormState> formKey, SaveNewPasswordModel model) async {
+  void submitnewPassword(TextEditingController controller, context,email,
+      GlobalKey<FormState> formKey, ) async {
     if (formKey.currentState!.validate()) {
       isLoading = true;
       notifyListeners();
-      await SaveNewpasswordService.saveNewPassword(model).then(
+      await SaveNewpasswordService.saveNewPassword(email,passwordController.text).then(
         (value) async {
           if (value != null) {
             log('if called Ok');

@@ -27,10 +27,8 @@ class TextfeildWidget extends StatelessWidget {
     return TextFormField(
       //enableInteractiveSelection: false,
       toolbarOptions: const ToolbarOptions(
-        copy: true,
-        cut: true,
         paste: false,
-        selectAll: false,
+        
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,

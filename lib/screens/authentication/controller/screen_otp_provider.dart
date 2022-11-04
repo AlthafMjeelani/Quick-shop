@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/authentication/model/enum/otp_enum_model.dart';
-import 'package:ecommerse/screens/authentication/model/forgotpassword/forgot_otp_verification_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/verify_otp_model.dart';
 import 'package:ecommerse/screens/authentication/service/forgotpassword/otp_verification_service.dart';
@@ -47,6 +46,7 @@ class ScreenOtpProvider with ChangeNotifier {
   void submitOtp(
       UserModel? model,
       Actiontype type,
+      String email,
       TextEditingController emailController,
       ScreenRegistrationProvider signUpController) async {
     if (code.length != 4) {
@@ -55,12 +55,8 @@ class ScreenOtpProvider with ChangeNotifier {
       isLoading = true;
       notifyListeners();
 
-      final otpModel = ForgotOtpVerifyModel(
-        email: emailController.text,
-        otp: code,
-      );
       await ForgetPasswordOtpverificationServices.forgetPasswordOtpverification(
-              otpModel)
+              email, code)
           .then(
         (value) {
           if (value != null) {

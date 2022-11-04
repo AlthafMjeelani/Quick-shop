@@ -7,7 +7,6 @@ import 'package:ecommerse/screens/authentication/view/screen_registration.dart';
 import 'package:ecommerse/screens/authentication/widget/button_bottom.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,12 +36,10 @@ class ScreenLogin extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.12,
                   ),
-                  // AppSpacing.ksizedBox150,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        //'Sign in',
                         'Login to your\nAccount',
                         style: GoogleFonts.poppins(
                           letterSpacing: 1,
@@ -56,14 +53,7 @@ class ScreenLogin extends StatelessWidget {
                   TextfeildWidget(
                     keyboardType: TextInputType.emailAddress,
                     controller: data.emailController,
-                    validator: (value) {
-                      // if (value == null || value.isEmpty) {
-                      //   return "Please enter email";
-                      // }
-                      return EmailValidator.validate(value.toString())
-                          ? null
-                          : "Please enter a valid email";
-                    },
+                    validator: (value) => data.emailValidation(value),
                     text: 'Enter Email Id',
                     obscureText: false,
                   ),

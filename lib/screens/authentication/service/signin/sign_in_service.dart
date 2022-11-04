@@ -10,7 +10,8 @@ import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 class SignInService {
   /*------------------- Sign In  UserAccount ----------------------*/
 
-  static Future<SignInModel?> signUpService(SignInModel model) async {
+  static Future<SignInModel?> signUpService(
+      String email, String password) async {
     final dio = Dio();
     try {
       SignInModel? signInModel;
@@ -20,7 +21,7 @@ class SignInService {
 
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.login,
-        data: jsonEncode(model.toJson()),
+        data: {"email": email, "password": password},
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',

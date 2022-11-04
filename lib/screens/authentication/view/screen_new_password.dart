@@ -2,7 +2,6 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';
-import 'package:ecommerse/screens/authentication/model/forgotpassword/forgot_password_model.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
 import 'package:flutter/material.dart';
@@ -83,17 +82,12 @@ class ScreenNewPassword extends StatelessWidget {
                         : LongButtonWidget(
                             text: 'SAVE',
                             onTap: () {
-                              final newPsswordModel = SaveNewPasswordModel(
-                                email: forgetPassword.emailController.text,
-                                password: value.passwordController.text,
-                              );
                               value.submitnewPassword(
                                 forgetPassword.emailController,
                                 context,
+                                forgetPassword.emailController.text,
                                 formKey,
-                                newPsswordModel,
                               );
-                          
                             },
                           );
                   },

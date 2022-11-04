@@ -43,6 +43,8 @@ dependencies:
   provider: 6.0.4
   sign_button: ^2.0.2
   google_sign_in: 5.4.2
+  lottie: ^1.4.3
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -69,6 +71,7 @@ flutter:
     - assets/images/womenimage.png
     - assets/images/logo.png
     - assets/images/success_resetpass.png
+    - assets/lottie/forgotpassword.json
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

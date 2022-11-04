@@ -1,6 +1,4 @@
 import 'package:ecommerse/screens/allproducts/view/screen_tabbar.dart';
-import 'package:ecommerse/screens/authentication/view/screen_login.dart';
-import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
