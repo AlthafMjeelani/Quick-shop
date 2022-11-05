@@ -14,6 +14,12 @@ class AppTextStyle {
 
   static const kTextBlack20Size =
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+  static const kTextBlack20SizeWithUnderLine = TextStyle(
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    decoration: TextDecoration.underline,
+  );
   static const kTextBlack30Size =
       TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold);
   static const kTextBlack50Size =

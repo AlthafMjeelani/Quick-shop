@@ -10,6 +10,8 @@ import 'package:ecommerse/screens/authentication/controller/screen_registration_
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
+import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
+import 'package:ecommerse/screens/payment/view/screen_selectpayment_methode.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
@@ -48,13 +50,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenAddressProvider()),
         ChangeNotifierProvider(
             create: (context) => ScreenNewPasswordProvider()),
+        ChangeNotifierProvider(
+            create: (context) => ScreenPaymentMethodeProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
             primaryColorLight: const Color.fromARGB(255, 255, 255, 255)),
-        home: const ScreenSplash(),
+        home: const ScreenPaymentMethode(),
       ),
     );
   }

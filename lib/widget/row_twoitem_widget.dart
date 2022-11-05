@@ -12,7 +12,11 @@ class RowTowItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [title1, const Spacer(), title2],
+      children: [
+        title1,
+        const Spacer(),
+        title2,
+      ],
     );
   }
 }
