@@ -4,4 +4,12 @@ class ApiEndPoints {
   static String login = '/login';
   static String forgotpassword = '/accounts/password';
   static String fogotOtpverification = '/verifyOtp';
+
+
+
+  /*----------------admin side---------------------------*/
+
+  static String getcategory = '/admin/categories';
+
+
 }

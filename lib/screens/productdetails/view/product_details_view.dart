@@ -181,7 +181,9 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       AppSpacing.ksizedBox20,
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          data.gitocheckOut();
+                        },
                         child: const LongButtonWidget(text: 'BUY NOW'),
                       )
                     ],

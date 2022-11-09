@@ -13,6 +13,7 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
 import 'package:ecommerse/screens/payment/view/screen_selectpayment_methode.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
+import 'package:ecommerse/screens/order/controller/screen_stepper_provider.dart';
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
@@ -52,13 +53,14 @@ class MyApp extends StatelessWidget {
             create: (context) => ScreenNewPasswordProvider()),
         ChangeNotifierProvider(
             create: (context) => ScreenPaymentMethodeProvider()),
+        ChangeNotifierProvider(create: (context) => ScreenStepperProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
             primaryColorLight: const Color.fromARGB(255, 255, 255, 255)),
-        home: const ScreenPaymentMethode(),
+        home: const ScreenSplash(),
       ),
     );
   }

@@ -1,19 +1,22 @@
 import 'dart:developer';
-
+import 'package:ecommerse/screens/account/view/screen_account.dart';
 import 'package:ecommerse/screens/payment/service/razorpay_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerse/utils/app_popups.dart';
+import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class ScreenPaymentMethodeProvider with ChangeNotifier {
   String selectedType = 'online';
   final razorpay = Razorpay();
+  bool isSuccess=false;
 
   var options = {
     'key': 'rzp_test_43WHhfpaRYMT5P',
-    'amount': 10000,
+    'amount':'10000',
     'name': 'Quick Shope',
     'description': 'Dresses',
-    'timeout': 300,
+    'timeout': "300",
     'prefill': {
       'contact': '8086686886',
       'email': 'quickshope@gmail.com',
@@ -27,10 +30,14 @@ class ScreenPaymentMethodeProvider with ChangeNotifier {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    log('Payment Success');
+    AppPopUps.showToast('Payment Success', Colors.green);
+    Get.off(()=> const ScreenAccount());
+     isSuccess=true;
+     notifyListeners();
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
+     AppPopUps.showToast('Payment Faild', Colors.red);
     log('Payment Faild');
   }
 
@@ -47,5 +54,9 @@ class ScreenPaymentMethodeProvider with ChangeNotifier {
     if (selectedType == 'online') {
       RazorPayService.razorPayService(razorpay, options);
     }
+  }
+
+  void navigatorPop(){
+    Get.back();
   }
 }

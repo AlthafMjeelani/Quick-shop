@@ -7,8 +7,10 @@ import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
 import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({
@@ -18,6 +20,9 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenHomeProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      data.getAllCategories();
+    });
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -68,34 +73,55 @@ class ScreenHome extends StatelessWidget {
                       ),
                     ),
                   ),
-                  AppSpacing.ksizedBox20,
+                  AppSpacing.ksizedBox10,
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.17,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        HomeCategoriesWidget(
-                            image: 'assets/images/shirtimage.png',
-                            title: 'Shirts'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/t shirt.jpg',
-                            title: 'T Shirts'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/pands.png', title: 'Pants'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/track.webp', title: 'Tracks'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/pands.png', title: 'Pants'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/track.webp', title: 'Tracks'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/pands.png', title: 'Pants'),
-                        HomeCategoriesWidget(
-                            image: 'assets/images/track.webp', title: 'Tracks'),
-                      ],
+                    child: Consumer(
+                      builder: (BuildContext context, ScreenHomeProvider value,
+                          Widget? child) {
+                        // return value.isLoading
+                        // ? const Center(
+                        //     child: CircularProgressIndicator(),
+                        //   )
+                        return value.isLoading
+                            ? Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: ListView.builder(
+                                  itemCount: 1,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      elevation: 1.0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const SizedBox(height: 110),
+                                    );
+                                  },
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount: value.categoryList.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  final category = value.categoryList[index];
+                                  return Row(
+                                    children: [
+                                      HomeCategoriesWidget(
+                                        image: category?.image.toString() ??
+                                            'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
+                                        title:
+                                            category!.categoryName.toString(),
+                                      ),
+                                      AppSpacing.ksizedBoxW25,
+                                    ],
+                                  );
+                                },
+                              );
+                      },
                     ),
                   ),
-                  AppSpacing.ksizedBox20,
+                  AppSpacing.ksizedBox10,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: const [

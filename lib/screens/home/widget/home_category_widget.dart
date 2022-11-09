@@ -12,19 +12,40 @@ class HomeCategoriesWidget extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: 40,
-          backgroundImage: AssetImage(image),
-        ),
-        AppSpacing.ksizedBox20,
-        Text(
-          title,
-          style: AppTextStyle.kTextSize18Black,
-        )
-      ],
+    return Container(
+      height: 110,
+      width: 110,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 80,
+            width: 80,
+            decoration: BoxDecoration(
+              // border: Border.all(),
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(
+                image: NetworkImage(image),
+                //fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          // CircleAvatar(
+          //   backgroundColor: Colors.white,
+          //   radius: 40,
+
+          //   backgroundImage: NetworkImage(image),
+          // ),
+          AppSpacing.ksizedBox5,
+          Text(
+            title,
+            style: AppTextStyle.kTextSize18Black,
+          )
+        ],
+      ),
     );
   }
 }
