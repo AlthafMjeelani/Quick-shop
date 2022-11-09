@@ -44,7 +44,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
           Lottie.asset('assets/lottie/payment.json'),
           Container(
             width: double.infinity,
-            height: size.height * 0.23,
+            height: size.height * 0.25,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromARGB(179, 216, 211, 211),

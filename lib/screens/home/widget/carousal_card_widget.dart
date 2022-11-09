@@ -18,7 +18,7 @@ class CarouselCardWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.90,
       child: CarouselSlider.builder(
         enableAutoSlider: true,
-       // slideTransform: const CubeTransform(),
+      //  slideTransform: const CubeTransform(),
         unlimitedMode: true,
         slideIndicator: CircularSlideIndicator(
           currentIndicatorColor: Colors.blue,
