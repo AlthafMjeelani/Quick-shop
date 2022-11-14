@@ -26,7 +26,7 @@ class ScreenHomeProvider with ChangeNotifier {
     );
   }
 
-  void getAllCategories() async {
+  Future<void> getAllCategories() async {
     isLoading = true;
     notifyListeners();
     await HomeCategoryService.homeCategoryService().then((value) {

@@ -83,7 +83,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                       ),
                       ListTile(
                         title: const Text(
-                          'Cash on develery',
+                          'Cash on delivery',
                           style: AppTextStyle.kTextSize18Black,
                         ),
                         leading: Transform.scale(

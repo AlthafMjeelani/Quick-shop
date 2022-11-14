@@ -1,4 +1,5 @@
 import 'package:ecommerse/screens/account/controller/screen_account_privider.dart';
+import 'package:ecommerse/screens/address/controller/screen_add_address_provider.dart';
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
@@ -11,7 +12,6 @@ import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provide
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
-import 'package:ecommerse/screens/payment/view/screen_selectpayment_methode.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/order/controller/screen_stepper_provider.dart';
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
@@ -54,6 +54,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (context) => ScreenPaymentMethodeProvider()),
         ChangeNotifierProvider(create: (context) => ScreenStepperProvider()),
+        ChangeNotifierProvider(create: (context) => AddAddressProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

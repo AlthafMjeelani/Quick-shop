@@ -13,9 +13,7 @@ class ScreenAddressProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void popPage(context) {
-    Navigator.pop(context);
-  }
+ 
 
   void goToAddAdressScreen() {
     Get.to(() => const ScreenAddAddress());
@@ -24,11 +22,5 @@ class ScreenAddressProvider with ChangeNotifier {
     Get.to(() => const ScreenAddress());
   }
 
-  void navigationToAddAdress(context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const ScreenAddAddress(),
-      ),
-    );
-  }
+ 
 }

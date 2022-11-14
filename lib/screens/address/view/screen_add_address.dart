@@ -1,5 +1,6 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/address/controller/screen_add_address_provider.dart';
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/textfeild_widget.dart';
@@ -11,7 +12,7 @@ class ScreenAddAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<ScreenAddressProvider>(context, listen: false);
+    final data = Provider.of<AddAddressProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -37,37 +38,49 @@ class ScreenAddAddress extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const TextfeildWidget(
+                TextfeildWidget(
+                  controller: data.homeAddressController,
                   text: 'Home Address',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox10,
-                const TextfeildWidget(
+                TextfeildWidget(
+                  controller: data.cityAddressController,
                   text: 'city',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox10,
-                const TextfeildWidget(
+                TextfeildWidget(
+                  controller: data.pinCodeAddressController,
                   text: 'Pin Code',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox10,
-                const TextfeildWidget(
-                  text: 'State',
+                TextfeildWidget(
+                  controller: data.countryAddressController,
+                  text: 'Country',
                   obscureText: false,
                 ),
                 AppSpacing.ksizedBox20,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.location_searching_outlined),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Choose Your Current Location',
-                      ),
-                    )
-                  ],
+                Consumer(
+                  builder: (context, AddAddressProvider value, child) {
+                    return value.isLoading == true
+                        ? const CircularProgressIndicator()
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.location_searching_outlined),
+                              TextButton(
+                                onPressed: () {
+                                  data.getCurrentAddress();
+                                },
+                                child: const Text(
+                                  'Choose Your Current Location',
+                                ),
+                              )
+                            ],
+                          );
+                  },
                 ),
                 AppSpacing.ksizedBox30,
                 GestureDetector(

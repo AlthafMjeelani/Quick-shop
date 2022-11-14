@@ -28,19 +28,22 @@ class CarouselCardWidget extends StatelessWidget {
         ),
         itemCount: 3,
         slideBuilder: (index) {
-          return Container(
-            height: MediaQuery.of(context).size.height * 0.23,
-            width: MediaQuery.of(context).size.width * 0.90,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              image: const DecorationImage(
-                image: AssetImage('assets/images/shopping 1.webp'),
-                fit: BoxFit.fill,
-                opacity: 0.7,
+          return Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.23,
+              width: MediaQuery.of(context).size.width * 0.90,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                image: const DecorationImage(
+                  image: AssetImage('assets/images/shopping 1.webp'),
+                  fit: BoxFit.fill,
+                  opacity: 0.7,
+                ),
               ),
+              child: const HomeCardWidget(),
             ),
-            child: const HomeCardWidget(),
           );
         },
       ),
