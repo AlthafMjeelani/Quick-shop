@@ -42,7 +42,7 @@ class HomeCategoriesWidget extends StatelessWidget {
           AppSpacing.ksizedBox5,
           Text(
             title,
-            style: AppTextStyle.kTextSize18Black,
+            style: AppTextStyle.kTextBlack16Bold,
           )
         ],
       ),

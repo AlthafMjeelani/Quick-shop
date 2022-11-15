@@ -63,24 +63,31 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                       ),
                       AppSpacing.ksizedBox20,
                       ListTile(
-                        title: const Text(
-                          'UPI/ATM Card',
-                          style: AppTextStyle.kTextSize18Black,
-                        ),
-                        leading: Transform.scale(
-                          scale: 1.5,
-                          child: Radio(
-                            value: 'online',
-                            groupValue: value.selectedType,
-                            onChanged: (newValue) =>
-                                value.radionButtonChange(newValue.toString()),
+                          title: const Text(
+                            'Razorpay',
+                            style: AppTextStyle.kTextSize18Black,
                           ),
-                        ),
-                        trailing: const Icon(
-                          Icons.payment_outlined,
-                          size: 40,
-                        ),
-                      ),
+                          leading: Transform.scale(
+                            scale: 1.5,
+                            child: Radio(
+                              value: 'online',
+                              groupValue: value.selectedType,
+                              onChanged: (newValue) =>
+                                  value.radionButtonChange(newValue.toString()),
+                            ),
+                          ),
+                          trailing: Container(
+                            width: 80,
+                            height: 20,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/images/razorpaybg.png',
+                                ),
+                                fit: BoxFit.cover
+                              ),
+                            ),
+                          )),
                       ListTile(
                         title: const Text(
                           'Cash on delivery',

@@ -26,6 +26,11 @@ class DioExceptionhandler {
         AppPopUps.showToast('Incorrect Input', Colors.red);
       } else if (e.type == DioErrorType.other) {
         AppPopUps.showToast('Something went Wrong', Colors.red);
+      } else if (e.toString() == "Failed host lookup: 'geocode.xyz'") {
+        // log('geocode-dont worry');
+      } else if (e.toString() ==
+          "[Error]: (006) Request Throttled. Over Rate limit: up to 2 per sec. See geocode.xyz/pricing") {
+        AppPopUps.showToast("Failed, Please try again", Colors.red);
       }
     }
   }

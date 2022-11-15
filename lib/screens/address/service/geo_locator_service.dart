@@ -1,6 +1,5 @@
-import 'package:ecommerse/utils/app_popups.dart';
+import 'dart:developer';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
-import 'package:flutter/material.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -31,8 +30,10 @@ class GeoLocationService {
     try {
       Address address = await GeoCode()
           .reverseGeocoding(latitude: latitude, longitude: longitude);
+          log(address.toString());
       return address;
     } catch (e) {
+      log('address return$e'); 
       DioExceptionhandler.errorHandler(e);
     }
     return null;

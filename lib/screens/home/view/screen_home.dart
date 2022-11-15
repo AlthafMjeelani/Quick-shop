@@ -19,9 +19,9 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenHomeProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
-     await data.getAllCategories();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp)async {
+    //  await data.getAllCategories();
+    // });
     return Scaffold(
       body: RefreshIndicator(
         onRefresh:  () => data.getAllCategories(),

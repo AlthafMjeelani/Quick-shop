@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class AppTextStyle {
   static const kTextBlack = TextStyle(color: Colors.black, fontSize: 18);
+   static const kTextBlack14 = TextStyle(color: Colors.black, fontSize: 14);
   static const kTextBlack16 = TextStyle(color: Colors.black, fontSize: 16);
+   static const kTextBlack16Bold = TextStyle(color: Colors.black, fontSize: 16,fontWeight:FontWeight.bold );
   static const kTextBlackLargeSize =
       TextStyle(color: Colors.black, fontSize: 20);
   static const kLongButtonWite =

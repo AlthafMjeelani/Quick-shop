@@ -6,6 +6,9 @@ import 'package:ecommerse/screens/home/service/home_category_service.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
+  ScreenHomeProvider() {
+    getAllCategories();
+  }
   List favoriteBoolList = List.generate(4, (index) => false);
 
   List<HomeCategoryModel?> categoryList = [];

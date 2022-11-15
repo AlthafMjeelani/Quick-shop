@@ -48,7 +48,7 @@ dependencies:
   shimmer: 2.0.0
   geolocator: 9.0.2
   geocode: 1.0.2
-
+  google_maps_flutter: 2.2.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -75,6 +75,7 @@ flutter:
     - assets/images/womenimage.png
     - assets/images/logo.png
     - assets/images/success_resetpass.png
+    - assets/images/razorpaybg.png
     - assets/lottie/forgotpassword.json
     - assets/lottie/payment.json
   #   - images/a_dot_ham.jpeg

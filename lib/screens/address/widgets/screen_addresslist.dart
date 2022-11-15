@@ -22,7 +22,7 @@ final bool? isStepper;
             ),
             child:  ListTile(
                     leading:data.isStepperAddressList == true
-                ? SizedBox()
+                ? const SizedBox()
                 : Transform.scale(
                       scale: 1.5,
                       child: Radio(
@@ -35,11 +35,11 @@ final bool? isStepper;
                     ),
                     title: const Text(
                       'Home Address',
-                      style: AppTextStyle.kLongButtonBlack,
+                      style: AppTextStyle.kTextBlack16Bold,
                     ),
                     subtitle: const Text(
                       'City Name',
-                      style: AppTextStyle.kTextBlack,
+                      style: AppTextStyle.kTextBlack14,
                     ),
                     trailing: IconButton(
                       onPressed: () {},
