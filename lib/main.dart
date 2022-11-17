@@ -11,6 +11,7 @@ import 'package:ecommerse/screens/authentication/controller/screen_registration_
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
+import 'package:ecommerse/screens/home/view/screen_home.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/order/controller/screen_stepper_provider.dart';

@@ -1,5 +1,6 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,17 +12,11 @@ import 'package:provider/provider.dart';
 class ScreenProductView extends StatelessWidget {
   const ScreenProductView({
     super.key,
-    required this.imageUrl,
-    required this.price,
-    required this.brandName,
-    required this.productName,
-    required this.productDisprice,
+    required this.index,
+    required this.productElement,
   });
-  final String imageUrl;
-  final String price;
-  final String productDisprice;
-  final String brandName;
-  final String productName;
+  final int index;
+  final ProductElement productElement;
   @override
   Widget build(BuildContext context) {
     final data =
@@ -59,7 +54,8 @@ class ScreenProductView extends StatelessWidget {
                   indicatorRadius: 7,
                   padding: const EdgeInsets.only(bottom: 12),
                 ),
-                itemCount: 3,
+                itemCount: productElement.colors![0].images!.length,
+                //itemCount: 1,
                 slideBuilder: (index) {
                   return Container(
                     height: MediaQuery.of(context).size.height * 0.35,
@@ -67,13 +63,32 @@ class ScreenProductView extends StatelessWidget {
                     decoration: BoxDecoration(
                       // color: Colors.blue,
                       image: DecorationImage(
-                        image: AssetImage(imageUrl),
+                        image: NetworkImage(
+                            productElement.colors?[0].images?[index] ?? ''),
                         fit: BoxFit.fill,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Align(
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Text(
+                  //   brandName,
+                  //   style: AppTextStyle.kTextBlackLargeSize,
+                  // ),
+                  Row(
+                    children: [
+                      Text(
+                        productElement.name ?? 'No Nmae',
+                        style: AppTextStyle.kLongButtonBlack,
+                      ),
+                      const Spacer(),
+                      Align(
                         alignment: Alignment.topRight,
                         child: GestureDetector(
                           onTap: () {
@@ -86,58 +101,48 @@ class ScreenProductView extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    brandName,
-                    style: AppTextStyle.kTextBlackLargeSize,
+                      const SizedBox(
+                        width: 20,
+                      )
+                    ],
                   ),
+                  AppSpacing.ksizedBox10,
                   Text(
-                    productName,
+                    productElement.description ?? '',
                     style: AppTextStyle.kTextBlack,
                   ),
-                  AppSpacing.ksizedBox20,
+                  AppSpacing.ksizedBox10,
                   const Text(
                     'Special price',
                     style: AppTextStyle.kPriceColor,
                   ),
-                  AppSpacing.ksizedBox5,
+                  AppSpacing.ksizedBox2,
                   Row(
                     children: [
-                      Text(
-                        price,
-                        style: AppTextStyle.kTextBlack40Size,
-                      ),
-                      AppSpacing.ksizedBoxW10,
-                      Text(
-                        productDisprice,
+                      const Text(
+                        '₹1299',
                         style: AppTextStyle.kTextsizecrossLine,
                       ),
                       AppSpacing.ksizedBoxW10,
-                      const Text(
-                        '60% off',
+                      Text(
+                        '₹${productElement.price}',
+                        style: AppTextStyle.kTextBlack30Size,
+                      ),
+                      AppSpacing.ksizedBoxW10,
+                       Text(
+                        '${productElement.offer}% off',
                         style: AppTextStyle.kPriceColor,
                       ),
                     ],
                   ),
-                  AppSpacing.ksizedBox20,
-                  const Text(
-                    "Descriptioin",
-                    style: AppTextStyle.kTextBlack20Size,
-                  ),
-                  const Text(
-                    'iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
-                    // style: AppTextStyle.body1,
-                  ),
+
                   AppSpacing.ksizedBox10,
+
+                  // const Text(
+                  //   'iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
+                  //   // style: AppTextStyle.body1,
+                  // ),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -147,7 +152,7 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          for (int i = 0; i < data.chipsList.length; i++)
+                          for (int i = 0; i < productElement.size!.length; i++)
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 10, right: 5),
@@ -157,12 +162,12 @@ class ScreenProductView extends StatelessWidget {
                                     Widget? child) {
                                   return ChoiceChip(
                                     label: Text(
-                                      detailsvalue.chipsList[i].toString(),
+                                      productElement.size![i],
                                       style: AppTextStyle.kTextBlack20Size,
                                     ),
                                     labelStyle: const TextStyle(
-                                      color: Color.fromARGB(255, 14, 6, 6),
-                                    ),
+                                        //color: Color.fromARGB(255, 14, 6, 6),
+                                        ),
                                     selectedColor: Colors.blue,
                                     selected: detailsvalue.selectedIndex == i,
                                     onSelected: (bool value) {

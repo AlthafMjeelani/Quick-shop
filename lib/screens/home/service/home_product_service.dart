@@ -1,15 +1,12 @@
-import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
-import 'package:ecommerse/screens/home/model/category/home_category_model.dart';
+import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
-class HomeCategoryService {
-  static Future<List<HomeCategoryModel?>> homeCategoryService() async {
-    List<HomeCategoryModel> categoryList = [];
+class HomeGetAllProductService {
+  static Future<Products?> homeCategoryService() async {
     final dio = Dio();
     try {
       log('called login api fetch fuction');
@@ -17,7 +14,7 @@ class HomeCategoryService {
       /*  call api key   */
 
       final Response response = await dio.get(
-        ApiBaseUrl.baseUrl + ApiEndPoints.getcategory,
+        ApiBaseUrl.baseUrl + ApiEndPoints.getAllProducts,
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -28,12 +25,9 @@ class HomeCategoryService {
       /*  check status code is Succes or bad requist   */
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        List data = response.data;
-        categoryList = data.map((e) {
-          return HomeCategoryModel.fromJson(e);
-        }).toList();
-        log(data.toString());
-        return categoryList;
+        log(response.data.toString());
+        Products product = Products.fromJson(response.data);
+        return product;
       }
 
       /*  Catch error   */
@@ -42,6 +36,6 @@ class HomeCategoryService {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
     }
-    return [];
+    return null;
   }
 }

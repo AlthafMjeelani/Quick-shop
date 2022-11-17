@@ -21,16 +21,16 @@ class ScreenAllProductProvider with ChangeNotifier {
     String productName,
     String productDisprice,
   ) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => ScreenProductView(
-          imageUrl: imageUrl,
-          brandName: brandName,
-          price: price,
-          productName: productName,
-          productDisprice: productDisprice,
-        ),
-      ),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(
+    //     builder: (context) => ScreenProductView(
+    //       imageUrl: imageUrl,
+    //       brandName: brandName,
+    //       price: price,
+    //       productName: productName,
+    //       productDisprice: productDisprice,
+    //     ),
+    //   ),
+    // );
   }
 }
