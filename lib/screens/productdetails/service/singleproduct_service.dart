@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/home/model/products/product_model.dart';
-import 'package:ecommerse/screens/productdetails/model/singleproduct_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class GetSingleProductService {

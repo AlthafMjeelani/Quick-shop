@@ -6,7 +6,7 @@ import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class HomeGetAllProductService {
-  static Future<Products?> homeCategoryService() async {
+   Future<Products?> homeProductService() async {
     final dio = Dio();
     try {
       log('called login api fetch fuction');
@@ -26,12 +26,14 @@ class HomeGetAllProductService {
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log(response.data.toString());
-        Products product = Products.fromJson(response.data);
-        return product;
+        return Products.fromJson(response.data);
       }
 
       /*  Catch error   */
-
+      else {
+        log('kuuy');
+        return null;
+      }
     } catch (e) {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);

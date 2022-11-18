@@ -1,16 +1,16 @@
 class Products {
   Products({
     this.products,
+    this.count,
   });
 
   List<ProductElement>? products;
+  int? count;
 
   factory Products.fromJson(Map<String, dynamic> json) => Products(
         products: List<ProductElement>.from(
-          json["products"].map(
-            (x) => ProductElement.fromJson(x),
-          ),
-        ),
+            json["products"].map((x) => ProductElement.fromJson(x))),
+        count: json["count"],
       );
 }
 
@@ -36,7 +36,7 @@ class ProductElement {
   List<Color>? colors;
   int? inventory;
   String? description;
-  num? offer;
+  int? offer;
   List<dynamic>? ratings;
 
   factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
@@ -44,7 +44,7 @@ class ProductElement {
         id: json["_id"],
         name: json["name"],
         price: json["price"],
-        size: List<dynamic>.from(json["size"].map((x) => x)),
+        size: List<String>.from(json["size"].map((x) => x)),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
         inventory: json["inventory"],
         description: json["description"],
@@ -58,10 +58,56 @@ class Category {
     this.id,
   });
 
-  String? id;
+  Id? id;
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["id"],
+        id: Id.fromJson(json["id"]),
+      );
+}
+
+class Id {
+  Id({
+    this.id,
+    this.category,
+    this.icon,
+    this.createdAt,
+    this.updatedAt,
+    this.idId,
+    this.subCategories,
+  });
+
+  String? id;
+  String? category;
+  String? icon;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? idId;
+  List<SubCategory>? subCategories;
+
+  factory Id.fromJson(Map<String, dynamic> json) => Id(
+        id: json["_id"],
+        category: json["category"],
+        icon: json["icon"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        idId: json["id"],
+        subCategories: List<SubCategory>.from(
+            json["subCategories"].map((x) => SubCategory.fromJson(x))),
+      );
+}
+
+class SubCategory {
+  SubCategory({
+    this.name,
+    this.id,
+  });
+
+  String? name;
+  String? id;
+
+  factory SubCategory.fromJson(Map<String, dynamic> json) => SubCategory(
+        name: json["name"],
+        id: json["_id"],
       );
 }
 
@@ -73,14 +119,12 @@ class Color {
   });
 
   String? color;
-  List<dynamic>? images;
+  List<String>? images;
   String? id;
 
   factory Color.fromJson(Map<String, dynamic> json) => Color(
         color: json["color"],
-        images: List<dynamic>.from(
-          json["images"].map((x) => x),
-        ),
+        images: List<String>.from(json["images"].map((x) => x)),
         id: json["_id"],
       );
 }

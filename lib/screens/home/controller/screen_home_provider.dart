@@ -51,9 +51,10 @@ class ScreenHomeProvider with ChangeNotifier {
   void getAllProducts() async {
     isLoading = true;
     notifyListeners();
-    await HomeGetAllProductService.homeCategoryService().then((value) {
+    await HomeGetAllProductService().homeProductService().then((value) {
       if (value != null) {
         product = value;
+        notifyListeners();
       }
     });
     isLoading = false;
