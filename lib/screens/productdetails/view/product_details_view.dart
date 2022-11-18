@@ -1,5 +1,6 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +21,11 @@ class ScreenProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
+    final dataHome = Provider.of<ScreenHomeProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      // dataHome.calculateOfferPrice();
+    });
+
     data.selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +63,7 @@ class ScreenProductView extends StatelessWidget {
                 //itemCount: 1,
                 slideBuilder: (index) {
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.35,
+                    height: MediaQuery.of(context).size.height * 0.1,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       // color: Colors.blue,
@@ -119,13 +125,13 @@ class ScreenProductView extends StatelessWidget {
                   AppSpacing.ksizedBox2,
                   Row(
                     children: [
-                      const Text(
-                        '₹1299',
+                      Text(
+                        '₹${data.productElement?.price}',
                         style: AppTextStyle.kTextsizecrossLine,
                       ),
                       AppSpacing.ksizedBoxW10,
                       Text(
-                        '₹${data.productElement?.price}',
+                        '₹${dataHome.offerPrice.round()}',
                         style: AppTextStyle.kTextBlack30Size,
                       ),
                       AppSpacing.ksizedBoxW10,

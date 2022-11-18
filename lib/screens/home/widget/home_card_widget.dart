@@ -51,6 +51,7 @@ class HomeCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
                   '50%\nOff',

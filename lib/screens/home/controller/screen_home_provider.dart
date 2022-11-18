@@ -9,15 +9,15 @@ import 'package:flutter/material.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
   ScreenHomeProvider() {
-   getAllProducts();
-   getAllCategories();
-
+    getAllProducts();
+    getAllCategories();
   }
 
   List favoriteBoolList = List.generate(4, (index) => false);
   List<HomeCategoryModel?> categoryList = [];
   bool isLoading = false;
   Products? product;
+  num offerPrice = 0;
 
 // CarouselController carouselController = CarouselController();
   // void isFaved(int index) {
@@ -61,8 +61,9 @@ class ScreenHomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // void refresh() async {
-  //   await getAllCategories();
-  //   getAllProducts();
-  // }
+  void calculateOfferPrice(index) {
+    offerPrice = (product!.products![index].price! / 100) *
+        (100 - product!.products![index].offer!);
+    log(offerPrice.toString());
+  }
 }

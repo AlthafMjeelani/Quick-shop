@@ -1,5 +1,7 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
+import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +19,8 @@ class ProductViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
+         final productController =
+        Provider.of<ScreenHomeProvider>(context, listen: false);
     return list.isEmpty
         ? const Center(
             child: Text(
@@ -38,6 +42,7 @@ class ProductViewWidget extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   data.getSingleProductDetails(product.id);
+                 productController.calculateOfferPrice(index);
                 },
                 child: Container(
                   decoration: BoxDecoration(
