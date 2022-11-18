@@ -19,8 +19,11 @@ class ProductViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-         final productController =
+    final productController =
         Provider.of<ScreenHomeProvider>(context, listen: false);
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+         
+        });
     return list.isEmpty
         ? const Center(
             child: Text(
@@ -38,11 +41,12 @@ class ProductViewWidget extends StatelessWidget {
                 crossAxisSpacing: 10,
                 childAspectRatio: 1 / 1.48),
             itemBuilder: (BuildContext context, int index) {
+               productController.calculateOfferPrice(index);
               final product = list[index];
               return GestureDetector(
                 onTap: () {
                   data.getSingleProductDetails(product.id);
-                 productController.calculateOfferPrice(index);
+                  productController.calculateOfferPrice(index);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -97,10 +101,32 @@ class ProductViewWidget extends StatelessWidget {
                         product.name.toString(),
                         style: AppTextStyle.kTextBlack16Bold,
                       ),
-                      Text(
-                        '₹${product.price}',
-                        style: AppTextStyle.kTextBlack20Size,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '₹${product.price}',
+                              style: AppTextStyle.kTextsizecrossLineSmall,
+                            ),
+                            AppSpacing.ksizedBoxW5,
+                            Text(
+                              '₹${productController.offerPrice.round()}',
+                              style: AppTextStyle.kTextBlack20Size,
+                            ),
+                            AppSpacing.ksizedBoxW5,
+                            Text(
+                              '${product.offer}% off',
+                              style: AppTextStyle.kPriceColorSmall,
+                            ),
+                          ],
+                        ),
                       ),
+                      // Text(
+                      //   '₹${product.price}',
+                      //   style: AppTextStyle.kTextBlack20Size,
+                      // ),
                     ],
                   ),
                 ),

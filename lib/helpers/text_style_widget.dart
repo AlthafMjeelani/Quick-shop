@@ -32,8 +32,12 @@ class AppTextStyle {
       TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
   static const kPriceColor =
       TextStyle(color: Colors.green, fontSize: 18, fontWeight: FontWeight.bold);
+       static const kPriceColorSmall =
+      TextStyle(color: Colors.green, fontSize: 14, fontWeight: FontWeight.bold);
   static const kTextsizecrossLine =
       TextStyle(decoration: TextDecoration.lineThrough, fontSize: 18);
+        static const kTextsizecrossLineSmall =
+      TextStyle(decoration: TextDecoration.lineThrough, fontSize: 14);
 
   static const ktextWhite16 = TextStyle(color: Colors.white, fontSize: 16);
   static const kTextBlack50SizeForget =

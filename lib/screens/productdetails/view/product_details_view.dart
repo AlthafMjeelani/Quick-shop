@@ -142,14 +142,7 @@ class ScreenProductView extends StatelessWidget {
                     ],
                   ),
 
-                  AppSpacing.ksizedBox10,
-
-                  // const Text(
-                  //   'iLorem ipsum dolor sit amet, consectetur sdfd adipiscing elit. Facilisi sed consequat purusad nulla faucibus morbi amet Leo, aliquam more',
-                  //   // style: AppTextStyle.body1,
-                  // ),
-
-                  Column(
+                  AppSpacing.ksizedBox10,Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
