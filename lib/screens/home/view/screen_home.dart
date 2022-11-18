@@ -5,12 +5,10 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
-import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({
@@ -20,10 +18,6 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenHomeProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      // await data.getAllCategories();
-      // data.getAllProducts();
-    });
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () => data.getAllCategories(),
@@ -88,18 +82,18 @@ class ScreenHome extends StatelessWidget {
                           //   )
                           return value.isLoading
                               ? Shimmerwidget(
-                                height: 150,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Container(
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  );
-                                },
-                                itemCount: 1,
-                              )
+                                  height: 150,
+                                  itemBuilder: (BuildContext ctx, index) {
+                                    return Container(
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    );
+                                  },
+                                  itemCount: 1,
+                                )
                               : ListView.builder(
                                   itemCount: value.categoryList.length,
                                   scrollDirection: Axis.horizontal,

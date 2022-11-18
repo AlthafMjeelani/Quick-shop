@@ -12,20 +12,12 @@ import 'package:provider/provider.dart';
 class ScreenProductView extends StatelessWidget {
   const ScreenProductView({
     super.key,
-    // required this.index,
-    // required this.productElement,
   });
-  //final int index;
-  //final ProductElement productElement;
   @override
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    final dataHome = Provider.of<ScreenHomeProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // dataHome.calculateOfferPrice();
-    });
-
+    final homeController = Provider.of<ScreenHomeProvider>(context, listen: false);
     data.selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
@@ -83,10 +75,6 @@ class ScreenProductView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Text(
-                  //   brandName,
-                  //   style: AppTextStyle.kTextBlackLargeSize,
-                  // ),
                   Row(
                     children: [
                       Text(
@@ -131,7 +119,7 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       AppSpacing.ksizedBoxW10,
                       Text(
-                        '₹${dataHome.offerPrice.round()}',
+                        '₹${homeController.offerPrice.round()}',
                         style: AppTextStyle.kTextBlack30Size,
                       ),
                       AppSpacing.ksizedBoxW10,
@@ -141,8 +129,8 @@ class ScreenProductView extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  AppSpacing.ksizedBox10,Column(
+                  AppSpacing.ksizedBox10,
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(

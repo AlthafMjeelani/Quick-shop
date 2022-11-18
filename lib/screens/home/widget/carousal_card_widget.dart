@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:ecommerse/screens/home/widget/home_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
-import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 
 class CarouselCardWidget extends StatelessWidget {
   const CarouselCardWidget({

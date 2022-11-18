@@ -1,4 +1,3 @@
-import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
 import 'package:ecommerse/screens/authentication/service/signin/sign_in_service.dart';
 import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
 import 'package:ecommerse/utils/app_popups.dart';

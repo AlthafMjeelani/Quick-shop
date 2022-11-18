@@ -1,4 +1,3 @@
-import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:flutter/material.dart';
 
 class ScreenAllProductProvider with ChangeNotifier {
