@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerse/screens/home/widget/home_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
@@ -11,14 +13,12 @@ class CarouselCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final data = Provider.of<ScreenHomeProvider>(context, listen: false);
-
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.275,
       width: MediaQuery.of(context).size.width * 0.90,
       child: CarouselSlider.builder(
         enableAutoSlider: true,
-      //  slideTransform: const CubeTransform(),
+        //  slideTransform: const CubeTransform(),
         unlimitedMode: true,
         slideIndicator: CircularSlideIndicator(
           currentIndicatorColor: Colors.blue,
@@ -28,6 +28,7 @@ class CarouselCardWidget extends StatelessWidget {
         ),
         itemCount: 3,
         slideBuilder: (index) {
+          //log('slider called');
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: Container(

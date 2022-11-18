@@ -1,9 +1,10 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/model/products/product_model.dart';
-import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
+import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductViewWidget extends StatelessWidget {
   const ProductViewWidget({
@@ -14,6 +15,8 @@ class ProductViewWidget extends StatelessWidget {
   final List<ProductElement> list;
   @override
   Widget build(BuildContext context) {
+    final data =
+        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
     return list.isEmpty
         ? const Center(
             child: Text(
@@ -34,14 +37,7 @@ class ProductViewWidget extends StatelessWidget {
               final product = list[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => ScreenProductView(
-                        index: index,
-                        productElement: product,
-                      ),
-                    ),
-                  );
+                  data.getSingleProductDetails(product.id);
                 },
                 child: Container(
                   decoration: BoxDecoration(

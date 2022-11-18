@@ -31,10 +31,9 @@ class ScreenLogin extends StatelessWidget {
             child: Form(
               key: formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: size.height * 0.12,
+                    height: size.height * 0.17,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

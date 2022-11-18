@@ -1,6 +1,5 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,11 +11,11 @@ import 'package:provider/provider.dart';
 class ScreenProductView extends StatelessWidget {
   const ScreenProductView({
     super.key,
-    required this.index,
-    required this.productElement,
+    // required this.index,
+    // required this.productElement,
   });
-  final int index;
-  final ProductElement productElement;
+  //final int index;
+  //final ProductElement productElement;
   @override
   Widget build(BuildContext context) {
     final data =
@@ -54,7 +53,7 @@ class ScreenProductView extends StatelessWidget {
                   indicatorRadius: 7,
                   padding: const EdgeInsets.only(bottom: 12),
                 ),
-                itemCount: productElement.colors![0].images!.length,
+                itemCount: data.productElement!.colors![0].images!.length,
                 //itemCount: 1,
                 slideBuilder: (index) {
                   return Container(
@@ -64,7 +63,8 @@ class ScreenProductView extends StatelessWidget {
                       // color: Colors.blue,
                       image: DecorationImage(
                         image: NetworkImage(
-                            productElement.colors?[0].images?[index] ?? ''),
+                            data.productElement?.colors?[0].images?[index] ??
+                                ''),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -84,7 +84,7 @@ class ScreenProductView extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        productElement.name ?? 'No Nmae',
+                        data.productElement?.name ?? 'No Nmae',
                         style: AppTextStyle.kLongButtonBlack,
                       ),
                       const Spacer(),
@@ -108,7 +108,7 @@ class ScreenProductView extends StatelessWidget {
                   ),
                   AppSpacing.ksizedBox10,
                   Text(
-                    productElement.description ?? '',
+                    data.productElement?.description ?? '',
                     style: AppTextStyle.kTextBlack,
                   ),
                   AppSpacing.ksizedBox10,
@@ -125,12 +125,12 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       AppSpacing.ksizedBoxW10,
                       Text(
-                        '₹${productElement.price}',
+                        '₹${data.productElement?.price}',
                         style: AppTextStyle.kTextBlack30Size,
                       ),
                       AppSpacing.ksizedBoxW10,
-                       Text(
-                        '${productElement.offer}% off',
+                      Text(
+                        '${data.productElement?.offer}% off',
                         style: AppTextStyle.kPriceColor,
                       ),
                     ],
@@ -152,7 +152,9 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          for (int i = 0; i < productElement.size!.length; i++)
+                          for (int i = 0;
+                              i < data.productElement!.size!.length;
+                              i++)
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 10, right: 5),
@@ -162,7 +164,7 @@ class ScreenProductView extends StatelessWidget {
                                     Widget? child) {
                                   return ChoiceChip(
                                     label: Text(
-                                      productElement.size![i],
+                                      data.productElement?.size![i],
                                       style: AppTextStyle.kTextBlack20Size,
                                     ),
                                     labelStyle: const TextStyle(

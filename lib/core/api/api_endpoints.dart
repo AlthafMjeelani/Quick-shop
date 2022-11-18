@@ -14,4 +14,6 @@ class ApiEndPoints {
   /*----------------Product side---------------------------*/
 
   static String getAllProducts = '/products';
+  static String getsingleProducts = '/products/';
+
 }
