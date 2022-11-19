@@ -5,18 +5,17 @@ import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/cart/model/cart_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
-class CartPostService {
-  static Future<bool?> cartPostService(CartModel model) async {
+class CartGetService {
+  static Future<CartModel?> cartGetService() async {
     final dio = Dio();
     try {
       log('called addto Cart fuction');
-       String userId = '6364aa8637ef0d667adcb084';
+      String userId = '6364aa8637ef0d667adcb084';
 
       /*  call api key   */
 
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.postProductToCart + userId,
-        data: model.toJson(),
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',

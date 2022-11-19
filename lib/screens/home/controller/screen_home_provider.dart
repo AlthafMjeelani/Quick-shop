@@ -1,10 +1,12 @@
 import 'dart:developer';
+import 'package:ecommerse/screens/categoryview/view/screen_category_productlist.dart';
 import 'package:ecommerse/screens/product/model/product_model.dart';
-import 'package:ecommerse/screens/allproducts/view/screen_tabbar.dart';
+import 'package:ecommerse/screens/allproducts/view/screen_allproduct.dart';
 import 'package:ecommerse/screens/home/model/category/home_category_model.dart';
 import 'package:ecommerse/screens/home/service/home_category_service.dart';
 import 'package:ecommerse/screens/product/service/product_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
   ScreenHomeProvider() {
@@ -28,7 +30,7 @@ class ScreenHomeProvider with ChangeNotifier {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return const ScreenallCategory();
+          return const ScreenAllProduct();
         },
       ),
     );
@@ -65,5 +67,11 @@ class ScreenHomeProvider with ChangeNotifier {
             (100 - product!.products![index].offer!) -
         1);
     log(offerPrice.toString());
+  }
+
+  void categoryView(category) {
+    Get.to(
+      () => ScreeenCategoryCollection(category: category),
+    );
   }
 }

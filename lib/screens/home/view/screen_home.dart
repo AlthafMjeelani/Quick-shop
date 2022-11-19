@@ -1,7 +1,6 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
@@ -77,11 +76,7 @@ class ScreenHome extends StatelessWidget {
                       child: Consumer(
                         builder: (BuildContext context,
                             ScreenHomeProvider value, Widget? child) {
-                          // return value.isLoading
-                          // ? const Center(
-                          //     child: CircularProgressIndicator(),
-                          //   )
-                          return value.isLoading
+                        return value.isLoading
                               ? Shimmerwidget(
                                   height: 150,
                                   itemBuilder: (BuildContext ctx, index) {
@@ -101,16 +96,19 @@ class ScreenHome extends StatelessWidget {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final category = value.categoryList[index];
-                                    return Row(
-                                      children: [
-                                        HomeCategoriesWidget(
-                                          image: category?.image.toString() ??
-                                              'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
-                                          title:
-                                              category!.categoryName.toString(),
-                                        ),
-                                        AppSpacing.ksizedBoxW25,
-                                      ],
+                                    return GestureDetector(
+                                      onTap: () =>data.categoryView(category.categoryName) ,
+                                      child: Row(
+                                        children: [
+                                          HomeCategoriesWidget(
+                                            image: category?.image.toString() ??
+                                                'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
+                                            title:
+                                                category!.categoryName.toString(),
+                                          ),
+                                          AppSpacing.ksizedBoxW25,
+                                        ],
+                                      ),
                                     );
                                   },
                                 );

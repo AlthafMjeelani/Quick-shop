@@ -22,12 +22,11 @@ class ScreenCartProvider with ChangeNotifier {
   void addToCart(
       String productId, String productsize, String productColor) async {
     final cartModel = CartModel(
-      productId,
-      productsize,
-      1,
-      productColor,
-    );
-    CartService.cartPostService(cartModel).then(
+        color: productColor,
+        productId: productId,
+        quantity: 1,
+        size: productsize);
+    CartPostService.cartPostService(cartModel).then(
       (value) {
         if (value == true) {
           AppPopUps.showToast("Added To Cart", Colors.green);

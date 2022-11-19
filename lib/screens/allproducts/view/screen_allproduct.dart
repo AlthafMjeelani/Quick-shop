@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
-class ScreenallCategory extends StatelessWidget {
-  const ScreenallCategory({super.key});
+class ScreenAllProduct extends StatelessWidget {
+  const ScreenAllProduct({super.key});
 
   @override
   Widget build(BuildContext context) {

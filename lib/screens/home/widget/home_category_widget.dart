@@ -25,20 +25,12 @@ class HomeCategoriesWidget extends StatelessWidget {
             height: 80,
             width: 80,
             decoration: BoxDecoration(
-              // border: Border.all(),
               borderRadius: BorderRadius.circular(30),
               image: DecorationImage(
                 image: NetworkImage(image),
-                //fit: BoxFit.cover,
               ),
             ),
           ),
-          // CircleAvatar(
-          //   backgroundColor: Colors.white,
-          //   radius: 40,
-
-          //   backgroundImage: NetworkImage(image),
-          // ),
           AppSpacing.ksizedBox5,
           Text(
             title,

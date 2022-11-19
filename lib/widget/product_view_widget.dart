@@ -1,6 +1,7 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
+import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class ProductViewWidget extends StatelessWidget {
     required this.list, required this.itemCount,
   }) : super(key: key);
 
-  final List<dynamic> list;
+  final List<ProductElement> list;
   final int itemCount;
 
   @override
@@ -36,7 +37,7 @@ class ProductViewWidget extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                childAspectRatio: 1 / 1.48),
+                childAspectRatio: 1 / 1.3),
             itemBuilder: (BuildContext context, int index) {
               productController.calculateOfferPrice(index);
               final product = list[index];
@@ -50,11 +51,10 @@ class ProductViewWidget extends StatelessWidget {
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(20)),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: double.infinity,
-                        height: 215,
+                        // width: double.infinity,
+                        height: 170,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
@@ -63,7 +63,7 @@ class ProductViewWidget extends StatelessWidget {
                               product.colors?[0].images?[0] ??
                                   'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
                             ),
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         child: Padding(
@@ -93,7 +93,7 @@ class ProductViewWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      AppSpacing.ksizedBox5,
+                      AppSpacing.ksizedBox10,
                       Text(
                         product.name.toString(),
                         style: AppTextStyle.kTextBlack16Bold,
@@ -120,10 +120,6 @@ class ProductViewWidget extends StatelessWidget {
                           ],
                         ),
                       ),
-                      // Text(
-                      //   '₹${product.price}',
-                      //   style: AppTextStyle.kTextBlack20Size,
-                      // ),
                     ],
                   ),
                 ),

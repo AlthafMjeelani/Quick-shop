@@ -4,12 +4,12 @@ class CartModel {
   final num? quantity;
   final String? color;
 
-  CartModel(
+  CartModel({
     this.productId,
     this.size,
     this.quantity,
     this.color,
-  );
+  });
 
   Map<String, dynamic> toJson() => {
         "productId": productId,
@@ -17,4 +17,13 @@ class CartModel {
         "quantity": quantity,
         "color": color,
       };
+
+  factory CartModel.fromJson(Map<String, dynamic> json) {
+    return CartModel(
+      productId: json['productId'],
+      quantity: json['quantity'],
+      color: json['color'],
+      size: json['size'],
+    );
+  }
 }
