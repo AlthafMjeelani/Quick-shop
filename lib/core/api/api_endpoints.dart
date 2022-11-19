@@ -16,4 +16,7 @@ class ApiEndPoints {
   static String getAllProducts = '/products';
   static String getsingleProducts = '/products/';
 
+  /*----------------Product Cart side---------------------------*/
+
+  static String postProductToCart = '/products/cart/';
 }

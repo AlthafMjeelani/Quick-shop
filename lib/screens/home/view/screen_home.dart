@@ -1,6 +1,7 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
@@ -168,6 +169,10 @@ class ScreenHome extends StatelessWidget {
                               )
                             : ProductViewWidget(
                                 list: value.product?.products ?? [],
+                                itemCount: value.product!.products!.length
+                                //  <= 4
+                                //     ? value.product!.products!.length
+                                //     : value.product!.products!.length = 4,
                               );
                       },
                     ),

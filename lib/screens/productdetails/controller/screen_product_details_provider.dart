@@ -1,4 +1,4 @@
-import 'package:ecommerse/screens/home/model/products/product_model.dart';
+import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/order/view/screen_order_stepper.dart';
 import 'package:ecommerse/screens/productdetails/service/singleproduct_service.dart';
 import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class ScreenProductDetailsProvider with ChangeNotifier {
-  int? selectedIndex;
+  int selectedIndex = 1;
   ProductElement? productElement;
   bool isLoading = false;
 
@@ -39,6 +39,4 @@ class ScreenProductDetailsProvider with ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
-
-
 }

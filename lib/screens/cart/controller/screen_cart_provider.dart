@@ -1,4 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerse/screens/cart/model/cart_model.dart';
+import 'package:ecommerse/screens/cart/service/cart_post_service.dart';
+import 'package:ecommerse/utils/app_popups.dart';
+import 'package:flutter/material.dart';
 
 class ScreenCartProvider with ChangeNotifier {
   int count = 1;
@@ -14,5 +17,22 @@ class ScreenCartProvider with ChangeNotifier {
       return;
     }
     notifyListeners();
+  }
+
+  void addToCart(
+      String productId, String productsize, String productColor) async {
+    final cartModel = CartModel(
+      productId,
+      productsize,
+      1,
+      productColor,
+    );
+    CartService.cartPostService(cartModel).then(
+      (value) {
+        if (value == true) {
+          AppPopUps.showToast("Added To Cart", Colors.green);
+        }
+      },
+    );
   }
 }

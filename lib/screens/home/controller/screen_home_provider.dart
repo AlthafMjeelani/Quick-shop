@@ -1,10 +1,9 @@
 import 'dart:developer';
-
+import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/allproducts/view/screen_tabbar.dart';
 import 'package:ecommerse/screens/home/model/category/home_category_model.dart';
-import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/screens/home/service/home_category_service.dart';
-import 'package:ecommerse/screens/home/service/home_product_service.dart';
+import 'package:ecommerse/screens/product/service/product_service.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHomeProvider with ChangeNotifier {
@@ -51,7 +50,7 @@ class ScreenHomeProvider with ChangeNotifier {
   void getAllProducts() async {
     isLoading = true;
     notifyListeners();
-    await HomeGetAllProductService().homeProductService().then((value) {
+    await GetAllProductService.getAllProductService().then((value) {
       if (value != null) {
         product = value;
         notifyListeners();

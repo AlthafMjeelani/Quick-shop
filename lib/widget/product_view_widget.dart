@@ -1,7 +1,6 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
-import 'package:ecommerse/screens/home/model/products/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +9,12 @@ import 'package:provider/provider.dart';
 class ProductViewWidget extends StatelessWidget {
   const ProductViewWidget({
     Key? key,
-    required this.list,
+    required this.list, required this.itemCount,
   }) : super(key: key);
 
-  final List<ProductElement> list;
+  final List<dynamic> list;
+  final int itemCount;
+
   @override
   Widget build(BuildContext context) {
     final data =
@@ -28,7 +29,7 @@ class ProductViewWidget extends StatelessWidget {
             ),
           )
         : GridView.builder(
-            itemCount: list.length <= 4 ? list.length : list.length = 4,
+            itemCount:itemCount,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

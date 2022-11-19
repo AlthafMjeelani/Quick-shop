@@ -57,7 +57,7 @@ class WomenAllProduct extends StatelessWidget {
                           alignment: Alignment.topRight,
                           child: GestureDetector(
                             onTap: () {
-                              data.isFavedAllProduct(index);
+                             // data.isFavedAllProduct(index);
                             },
                             child: Consumer(
                               builder: (BuildContext context,

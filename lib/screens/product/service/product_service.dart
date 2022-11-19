@@ -5,9 +5,8 @@ import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
-class GetSingleProductService {
-  static Future<ProductElement?> getSingleproductService(
-      String productId) async {
+class GetAllProductService {
+  static Future<Products?> getAllProductService() async {
     final dio = Dio();
     try {
       log('called login api fetch fuction');
@@ -15,7 +14,7 @@ class GetSingleProductService {
       /*  call api key   */
 
       final Response response = await dio.get(
-        ApiBaseUrl.baseUrl + ApiEndPoints.getsingleProducts + productId,
+        ApiBaseUrl.baseUrl + ApiEndPoints.getAllProducts,
         queryParameters: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -27,12 +26,14 @@ class GetSingleProductService {
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log(response.data.toString());
-        ProductElement product = ProductElement.fromJson(response.data);
-        return product;
+        return Products.fromJson(response.data);
       }
 
       /*  Catch error   */
-
+      else {
+        log('kuuy');
+        return null;
+      }
     } catch (e) {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
