@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class ScreenSplashProvider with ChangeNotifier {
   Future<void> gotoHome(context) async {
     await Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 2),
     );
 
     /*  check token stored or not    */

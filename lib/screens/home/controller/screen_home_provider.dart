@@ -62,10 +62,8 @@ class ScreenHomeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void calculateOfferPrice(index) {
-    offerPrice = ((product!.products![index].price! / 100) *
-            (100 - product!.products![index].offer!) -
-        1);
+  void calculateOfferPrice(ProductElement product) {
+    offerPrice = ((product.price! / 100) * (100 - product.offer!) - 1);
     log(offerPrice.toString());
   }
 

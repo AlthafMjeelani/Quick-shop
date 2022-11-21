@@ -36,7 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_otp_text_field: ^1.1.1
-  flutter_secure_storage: ^6.0.0
+  flutter_secure_storage: 6.0.0
   fluttertoast: 8.1.1
   get: 4.6.5
   google_fonts: 3.0.1

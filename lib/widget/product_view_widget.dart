@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 class ProductViewWidget extends StatelessWidget {
   const ProductViewWidget({
     Key? key,
-    required this.list, required this.itemCount,
+    required this.list,
+    required this.itemCount,
   }) : super(key: key);
 
   final List<ProductElement> list;
@@ -30,7 +31,7 @@ class ProductViewWidget extends StatelessWidget {
             ),
           )
         : GridView.builder(
-            itemCount:itemCount,
+            itemCount: itemCount,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -39,12 +40,12 @@ class ProductViewWidget extends StatelessWidget {
                 crossAxisSpacing: 10,
                 childAspectRatio: 1 / 1.3),
             itemBuilder: (BuildContext context, int index) {
-              productController.calculateOfferPrice(index);
               final product = list[index];
+              productController.calculateOfferPrice(product);
               return GestureDetector(
                 onTap: () {
                   data.getSingleProductDetails(product.id);
-                  productController.calculateOfferPrice(index);
+                  productController.calculateOfferPrice(product);
                 },
                 child: Container(
                   decoration: BoxDecoration(

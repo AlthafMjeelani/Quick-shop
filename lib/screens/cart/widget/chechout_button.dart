@@ -13,19 +13,20 @@ class CheckOutButton extends StatelessWidget {
     return Container(
       height: 65,
       width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+      decoration: const BoxDecoration(
+       // borderRadius: BorderRadius.circular(),
         color: AppColors.kBlackColor,
       ),
       child: Center(
         child: Row(
           children: [
-            AppSpacing.ksizedBoxW40,
+            AppSpacing.ksizedBoxW20,
             const Text(
               'GO TO CHECKOUT',
               style: AppTextStyle.kLongButtonWite,
             ),
-            AppSpacing.ksizedBoxW40,
+            const Spacer(),
+          
             Column(
               children: const [
                 AppSpacing.ksizedBox10,
@@ -38,7 +39,7 @@ class CheckOutButton extends StatelessWidget {
                   style: AppTextStyle.kLongButtonWite,
                 ),
               ],
-            ),
+            ),  AppSpacing.ksizedBoxW20,
           ],
         ),
       ),

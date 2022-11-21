@@ -2,19 +2,19 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
-import 'package:ecommerse/screens/cart/model/cart_model.dart';
+import 'package:ecommerse/screens/cart/model/cart_get_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class CartGetService {
-  static Future<CartModel?> cartGetService() async {
+  static Future<GetCartProductsModel?> cartGetService() async {
     final dio = Dio();
     try {
-      log('called addto Cart fuction');
+      log('called add to Cart get fuction');
       String userId = '6364aa8637ef0d667adcb084';
 
       /*  call api key   */
 
-      final Response response = await dio.post(
+      final Response response = await dio.get(
         ApiBaseUrl.baseUrl + ApiEndPoints.postProductToCart + userId,
         queryParameters: {
           'Content-type': 'application/json',
@@ -27,7 +27,7 @@ class CartGetService {
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log(response.data.toString());
-        return response.data['status'];
+        return GetCartProductsModel.fromJson(response.data);
       }
 
       /*  Catch error   */

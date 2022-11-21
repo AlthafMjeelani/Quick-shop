@@ -167,7 +167,7 @@ class ScreenHome extends StatelessWidget {
                               )
                             : ProductViewWidget(
                                 list: value.product?.products ?? [],
-                                itemCount: value.product!.products!.length
+                                itemCount: value.product?.products?.length??0
                                 //  <= 4
                                 //     ? value.product!.products!.length
                                 //     : value.product!.products!.length = 4,

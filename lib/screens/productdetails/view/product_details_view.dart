@@ -175,17 +175,28 @@ class ScreenProductView extends StatelessWidget {
                         ],
                       ),
                       AppSpacing.ksizedBox20,
-                      GestureDetector(
-                        onTap: () {
-                          log(data.productElement!.size![data.selectedIndex]);
-                          log(data.productElement!.id!);
-                          log(data.productElement!.colors![0].color!);
-                          cartController.addToCart(
-                              data.productElement!.id!,
-                              data.productElement!.size![data.selectedIndex],
-                              data.productElement!.colors![0].color!);
+                      Consumer(
+                        builder: (context, ScreenCartProvider value, child) {
+                          return value.isLoading
+                              ? const CupertinoActivityIndicator()
+                              : GestureDetector(
+                                  onTap: () {
+                                    log(data.productElement!
+                                        .size![data.selectedIndex]);
+                                    log(data.productElement!.id!);
+                                    log(data.productElement!.colors![0].color!);
+                                    value.addToCart(
+                                      data.productElement!.id!,
+                                      data.productElement!
+                                          .size![data.selectedIndex],
+                                      data.productElement!.colors![0].color!,
+                                    );
+                                    cartController.getAllCartProducts();
+                                  },
+                                  child: const LongButtonWidget(
+                                      text: 'ADD TO CART'),
+                                );
                         },
-                        child: const LongButtonWidget(text: 'ADD TO CART'),
                       ),
                       AppSpacing.ksizedBox20,
                       GestureDetector(

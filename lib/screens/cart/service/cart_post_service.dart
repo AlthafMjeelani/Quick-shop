@@ -2,11 +2,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
-import 'package:ecommerse/screens/cart/model/cart_model.dart';
+import 'package:ecommerse/screens/cart/model/cart_post_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class CartPostService {
-  static Future<bool?> cartPostService(CartModel model) async {
+  static Future<bool?> cartPostService(CartPostModel model) async {
     final dio = Dio();
     try {
       log('called addto Cart fuction');

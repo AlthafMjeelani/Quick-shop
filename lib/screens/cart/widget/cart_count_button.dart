@@ -1,12 +1,15 @@
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
+import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CartCountWidget extends StatelessWidget {
   const CartCountWidget({
-    Key? key,
+    Key? key, 
+    //required this.productElement,
   }) : super(key: key);
+ // final ProductElement productElement;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,8 @@ class CartCountWidget extends StatelessWidget {
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: const Color.fromARGB(255, 130, 121, 121)),
+          //color: const Color.fromARGB(255, 130, 121, 121),
+          ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
