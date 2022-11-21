@@ -1,9 +1,14 @@
+
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
+import 'package:ecommerse/screens/cart/model/cart_get_model.dart';
 import 'package:ecommerse/screens/cart/widget/cart_count_button.dart';
+import 'package:ecommerse/screens/cart/widget/cart_list_elements.dart';
 import 'package:ecommerse/screens/cart/widget/chechout_button.dart';
+import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
+import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/utils/checkout_bottomsheet.dart';
 import 'package:ecommerse/utils/delete_items.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +22,10 @@ class ScreenCart extends StatelessWidget {
     final size = MediaQuery.of(context).size.height;
     final cartController =
         Provider.of<ScreenCartProvider>(context, listen: false);
+            final productViewController =
+        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
+        final homeController =
+        Provider.of<ScreenHomeProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -31,7 +40,7 @@ class ScreenCart extends StatelessWidget {
                 child: Consumer(
                   builder: (BuildContext context, ScreenCartProvider value,
                       Widget? child) {
-                    if (value.isLoading==true) {
+                    if (value.isLoading == true) {
                       const Center(
                         child: CircularProgressIndicator(),
                       );
@@ -48,110 +57,20 @@ class ScreenCart extends StatelessWidget {
                           final cartProductItems =
                               value.cartProducts!.products![index];
                           value.calculateOfferPrice(cartProductItems.product!);
-                          return Container(
-                            height: size * 0.18,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.grey),
-                            child: FittedBox(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Container(
-                                      height: 150,
-                                      width: 120,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                  cartProductItems
-                                                          .product
-                                                          ?.colors?[0]
-                                                          .images?[0] ??
-                                                      ""),
-                                              fit: BoxFit.cover),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.white),
-                                    ),
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      AppSpacing.ksizedBox20,
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            cartProductItems.product?.name ??
-                                                'No Name',
-                                            style:
-                                                AppTextStyle.kTextBlack20Size,
-                                          ),
-                                          AppSpacing.ksizedBoxW120,
-                                          IconButton(
-                                              onPressed: () {
-                                                DeleteItem.deleteItems(
-                                                  context,
-                                                  'Continue',
-                                                  'Are you sure to Delete Item?',
-                                                  () {},
-                                                );
-                                              },
-                                              icon: const Icon(
-                                                Icons.delete_outlined,
-                                                color: Colors.red,
-                                                size: 32,
-                                              ))
-                                        ],
-                                      ),
-                                      Text(
-                                        cartProductItems.product?.description ??
-                                            'No description',
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      AppSpacing.ksizedBox5,
-                                      Text(
-                                        'Size  :  ${cartProductItems.size}',
-                                        style: AppTextStyle.kTextBlack20Size,
-                                      ),
-                                      AppSpacing.ksizedBoxW20,
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 0),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              value.offerPrice
-                                                  .round()
-                                                  .toString(),
-                                              style:
-                                                  AppTextStyle.kTextBlack30Size,
-                                            ),
-                                            AppSpacing.ksizedBoxW120,
-                                            const CartCountWidget(
-                                                // productElement:
-                                                //     cartProductItems,
-                                                // index: index,
-                                                ),
-                                          ],
-                                        ),
-                                      ),
-                                      // Align(
-                                      //     alignment: Alignment.bottomRight,
-                                      //     child: CartCountWidget()),
-                                    ],
-                                  ),
-                                ],
+                          return GestureDetector(
+                            onTap: () {
+                              cartController.calculateOfferPrice(cartProductItems.product!);
+                                productViewController.getSingleProductDetails(cartProductItems.product!.id!);
+                            },
+                            child: Container(
+                              height: size * 0.22,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.grey),
+                              child: ListTileElementsWidget(
+                                cartProductItems: cartProductItems,
+                                cartController: cartController,
                               ),
                             ),
                           );
@@ -159,7 +78,7 @@ class ScreenCart extends StatelessWidget {
                         separatorBuilder: (context, index) {
                           return const Divider();
                         },
-                        itemCount: value.cartProducts?.products?.length??0,
+                        itemCount: value.cartProducts?.products?.length ?? 0,
                       ),
                     );
                   },
@@ -178,3 +97,6 @@ class ScreenCart extends StatelessWidget {
     );
   }
 }
+
+
+

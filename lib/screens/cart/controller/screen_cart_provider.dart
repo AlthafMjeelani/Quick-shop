@@ -70,6 +70,7 @@ class ScreenCartProvider with ChangeNotifier {
   }
 
   void calculateOfferPrice(ProductDetails product) {
+    log(product.price.toString());
     offerPrice = ((product.price! / 100) * (100 - product.offer!) - 1);
     log(offerPrice.toString());
   }

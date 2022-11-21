@@ -7,8 +7,12 @@ class AppTextStyle {
    static const kTextBlack16Bold = TextStyle(color: Colors.black, fontSize: 16,fontWeight:FontWeight.bold );
   static const kTextBlackLargeSize =
       TextStyle(color: Colors.black, fontSize: 20);
+       static const kTextBlackSize20Bold =
+      TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold);
   static const kLongButtonWite =
       TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
+       static const kLongButton18Black =
+      TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold);
   static const kLongButtonBlack =
       TextStyle(color: Colors.black, fontSize: 23, fontWeight: FontWeight.bold);
   static const kTextsize16 = TextStyle(fontSize: 16);
