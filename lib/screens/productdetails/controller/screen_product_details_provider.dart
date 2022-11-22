@@ -23,7 +23,7 @@ class ScreenProductDetailsProvider with ChangeNotifier {
     Get.to(() => const ScreenStepperOrder());
   }
 
-  void getSingleProductDetails(productId) async {
+  void getSingleProductDetails(productId, String offerPrice) async {
     isLoading = true;
     notifyListeners();
     await GetSingleProductService.getSingleproductService(productId)
@@ -33,7 +33,11 @@ class ScreenProductDetailsProvider with ChangeNotifier {
         notifyListeners();
         isLoading = false;
         notifyListeners();
-        Get.to(() => const ScreenProductView());
+        Get.to(
+          () => ScreenProductView(
+            offerPrice: offerPrice,
+          ),
+        );
       }
     });
     isLoading = false;

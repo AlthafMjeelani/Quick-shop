@@ -14,8 +14,10 @@ import 'package:provider/provider.dart';
 
 class ScreenProductView extends StatelessWidget {
   const ScreenProductView({
-    super.key,
+    super.key, required this.offerPrice,
   });
+
+  final String offerPrice;
   @override
   Widget build(BuildContext context) {
     final data =
@@ -125,7 +127,7 @@ class ScreenProductView extends StatelessWidget {
                       ),
                       AppSpacing.ksizedBoxW10,
                       Text(
-                        '₹${homeController.offerPrice.round()}',
+                        '₹$offerPrice',
                         style: AppTextStyle.kTextBlack30Size,
                       ),
                       AppSpacing.ksizedBoxW10,
@@ -178,7 +180,7 @@ class ScreenProductView extends StatelessWidget {
                       Consumer(
                         builder: (context, ScreenCartProvider value, child) {
                           return value.isLoading
-                              ? const CupertinoActivityIndicator()
+                              ? const Center(child: CupertinoActivityIndicator())
                               : GestureDetector(
                                   onTap: () {
                                     log(data.productElement!

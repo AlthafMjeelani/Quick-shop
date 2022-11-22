@@ -21,7 +21,7 @@ class ProductViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    final productController =
+    final homeController =
         Provider.of<ScreenHomeProvider>(context, listen: false);
     return list.isEmpty
         ? const Center(
@@ -41,11 +41,12 @@ class ProductViewWidget extends StatelessWidget {
                 childAspectRatio: 1 / 1.3),
             itemBuilder: (BuildContext context, int index) {
               final product = list[index];
-              productController.calculateOfferPrice(product);
+              homeController.calculateOfferPrice(product);
               return GestureDetector(
                 onTap: () {
-                  data.getSingleProductDetails(product.id);
-                  productController.calculateOfferPrice(product);
+                    homeController.calculateOfferPrice(product);
+                  data.getSingleProductDetails(product.id,homeController.offerPrice.round().toString());
+                
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -110,7 +111,7 @@ class ProductViewWidget extends StatelessWidget {
                             ),
                             AppSpacing.ksizedBoxW5,
                             Text(
-                              '₹${productController.offerPrice.round()}',
+                              '₹${homeController.offerPrice.round()}',
                               style: AppTextStyle.kTextBlack20Size,
                             ),
                             AppSpacing.ksizedBoxW5,

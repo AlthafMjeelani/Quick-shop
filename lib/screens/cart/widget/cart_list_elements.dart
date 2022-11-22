@@ -38,10 +38,10 @@ class ListTileElementsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppSpacing.ksizedBox10,
+            AppSpacing.ksizedBox25,
             Text(
               cartProductItems.product?.name ?? 'No Name',
-              style: AppTextStyle.kLongButton18Black,
+              style: AppTextStyle.kTextBlack20Size,
             ),
             AppSpacing.ksizedBox5,
             SizedBox(
@@ -59,10 +59,18 @@ class ListTileElementsWidget extends StatelessWidget {
             AppSpacing.ksizedBox5,
             Text(
               '₹${cartController.offerPrice.round()}',
-              style: AppTextStyle.kTextBlackSize20Bold,
+              style: AppTextStyle.kTextBlack20Size,
             ),
             AppSpacing.ksizedBox5,
-            const CartCountWidget(),
+            SizedBox(
+              width:220,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                 SizedBox(),
+                  CartCountWidget(),
+                ],
+              )),
             AppSpacing.ksizedBox5,
           ],
         ),
