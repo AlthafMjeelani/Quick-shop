@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class SaveNewpasswordService {
@@ -11,11 +12,14 @@ class SaveNewpasswordService {
   ) async {
     try {
       Dio dio = Dio();
-      Response response = await dio
-          .put(ApiBaseUrl.baseUrl + ApiEndPoints.forgotpassword, data: {
-        "email": email,
-        "password": password,
-      });
+      Response response = await dio.put(
+        ApiBaseUrl.baseUrl + ApiEndPoints.forgotpassword,
+        data: {
+          "email": email,
+          "password": password,
+        },
+        options: Options(headers: AppConfig.getApiHeader(token: null)),
+      );
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log(response.data["message"]);
         return response.data["message"];

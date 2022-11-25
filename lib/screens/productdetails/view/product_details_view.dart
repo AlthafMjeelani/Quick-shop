@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
-import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,10 +21,6 @@ class ScreenProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     final data =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    final homeController =
-        Provider.of<ScreenHomeProvider>(context, listen: false);
-    final cartController =
-        Provider.of<ScreenCartProvider>(context, listen: false);
     data.selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
@@ -193,7 +188,7 @@ class ScreenProductView extends StatelessWidget {
                                           .size![data.selectedIndex],
                                       data.productElement!.colors![0].color!,
                                     );
-                                    cartController.getAllCartProducts();
+                                   // cartController.getAllCartProducts();
                                   },
                                   child: const LongButtonWidget(
                                       text: 'ADD TO CART'),

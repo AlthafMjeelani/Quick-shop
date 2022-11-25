@@ -18,5 +18,10 @@ class ApiEndPoints {
 
   /*----------------Product Cart side---------------------------*/
 
-  static String postProductToCart = '/products/cart/';
+  static String postProductToCart = '/cart';
+
+
+    /*----------------Product Wishlist side---------------------------*/
+
+  static String postProductToWishlist = '/wishlist';
 }

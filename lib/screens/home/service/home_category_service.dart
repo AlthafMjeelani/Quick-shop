@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/screens/home/model/category/home_category_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
@@ -16,10 +17,7 @@ class HomeCategoryService {
 
       final Response response = await dio.get(
         ApiBaseUrl.baseUrl + ApiEndPoints.getcategory,
-        queryParameters: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-        },
+        options: Options(headers: AppConfig.getApiHeader(token: null)),
       );
       log('api called success');
 

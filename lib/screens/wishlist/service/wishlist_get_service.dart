@@ -3,22 +3,19 @@ import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
 import 'package:ecommerse/core/appconfi.dart';
-import 'package:ecommerse/screens/product/model/product_model.dart';
+import 'package:ecommerse/screens/wishlist/model/wishlist_get_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 
-class GetSingleProductService {
-  static Future<ProductElement?> getSingleproductService(
-      String productId) async {
+class WishlistGetService {
+  static Future<List<WishlistGetModel>?> wishlistGetService() async {
     final dio = Dio();
     try {
-      log('called login api fetch fuction');
+      log('called add to WishList get fuction');
       final token = await UserSecureStorage.getToken();
       log('get token :$token');
-      /*  call api key   */
-
       final Response response = await dio.get(
-        ApiBaseUrl.baseUrl + ApiEndPoints.getsingleProducts + productId,
+        ApiBaseUrl.baseUrl + ApiEndPoints.postProductToWishlist,
         options: Options(headers: AppConfig.getApiHeader(token: token)),
       );
       log('api called success');
@@ -26,9 +23,11 @@ class GetSingleProductService {
       /*  check status code is Succes or bad requist   */
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        log(response.data.toString());
-        ProductElement product = ProductElement.fromJson(response.data);
-        return product;
+        log('WishList Get response :${response.data}');
+       final List<WishlistGetModel> wishlistModel= (response.data as List).map((e) {
+          return WishlistGetModel.fromJson(e);
+        }).toList();
+        return wishlistModel;
       }
 
       /*  Catch error   */

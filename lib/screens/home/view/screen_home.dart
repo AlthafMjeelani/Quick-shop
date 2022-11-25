@@ -1,10 +1,12 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
+import 'package:ecommerse/screens/product/service/product_service.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +78,7 @@ class ScreenHome extends StatelessWidget {
                       child: Consumer(
                         builder: (BuildContext context,
                             ScreenHomeProvider value, Widget? child) {
-                        return value.isLoading
+                          return value.isLoading
                               ? Shimmerwidget(
                                   height: 150,
                                   itemBuilder: (BuildContext ctx, index) {
@@ -97,14 +99,15 @@ class ScreenHome extends StatelessWidget {
                                       (BuildContext context, int index) {
                                     final category = value.categoryList[index];
                                     return GestureDetector(
-                                      onTap: () =>data.categoryView(category.categoryName) ,
+                                      onTap: () => data
+                                          .categoryView(category.categoryName),
                                       child: Row(
                                         children: [
                                           HomeCategoriesWidget(
                                             image: category?.image.toString() ??
                                                 'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
-                                            title:
-                                                category!.categoryName.toString(),
+                                            title: category!.categoryName
+                                                .toString(),
                                           ),
                                           AppSpacing.ksizedBoxW25,
                                         ],
@@ -149,29 +152,13 @@ class ScreenHome extends StatelessWidget {
                     AppSpacing.ksizedBox10,
                     Consumer(
                       builder: (context, ScreenHomeProvider value, child) {
-                        return value.isLoading
-                            // ? const CircularProgressIndicator()
-
-                            ? Shimmerwidget(
-                                height: 150,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Container(
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  );
-                                },
-                                itemCount: 1,
-                              )
-                            : ProductViewWidget(
-                                list: value.product?.products ?? [],
-                                itemCount: value.product?.products?.length??0
-                                //  <= 4
-                                //     ? value.product!.products!.length
-                                //     : value.product!.products!.length = 4,
-                              );
+                        return ProductViewWidget(
+                            list: value.product?.products ?? [],
+                            itemCount: value.product?.products?.length ?? 0
+                            //  <= 4
+                            //     ? value.product!.products!.length
+                            //     : value.product!.products!.length = 4,
+                            );
                       },
                     ),
                   ],

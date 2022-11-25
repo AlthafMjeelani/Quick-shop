@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/sign_up_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
@@ -21,10 +22,7 @@ class SignUpApiService {
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.register,
         data: jsonEncode(model.toJson()),
-        queryParameters: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-        },
+        options: Options(headers: AppConfig.getApiHeader(token: null)),
       );
       log('api called success');
 

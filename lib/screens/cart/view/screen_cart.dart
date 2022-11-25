@@ -18,7 +18,7 @@ class ScreenCart extends StatelessWidget {
     final productViewController =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      cartController.getAllCartProducts();
+     // cartController.getAllCartProducts();
     });
     return Scaffold(
       body: Container(
@@ -34,61 +34,66 @@ class ScreenCart extends StatelessWidget {
                 child: Consumer(
                   builder: (BuildContext context, ScreenCartProvider value,
                       Widget? child) {
-                    if (value.cartProducts == null) {
-                      const Center(
-                        child: Text('No items in the cart!',style: TextStyle(color: Colors.black),),
-                      );
-                    } else if (value.isLoading == true) {
-                      const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          final cartProductItems =
-                              value.cartProducts!.products![index];
-                          value.calculateOfferPrice(cartProductItems.product!);
-                          return GestureDetector(
-                            onTap: () {
-                              cartController.calculateOfferPrice(
-                                  cartProductItems.product!);
-                              productViewController.getSingleProductDetails(
-                                cartProductItems.product!.id!,
-                                value.offerPrice.round().toString(),
-                              );
-                            },
-                            child: Dismissible(
-                              background: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                                size: 45,
-                              ),
-                              onDismissed: (direction) {},
-                              key: Key(cartProductItems.toString()),
-                              child: Container(
-                                height: size * 0.22,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.grey),
-                                child: ListTileElementsWidget(
-                                  cartProductItems: cartProductItems,
-                                  cartController: cartController,
+                    return value.isLoading == true
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : value.cartProducts == null
+                            ? const Center(
+                                child: Text(
+                                  'No items in the cart!',
+                                  style: TextStyle(color: Colors.black),
                                 ),
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
-                        itemCount: value.cartProducts?.products?.length ?? 0,
-                      ),
-                    );
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    final cartProductItems =
+                                        value.cartProducts!.products![index];
+                                    value.calculateOfferPrice(
+                                        cartProductItems.product!);
+                                    return GestureDetector(
+                                      onTap: () {
+                                        cartController.calculateOfferPrice(
+                                            cartProductItems.product!);
+                                        productViewController
+                                            .getSingleProductDetails(
+                                          cartProductItems.product!.id!,
+                                          value.offerPrice.round().toString(),
+                                        );
+                                      },
+                                      child: Dismissible(
+                                        background: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          size: 45,
+                                        ),
+                                        onDismissed: (direction) {},
+                                        key: Key(cartProductItems.toString()),
+                                        child: Container(
+                                          height: size * 0.22,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: Colors.grey),
+                                          child: ListTileElementsWidget(
+                                            cartProductItems: cartProductItems,
+                                            cartController: cartController,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return const Divider();
+                                  },
+                                  itemCount:
+                                      value.cartProducts?.products?.length ?? 0,
+                                ),
+                              );
                   },
                 ),
               ),

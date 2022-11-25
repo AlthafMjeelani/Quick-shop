@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 
 class ForgetPasswordServices {
@@ -12,6 +13,7 @@ class ForgetPasswordServices {
         data: {
           "email": email,
         },
+         options: Options(headers: AppConfig.getApiHeader(token: null)),
       );
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         return response.data["message"];

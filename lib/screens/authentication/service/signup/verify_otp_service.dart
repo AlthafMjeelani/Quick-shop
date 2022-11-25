@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/screens/authentication/model/sign_up/verify_otp_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
@@ -23,10 +24,7 @@ class VerifyotpService {
           "user": model.toJson(),
           "code": code,
         },
-        queryParameters: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-        },
+        options: Options(headers: AppConfig.getApiHeader(token: null)),
       );
 
       /*  check status code is Successs or Badrequist   */

@@ -17,6 +17,7 @@ import 'package:ecommerse/screens/order/controller/screen_stepper_provider.dart'
 import 'package:ecommerse/screens/profile/controller/screen_profile_provider.dart';
 import 'package:ecommerse/screens/splash/controller/screen_splash_provider.dart';
 import 'package:ecommerse/screens/splash/view/screen_spalsh.dart';
+import 'package:ecommerse/screens/wishlist/controller/screen_wishlist_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             create: (context) => ScreenPaymentMethodeProvider()),
         ChangeNotifierProvider(create: (context) => ScreenStepperProvider()),
         ChangeNotifierProvider(create: (context) => AddAddressProvider()),
+        ChangeNotifierProvider(create: (context) => ScreenWishlistProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

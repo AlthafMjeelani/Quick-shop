@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecommerse/core/api/api_baseurl.dart';
 import 'package:ecommerse/core/api/api_endpoints.dart';
+import 'package:ecommerse/core/appconfi.dart';
 import 'package:ecommerse/screens/authentication/model/signin/sign_in_model.dart';
 import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
@@ -21,10 +22,7 @@ class SignInService {
       final Response response = await dio.post(
         ApiBaseUrl.baseUrl + ApiEndPoints.login,
         data: {"email": email, "password": password},
-        queryParameters: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-        },
+        options: Options(headers: AppConfig.getApiHeader(token: null)),
       );
       log('api called success');
 
