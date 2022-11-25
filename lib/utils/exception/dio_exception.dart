@@ -12,6 +12,8 @@ class DioExceptionhandler {
         AppPopUps.showToast('No Internet Connection', Colors.red);
       } else if (e.response?.statusCode == 400) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
+      } else if (e.response?.statusCode == 403) {
+        AppPopUps.showToast(e.response?.data['message'], Colors.red);
       } else if (e.response?.statusCode == 404) {
         AppPopUps.showToast(e.response?.data['message'], Colors.red);
       } else if (e.type == DioErrorType.connectTimeout) {

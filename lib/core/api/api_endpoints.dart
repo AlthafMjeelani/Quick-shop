@@ -23,5 +23,5 @@ class ApiEndPoints {
 
     /*----------------Product Wishlist side---------------------------*/
 
-  static String postProductToWishlist = '/wishlist';
+  static String wishlist = '/wishlist';
 }

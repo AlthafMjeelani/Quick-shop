@@ -33,7 +33,7 @@ class ScreenWishlist extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: ListView.separated(
                           shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
+                         // physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             final wishListProduct =
                                 value.wishListProductElement![index];
@@ -95,7 +95,7 @@ class ScreenWishlist extends StatelessWidget {
                                         ),
                                         AppSpacing.ksizedBox5,
                                         Text(
-                                          'Size  :  ${wishListProduct.size?[index]}',
+                                          'Size  :  ${wishListProduct.size?[0]}',
                                           style: AppTextStyle.kTextBlack16Bold,
                                         ),
                                         AppSpacing.ksizedBox5,
@@ -117,7 +117,7 @@ class ScreenWishlist extends StatelessWidget {
                                                         wishListProduct.id
                                                             .toString(),
                                                         wishListProduct
-                                                            .size![index],
+                                                            .size![0],
                                                         wishListProduct
                                                             .colors![0].color!);
                                                   },

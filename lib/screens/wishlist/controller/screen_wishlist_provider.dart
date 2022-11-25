@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 class ScreenWishlistProvider with ChangeNotifier {
   ScreenWishlistProvider() {
     getAllWishlistProducts();
-  
   }
   bool isLoading = false;
   List<WishlistGetModel>? wishListProductElement;
@@ -20,9 +19,7 @@ class ScreenWishlistProvider with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     await WishlistPostService.wishlistPostService(productId).then((value) {
-      if (value == true) {
-        AppPopUps.showToast('Add To Wishlist', Colors.green);
-      }
+      AppPopUps.showToast('Add To Wishlist', Colors.green);
     });
     isLoading = false;
     notifyListeners();
@@ -36,9 +33,9 @@ class ScreenWishlistProvider with ChangeNotifier {
         log("wishlist is Not Emptu");
         wishListProductElement = value;
         notifyListeners();
-      }else{
-         log("wishlist is Emptu");
-        isLoading=false;
+      } else {
+        log("wishlist is Emptu");
+        isLoading = false;
         notifyListeners();
       }
     });
@@ -46,9 +43,7 @@ class ScreenWishlistProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-
-   void calculateOfferPrice(WishlistGetModel product) {
+  void calculateOfferPrice(WishlistGetModel product) {
     log(product.price.toString());
     offerPrice = ((product.price! / 100) * (100 - product.offer!) - 1);
     log(offerPrice.toString());

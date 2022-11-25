@@ -17,7 +17,7 @@ class WishlistPostService {
       /*  call api key   */
 
       final Response response = await dio.post(
-        ApiBaseUrl.baseUrl + ApiEndPoints.postProductToWishlist,
+        ApiBaseUrl.baseUrl + ApiEndPoints.wishlist,
         data: {
           "productId": productId,
         },

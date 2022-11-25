@@ -88,7 +88,8 @@ class ProductViewWidget extends StatelessWidget {
                                       product.colors?[0].images?[0] ??
                                           'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
                                     ),
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fill
+                                    ,
                                   ),
                                 ),
                                 child: Padding(
@@ -98,9 +99,10 @@ class ProductViewWidget extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         wishlistController.addToWishlist(
-                                          singelProductController
-                                              .productElement!.id
-                                              .toString(),
+                                            homeController.product!.products![index].id.toString()
+                                          // singelProductController
+                                          //     .productElement!.id
+                                          //     .toString(),
                                         );
                                       },
                                       child: Consumer(
