@@ -6,6 +6,7 @@ import 'package:ecommerse/screens/productdetails/controller/screen_product_detai
 import 'package:ecommerse/screens/wishlist/controller/screen_wishlist_provider.dart';
 import 'package:ecommerse/utils/delete_items.dart';
 import 'package:ecommerse/widget/no_itemfound_widget.dart';
+import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,13 +29,25 @@ class ScreenWishlist extends StatelessWidget {
           child: Consumer(
             builder: (context, ScreenWishlistProvider value, child) {
               return value.isLoading
-                  ? const Center(
-                      child: CircularProgressIndicator(),
+                  ? Shimmerwidget(
+                      itemBuilder: (BuildContext ctx, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 170,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: 4,
                     )
                   : value.wishListProductElement.isEmpty
                       ? const CustomNotFoundWidget(
-                                title: "You have't added any\nProduct yet",
-                                subtitle: '')
+                          title: "You have't added any\nProduct yet",
+                          subtitle: '')
                       : Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.separated(
@@ -166,10 +179,9 @@ class ScreenWishlist extends StatelessWidget {
                                                                 wishListProduct
                                                                     .id
                                                                     .toString());
-                                                                     
+
                                                             value
                                                                 .getAllWishlistProducts();
-                                                               
                                                           },
                                                         );
                                                       },

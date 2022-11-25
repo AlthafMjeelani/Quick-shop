@@ -7,6 +7,7 @@ import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
 import 'package:ecommerse/screens/product/service/product_service.dart';
+import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
@@ -73,94 +74,99 @@ class ScreenHome extends StatelessWidget {
                       ),
                     ),
                     AppSpacing.ksizedBox10,
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.17,
-                      child: Consumer(
-                        builder: (BuildContext context,
-                            ScreenHomeProvider value, Widget? child) {
-                          return value.isLoading
-                              ? Shimmerwidget(
-                                  height: 150,
-                                  itemBuilder: (BuildContext ctx, index) {
-                                    return Container(
-                                      height: 120,
+                    Consumer(
+                      builder: (context, ScreenHomeProvider value, child) {
+                        return value.isLoading
+                            ? Shimmerwidget(
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 200,
                                       decoration: BoxDecoration(
                                         color: Colors.grey,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                    );
-                                  },
-                                  itemCount: 1,
-                                )
-                              : ListView.builder(
-                                  itemCount: value.categoryList.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    final category = value.categoryList[index];
-                                    return GestureDetector(
-                                      onTap: () => data
-                                          .categoryView(category.categoryName),
-                                      child: Row(
-                                        children: [
-                                          HomeCategoriesWidget(
-                                            image: category?.image.toString() ??
-                                                'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
-                                            title: category!.categoryName
-                                                .toString(),
+                                    ),
+                                  );
+                                },
+                                itemCount: 4,
+                              )
+                            : Column(
+                                children: [
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.17,
+                                    child: ListView.builder(
+                                      itemCount: value.categoryList.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        final category =
+                                            value.categoryList[index];
+                                        return GestureDetector(
+                                          onTap: () => data.categoryView(
+                                              category.categoryName),
+                                          child: Row(
+                                            children: [
+                                              HomeCategoriesWidget(
+                                                image: category?.image
+                                                        .toString() ??
+                                                    'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
+                                                title: category!.categoryName
+                                                    .toString(),
+                                              ),
+                                              AppSpacing.ksizedBoxW25,
+                                            ],
                                           ),
-                                          AppSpacing.ksizedBoxW25,
-                                        ],
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  AppSpacing.ksizedBox10,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        'Special Offer',
+                                        style: AppTextStyle.kTextBlack20Size,
                                       ),
-                                    );
-                                  },
-                                );
-                        },
-                      ),
-                    ),
-                    AppSpacing.ksizedBox10,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Text(
-                          'Special Offer',
-                          style: AppTextStyle.kTextBlack20Size,
-                        ),
-                      ],
-                    ),
-                    AppSpacing.ksizedBox5,
-                    const CarouselCardWidget(),
-                    AppSpacing.ksizedBox20,
-                    Row(
-                      children: [
-                        const Text(
-                          'Latest Products',
-                          style: AppTextStyle.kTextBlack20Size,
-                        ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            data.navigatorHomeToViewAll(context);
-                          },
-                          child: const Text(
-                            'View All',
-                            style: AppTextStyle.kTextBlack20Size,
-                          ),
-                        )
-                      ],
-                    ),
-                    AppSpacing.ksizedBox10,
-                    Consumer(
-                      builder: (context, ScreenHomeProvider value, child) {
-                        return ProductViewWidget(
-                            list: value.product?.products ?? [],
-                            itemCount: value.product?.products?.length ?? 0
-                            //  <= 4
-                            //     ? value.product!.products!.length
-                            //     : value.product!.products!.length = 4,
-                            );
+                                    ],
+                                  ),
+                                  AppSpacing.ksizedBox5,
+                                  const CarouselCardWidget(),
+                                  AppSpacing.ksizedBox20,
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'Latest Products',
+                                        style: AppTextStyle.kTextBlack20Size,
+                                      ),
+                                      const Spacer(),
+                                      InkWell(
+                                        onTap: () {
+                                          data.navigatorHomeToViewAll(context);
+                                        },
+                                        child: const Text(
+                                          'View All',
+                                          style: AppTextStyle.kTextBlack20Size,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  AppSpacing.ksizedBox10,
+                                  ProductViewWidget(
+                                      list: value.product?.products ?? [],
+                                      itemCount:
+                                          value.product?.products?.length ?? 0
+                                      //  <= 4
+                                      //     ? value.product!.products!.length
+                                      //     : value.product!.products!.length = 4,
+                                      ),
+                                ],
+                              );
                       },
-                    ),
+                    )
                   ],
                 ),
               ),

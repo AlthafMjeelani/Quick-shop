@@ -5,6 +5,7 @@ import 'package:ecommerse/screens/cart/widget/chechout_button.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/utils/checkout_bottomsheet.dart';
 import 'package:ecommerse/widget/no_itemfound_widget.dart';
+import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,9 +37,21 @@ class ScreenCart extends StatelessWidget {
                   builder: (BuildContext context, ScreenCartProvider value,
                       Widget? child) {
                     return value.isLoading == true
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                        ? Shimmerwidget(
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 170,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                itemCount: 4,
+                              )
                         : value.cartProducts == null
                             ? const CustomNotFoundWidget(
                                 title: "You have't added any\nProduct yet",
