@@ -11,7 +11,7 @@ class GetAllProductService {
   static Future<Products?> getAllProductService() async {
     final dio = Dio();
     try {
-      log('called login api fetch fuction');
+      log('called product get api fetch fuction');
       final token = await UserSecureStorage.getToken();
       log('get token :$token');
       /*  call api key   */

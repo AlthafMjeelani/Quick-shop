@@ -78,6 +78,7 @@ flutter:
     - assets/images/razorpaybg.png
     - assets/lottie/forgotpassword.json
     - assets/lottie/payment.json
+    - assets/lottie/no data.json
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

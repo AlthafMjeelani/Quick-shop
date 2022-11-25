@@ -70,7 +70,9 @@ class ScreenAllProduct extends StatelessWidget {
                       ),
                       AppSpacing.ksizedBox20,
                       ProductViewWidget(
-                        list: homeController.product?.products ?? [], itemCount: homeController.product!.products!.length ,
+                        list: homeController.product?.products ?? [],
+                        itemCount:
+                            homeController.product?.products?.length ?? 0,
                       ),
                     ],
                   ),

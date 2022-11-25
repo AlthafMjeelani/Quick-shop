@@ -4,6 +4,7 @@ import 'package:ecommerse/screens/cart/widget/cart_list_elements.dart';
 import 'package:ecommerse/screens/cart/widget/chechout_button.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/utils/checkout_bottomsheet.dart';
+import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,7 @@ class ScreenCart extends StatelessWidget {
     final productViewController =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-     // cartController.getAllCartProducts();
+      // cartController.getAllCartProducts();
     });
     return Scaffold(
       body: Container(
@@ -39,12 +40,9 @@ class ScreenCart extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           )
                         : value.cartProducts == null
-                            ? const Center(
-                                child: Text(
-                                  'No items in the cart!',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              )
+                            ? const CustomNotFoundWidget(
+                                title: "You have't added any\nProduct yet",
+                                subtitle: '')
                             : Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: ListView.separated(

@@ -5,6 +5,7 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/wishlist/controller/screen_wishlist_provider.dart';
+import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +29,6 @@ class ProductViewWidget extends StatelessWidget {
         Provider.of<ScreenHomeProvider>(context, listen: false);
     final wishlistController =
         Provider.of<ScreenWishlistProvider>(context, listen: false);
-    final singelProductController =
-        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
     return Consumer(
       builder: (context, ScreenHomeProvider value, child) {
         return value.isLoading
@@ -46,13 +45,10 @@ class ProductViewWidget extends StatelessWidget {
                 },
                 itemCount: 1,
               )
-            : 
-            list.isEmpty
-                ? const Center(
-                    child: Text('List Is Empty'),
-                  )
-                :
-                 GridView.builder(
+            : list.isEmpty
+                ? const CustomNotFoundWidget(
+                    title: "Product is Empty", subtitle: '')
+                : GridView.builder(
                     itemCount: itemCount,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -88,8 +84,7 @@ class ProductViewWidget extends StatelessWidget {
                                       product.colors?[0].images?[0] ??
                                           'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
                                     ),
-                                    fit: BoxFit.fill
-                                    ,
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                                 child: Padding(
@@ -99,11 +94,11 @@ class ProductViewWidget extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         wishlistController.addToWishlist(
-                                            homeController.product!.products![index].id.toString()
-                                          // singelProductController
-                                          //     .productElement!.id
-                                          //     .toString(),
-                                        );
+                                            homeController
+                                                .product!.products![index].id
+                                                .toString());
+                                        wishlistController
+                                            .getAllWishlistProducts();
                                       },
                                       child: Consumer(
                                         builder: (BuildContext context,
