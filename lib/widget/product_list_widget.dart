@@ -43,20 +43,12 @@ class ProductViewWidget extends StatelessWidget {
                     childAspectRatio: 1 / 1.3),
                 itemBuilder: (BuildContext context, int index) {
                   final product = list[index];
-
-                  homeController.calculateOfferPrice(product);
-                  
                   return GestureDetector(
                     onTap: () {
                       homeController.calculateOfferPrice(product);
-                      // data.getSingleProductDetails(product.id,
-                      //     homeController.offerPrice.round().toString());
-                      // data.goToDetailspage(
-                      //   homeController.offerPrice.round().toString(),
-                      data.goToDetailspage(
+                      data.goToDetailsPage(
                           homeController.offerPrice.round().toString(),
                           product.id!);
-                      // );
                     },
                     child: Container(
                       decoration: BoxDecoration(

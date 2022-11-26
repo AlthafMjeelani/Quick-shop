@@ -17,7 +17,7 @@ class ScreenWishlistProvider with ChangeNotifier {
   bool contains = false;
 
   void addToWishlist(String productId) async {
-     WishlistPostService.wishlistPostService(productId).then((value) {
+    WishlistPostService.wishlistPostService(productId).then((value) {
       if (value == true) {
         AppPopUps.showToast('Add To Wishlist', Colors.green);
       }
@@ -53,9 +53,9 @@ class ScreenWishlistProvider with ChangeNotifier {
   void deleteWishlistItem(String productId) async {
     WishlistDeteteItemService.wishlistDeteteItemService(productId)
         .then((value) {
-      if (value!=null) {
+      if (value != null) {
         AppPopUps.showToast(value.message.toString(), Colors.green);
-         getAllWishlistProducts();
+        getAllWishlistProducts();
       }
     });
     getAllWishlistProducts();
@@ -63,6 +63,7 @@ class ScreenWishlistProvider with ChangeNotifier {
   }
 
   bool checkIsFev(String productId) {
+    getAllWishlistProducts();
     idList = wishListProductElement.map((products) {
       return products.id!;
     }).toList();

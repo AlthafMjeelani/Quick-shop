@@ -39,7 +39,7 @@ class ScreenProductDetailsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void goToDetailspage(String offerPrice, String productId) {
+  void goToDetailsPage(String offerPrice, String productId) {
     Get.to(
       () => ScreenProductView(
         offerPrice: offerPrice,

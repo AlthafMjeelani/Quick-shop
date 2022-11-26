@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/cart/widget/cart_list_elements.dart';
@@ -73,16 +75,18 @@ class ScreenCart extends StatelessWidget {
                                         onTap: () {
                                           cartController.calculateOfferPrice(
                                               cartProductItems.product!);
-                                          cartController.goToDetailsPage(
-                                              cartController.offerPrice
-                                                  .round()
-                                                  .toString(),
-                                              cartProductItems.id.toString());
+                                         context
+                                          .read<ScreenProductDetailsProvider>()
+                                          .goToDetailsPage(cartController.offerPrice.round().toString(),
+                                            cartProductItems.product!.id.toString(),
+                                          );
+                                              log(value.cartProducts!.products![index].id.toString());
                                         },
                                         child: Dismissible(
                                           background: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
+                                          //  638052464a845f2ac5e5dfd8
                                             size: 45,
                                           ),
                                           onDismissed: (direction) {},

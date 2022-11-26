@@ -3,7 +3,7 @@ import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
-import 'package:ecommerse/widget/product_view_widget.dart';
+import 'package:ecommerse/widget/product_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';

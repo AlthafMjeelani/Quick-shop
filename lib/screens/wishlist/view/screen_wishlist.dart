@@ -72,7 +72,7 @@ class ScreenWishlist extends StatelessWidget {
                                           .calculateOfferPrice(wishListProduct);
                                       context
                                           .read<ScreenProductDetailsProvider>()
-                                          .getSingleProductDetails(
+                                          .goToDetailsPage(wishlistController.offerPrice!.round().toString(),
                                             wishListProduct.id!,
                                           );
                                     },

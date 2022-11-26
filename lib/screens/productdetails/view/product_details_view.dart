@@ -8,6 +8,7 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/view/screen_home.dart';
 import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
+import 'package:ecommerse/widget/fevorite_icon_widget.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,10 +30,7 @@ class ScreenProductView extends StatelessWidget {
   Widget build(BuildContext context) {
     final singleProductController =
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    final homeController =
-        Provider.of<ScreenHomeProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      log('product Id is :   ${productId.toString()}');
       singleProductController.getSingleProductDetails(productId);
     });
     singleProductController.selectedIndex = 0;
@@ -81,7 +79,7 @@ class ScreenProductView extends StatelessWidget {
                     ),
                   )
                 : value.productElement == null
-                    ? SizedBox()
+                    ?const SizedBox()
                     : Column(
                         children: [
                           SizedBox(
@@ -130,16 +128,7 @@ class ScreenProductView extends StatelessWidget {
                                     const Spacer(),
                                     Align(
                                       alignment: Alignment.topRight,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          // value.isFaved(index);
-                                        },
-                                        child: const Icon(
-                                          CupertinoIcons.heart_fill,
-                                          size: AppTextStyle.kIconsize32,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
+                                      child: AddorRemoveFavoriteWidget(productId: productId)
                                     ),
                                     const SizedBox(
                                       width: 20,

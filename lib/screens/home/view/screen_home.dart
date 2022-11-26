@@ -5,8 +5,7 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
-import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
-import 'package:ecommerse/widget/product_view_widget.dart';
+import 'package:ecommerse/widget/product_list_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +18,6 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenHomeProvider>(context, listen: false);
-    final detailsController =
-        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () => data.getAllCategories(),

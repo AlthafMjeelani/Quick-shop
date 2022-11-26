@@ -85,9 +85,9 @@ class ScreenCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void goToDetailsPage(String offerPrice, String productId) {
-    Get.to(
-      () => ScreenProductView(offerPrice: offerPrice, productId: productId),
-    );
-  }
+  // void goToDetailsPage(String offerPrice, String productId) {
+  //   Get.to(
+  //     () => ScreenProductView(offerPrice: offerPrice, productId: productId),
+  //   );
+  // }
 }

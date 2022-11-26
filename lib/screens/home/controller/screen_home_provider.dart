@@ -20,12 +20,6 @@ class ScreenHomeProvider with ChangeNotifier {
   Products? product;
   num offerPrice = 0;
 
-// CarouselController carouselController = CarouselController();
-  // void isFaved(int index) {
-  //   favoriteBoolList[index] = !favoriteBoolList[index];
-  //   notifyListeners();
-  // }
-
   void navigatorHomeToViewAll(context) {
     Navigator.of(context).push(
       MaterialPageRoute(
