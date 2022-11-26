@@ -43,6 +43,7 @@ class ProductViewWidget extends StatelessWidget {
                     childAspectRatio: 1 / 1.3),
                 itemBuilder: (BuildContext context, int index) {
                   final product = list[index];
+                  homeController.calculateOfferPrice(product);
                   return GestureDetector(
                     onTap: () {
                       homeController.calculateOfferPrice(product);

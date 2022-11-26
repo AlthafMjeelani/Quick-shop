@@ -13,8 +13,7 @@ class ScreenWishlistProvider with ChangeNotifier {
   bool isLoading = false;
   List<WishlistGetModel> wishListProductElement = [];
   num? offerPrice;
-  List<String> idList = [];
-  bool contains = false;
+  
 
   void addToWishlist(String productId) async {
     WishlistPostService.wishlistPostService(productId).then((value) {
@@ -62,16 +61,13 @@ class ScreenWishlistProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  bool checkIsFev(String productId) {
-    getAllWishlistProducts();
-    idList = wishListProductElement.map((products) {
-      return products.id!;
-    }).toList();
+  // bool checkIsFev(String productId) { 
+  //   getAllWishlistProducts();
+ 
 
-    // ignore: iterable_contains_unrelated_type
-    contains = idList.contains(productId);
-    log(contains.toString());
-    notifyListeners();
-    return false;
-  }
+   
+  //   log(contains.toString());
+  //   notifyListeners();
+  //   return false;
+  // }
 }

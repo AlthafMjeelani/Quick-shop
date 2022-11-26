@@ -40,7 +40,6 @@ class ScreenHomeProvider with ChangeNotifier {
     });
     isLoading = false;
     notifyListeners();
-    log(categoryList.toString());
   }
 
   void getAllProducts() async {
@@ -58,7 +57,6 @@ class ScreenHomeProvider with ChangeNotifier {
 
   void calculateOfferPrice(ProductElement product) {
     offerPrice = ((product.price! / 100) * (100 - product.offer!) - 1);
-    log(offerPrice.toString());
   }
 
   void categoryView(category) {

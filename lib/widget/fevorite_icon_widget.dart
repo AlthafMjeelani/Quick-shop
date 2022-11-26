@@ -13,23 +13,25 @@ class AddorRemoveFavoriteWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wishlistController =
-        Provider.of<ScreenWishlistProvider>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      wishlistController.checkIsFev(productId);
-    });
     return Consumer<ScreenWishlistProvider>(
       builder: (BuildContext context, value, Widget? child) {
+        bool contains = false;
+        List<String> idList = value.wishListProductElement.map((products) {
+          return products.id!;
+        }).toList();
+
+        contains = idList.contains(productId);
+
         return InkWell(
           onTap: () {
-            !value.contains == true
+            !contains
                 ? value.addToWishlist(productId)
                 : value.deleteWishlistItem(productId);
           },
           child: Icon(
             CupertinoIcons.heart_fill,
             size: 32,
-            color: value.contains == true ? Colors.red : Colors.grey,
+            color: contains ? Colors.red : Colors.grey,
           ),
         );
       },
