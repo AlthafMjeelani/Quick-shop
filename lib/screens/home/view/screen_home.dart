@@ -1,13 +1,11 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
-import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/home/widget/carousal_card_widget.dart';
 import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
-import 'package:ecommerse/screens/product/service/product_service.dart';
-import 'package:ecommerse/widget/no_itemfound_widget.dart';
+import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/product_view_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +19,9 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<ScreenHomeProvider>(context, listen: false);
+    final detailsController =
+        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () => data.getAllCategories(),
@@ -93,35 +94,50 @@ class ScreenHome extends StatelessWidget {
                                 itemCount: 4,
                               )
                             : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  const Text(
+                                    'Categories',
+                                    style: AppTextStyle.kTextBlack20Size,
+                                  ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.17,
-                                    child: ListView.builder(
-                                      itemCount: value.categoryList.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        final category =
-                                            value.categoryList[index];
-                                        return GestureDetector(
-                                          onTap: () => data.categoryView(
-                                              category.categoryName),
-                                          child: Row(
-                                            children: [
-                                              HomeCategoriesWidget(
-                                                image: category?.image
-                                                        .toString() ??
-                                                    'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
-                                                title: category!.categoryName
-                                                    .toString(),
-                                              ),
-                                              AppSpacing.ksizedBoxW25,
-                                            ],
+                                    child: value.categoryList.isEmpty
+                                        ? const Center(
+                                            child: Text(
+                                              'No Categories',
+                                              style:
+                                                  AppTextStyle.kTextBlack16Bold,
+                                            ),
+                                          )
+                                        : ListView.builder(
+                                            itemCount:
+                                                value.categoryList.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              final category =
+                                                  value.categoryList[index];
+                                              return GestureDetector(
+                                                onTap: () => data.categoryView(
+                                                    category.categoryName),
+                                                child: Row(
+                                                  children: [
+                                                    HomeCategoriesWidget(
+                                                      image: category?.image
+                                                              .toString() ??
+                                                          'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
+                                                      title: category!
+                                                          .categoryName
+                                                          .toString(),
+                                                    ),
+                                                    AppSpacing.ksizedBoxW25,
+                                                  ],
+                                                ),
+                                              );
+                                            },
                                           ),
-                                        );
-                                      },
-                                    ),
                                   ),
                                   AppSpacing.ksizedBox10,
                                   Row(
@@ -137,32 +153,33 @@ class ScreenHome extends StatelessWidget {
                                   const CarouselCardWidget(),
                                   AppSpacing.ksizedBox20,
                                   Row(
-                                    children: [
-                                      const Text(
-                                        'Latest Products',
+                                    children: const [
+                                      Text(
+                                        'Products',
                                         style: AppTextStyle.kTextBlack20Size,
                                       ),
-                                      const Spacer(),
-                                      InkWell(
-                                        onTap: () {
-                                          data.navigatorHomeToViewAll(context);
-                                        },
-                                        child: const Text(
-                                          'View All',
-                                          style: AppTextStyle.kTextBlack20Size,
-                                        ),
-                                      )
+                                      Spacer(),
+                                      // InkWell(
+                                      //   onTap: () {
+                                      //     data.navigatorHomeToViewAll(context);
+                                      //   },
+                                      //   child: const Text(
+                                      //     'View All',
+                                      //     style: AppTextStyle.kTextBlack20Size,
+                                      //   ),
+                                      // )
                                     ],
                                   ),
                                   AppSpacing.ksizedBox10,
                                   ProductViewWidget(
-                                      list: value.product?.products ?? [],
-                                      itemCount:
-                                          value.product?.products?.length ?? 0
-                                      //  <= 4
-                                      //     ? value.product!.products!.length
-                                      //     : value.product!.products!.length = 4,
-                                      ),
+                                    list: value.product?.products ?? [],
+                                    itemCount:
+                                        value.product?.products?.length ?? 0,
+
+                                    //  <= 4
+                                    //     ? value.product!.products!.length
+                                    //     : value.product!.products!.length = 4,
+                                  ),
                                 ],
                               );
                       },

@@ -4,6 +4,7 @@ import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/screens/wishlist/controller/screen_wishlist_provider.dart';
+import 'package:ecommerse/widget/fevorite_icon_widget.dart';
 import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,7 @@ class ProductViewWidget extends StatelessWidget {
         Provider.of<ScreenProductDetailsProvider>(context, listen: false);
     final homeController =
         Provider.of<ScreenHomeProvider>(context, listen: false);
-    final wishlistController =
-        Provider.of<ScreenWishlistProvider>(context, listen: false);
+
     return Consumer(
       builder: (context, ScreenHomeProvider value, child) {
         return list.isEmpty
@@ -43,12 +43,20 @@ class ProductViewWidget extends StatelessWidget {
                     childAspectRatio: 1 / 1.3),
                 itemBuilder: (BuildContext context, int index) {
                   final product = list[index];
+
                   homeController.calculateOfferPrice(product);
+                  
                   return GestureDetector(
                     onTap: () {
                       homeController.calculateOfferPrice(product);
-                      data.getSingleProductDetails(product.id,
-                          homeController.offerPrice.round().toString());
+                      // data.getSingleProductDetails(product.id,
+                      //     homeController.offerPrice.round().toString());
+                      // data.goToDetailspage(
+                      //   homeController.offerPrice.round().toString(),
+                      data.goToDetailspage(
+                          homeController.offerPrice.round().toString(),
+                          product.id!);
+                      // );
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -74,29 +82,8 @@ class ProductViewWidget extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Align(
                                 alignment: Alignment.topRight,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    wishlistController.addToWishlist(
-                                        homeController
-                                            .product!.products![index].id
-                                            .toString());
-                                    wishlistController.getAllWishlistProducts();
-                                  },
-                                  child: Consumer(
-                                    builder: (BuildContext context,
-                                        ScreenHomeProvider value,
-                                        Widget? child) {
-                                      return const Icon(
-                                        CupertinoIcons.heart_fill,
-                                        size: AppTextStyle.kIconsize32,
-                                        color: Colors.grey,
-                                        // color: value.favoriteBoolList[index]
-                                        //     ? Colors.red
-                                        //     : Colors.grey,
-                                      );
-                                    },
-                                  ),
-                                ),
+                                child: AddorRemoveFavoriteWidget(
+                                    productId: product.id.toString()),
                               ),
                             ),
                           ),

@@ -23,7 +23,7 @@ class ScreenProductDetailsProvider with ChangeNotifier {
     Get.to(() => const ScreenStepperOrder());
   }
 
-  void getSingleProductDetails(productId, String offerPrice) async {
+  void getSingleProductDetails(String productId) async {
     isLoading = true;
     notifyListeners();
     await GetSingleProductService.getSingleproductService(productId)
@@ -33,14 +33,18 @@ class ScreenProductDetailsProvider with ChangeNotifier {
         notifyListeners();
         isLoading = false;
         notifyListeners();
-        Get.to(
-          () => ScreenProductView(
-            offerPrice: offerPrice,
-          ),
-        );
       }
     });
     isLoading = false;
     notifyListeners();
+  }
+
+  void goToDetailspage(String offerPrice, String productId) {
+    Get.to(
+      () => ScreenProductView(
+        offerPrice: offerPrice,
+        productId: productId,
+      ),
+    );
   }
 }

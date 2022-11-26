@@ -7,7 +7,7 @@ import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 
 class WishlistPostService {
-  static Future<bool?> wishlistPostService(String productId) async {
+  static Future<bool> wishlistPostService(String productId) async {
     final dio = Dio();
     try {
       log('called addto Wishlist fuction');
@@ -38,6 +38,6 @@ class WishlistPostService {
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
     }
-    return null;
+    return false;
   }
 }

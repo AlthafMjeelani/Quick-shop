@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/wishlist/model/wishlist_get_model.dart';
 import 'package:ecommerse/screens/wishlist/service/wishlist_deleteitem_service.dart';
 import 'package:ecommerse/screens/wishlist/service/wishlist_get_service.dart';
@@ -13,16 +11,18 @@ class ScreenWishlistProvider with ChangeNotifier {
     getAllWishlistProducts();
   }
   bool isLoading = false;
-  List<WishlistGetModel> wishListProductElement=[];
+  List<WishlistGetModel> wishListProductElement = [];
   num? offerPrice;
+  List<String> idList = [];
+  bool contains = false;
 
   void addToWishlist(String productId) async {
-    isLoading = true;
-    notifyListeners();
-    await WishlistPostService.wishlistPostService(productId).then((value) {
-      AppPopUps.showToast('Add To Wishlist', Colors.green);
+     WishlistPostService.wishlistPostService(productId).then((value) {
+      if (value == true) {
+        AppPopUps.showToast('Add To Wishlist', Colors.green);
+      }
     });
-    isLoading = false;
+    getAllWishlistProducts();
     notifyListeners();
   }
 
@@ -50,12 +50,27 @@ class ScreenWishlistProvider with ChangeNotifier {
     log(offerPrice.toString());
   }
 
-
-  void deleteWishlistItem(String productId)async{
-    WishlistDeteteItemService.wishlistDeteteItemService(productId).then((value) {
-      if (value!.success==true) {
+  void deleteWishlistItem(String productId) async {
+    WishlistDeteteItemService.wishlistDeteteItemService(productId)
+        .then((value) {
+      if (value!=null) {
         AppPopUps.showToast(value.message.toString(), Colors.green);
+         getAllWishlistProducts();
       }
     });
+    getAllWishlistProducts();
+    notifyListeners();
+  }
+
+  bool checkIsFev(String productId) {
+    idList = wishListProductElement.map((products) {
+      return products.id!;
+    }).toList();
+
+    // ignore: iterable_contains_unrelated_type
+    contains = idList.contains(productId);
+    log(contains.toString());
+    notifyListeners();
+    return false;
   }
 }

@@ -4,14 +4,17 @@ import 'package:ecommerse/screens/cart/model/cart_get_model.dart';
 import 'package:ecommerse/screens/cart/model/cart_post_model.dart';
 import 'package:ecommerse/screens/cart/service/cart_get_service.dart';
 import 'package:ecommerse/screens/cart/service/cart_post_service.dart';
+import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ScreenCartProvider with ChangeNotifier {
   ScreenCartProvider() {
     getAllCartProducts();
   }
   bool isLoading = false;
+  bool isLoadingAddCart = false;
   int count = 1;
   GetCartProductsModel? cartProducts;
   num offerPrice = 0;
@@ -38,11 +41,11 @@ class ScreenCartProvider with ChangeNotifier {
         productId: productId,
         quantity: 1,
         size: productsize);
-    isLoading = true;
+    isLoadingAddCart = true;
     notifyListeners();
     CartPostService.cartPostService(cartModel);
     AppPopUps.showToast("Add To Cart", Colors.green);
-    isLoading = false;
+    isLoadingAddCart = false;
     notifyListeners();
   }
 
@@ -80,5 +83,11 @@ class ScreenCartProvider with ChangeNotifier {
     offerPrice = offerPrice - realPrice;
     product.quantity;
     notifyListeners();
+  }
+
+  void goToDetailsPage(String offerPrice, String productId) {
+    Get.to(
+      () => ScreenProductView(offerPrice: offerPrice, productId: productId),
+    );
   }
 }
