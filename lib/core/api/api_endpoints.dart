@@ -25,4 +25,13 @@ class ApiEndPoints {
 
   static String wishlist = '/wishlist';
   static String removewishlist='/wishlist/';
+
+
+
+      /*----------------Product Wishlist side---------------------------*/
+
+  static String address = '/profile/address';
+  static String removeaddress='/profile/address/';
+
+ 
 }

@@ -8,16 +8,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
 class ScreenAddAddress extends StatelessWidget {
-  const ScreenAddAddress({super.key});
-
+  ScreenAddAddress({super.key});
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<AddAddressProvider>(context, listen: false);
+    final addAddressController =
+        Provider.of<AddAddressProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            data.popPage(context);
+            addAddressController.popPage(context);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -35,10 +36,11 @@ class ScreenAddAddress extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Consumer<AddAddressProvider>(
-                builder: (context,values,_) {
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Consumer<AddAddressProvider>(builder: (context, values, _) {
                   return SizedBox(
                     height: 300,
                     child: GoogleMap(
@@ -47,10 +49,12 @@ class ScreenAddAddress extends StatelessWidget {
                       mapType: MapType.hybrid,
                       initialCameraPosition: values.initialLocation,
                       onMapCreated: (GoogleMapController controller) {
-                        if (data.googleMapController.isCompleted) {
+                        if (addAddressController
+                            .googleMapController.isCompleted) {
                           return;
                         }
-                        data.googleMapController.complete(controller);
+                        addAddressController.googleMapController
+                            .complete(controller);
                       },
                       buildingsEnabled: true,
                       compassEnabled: true,
@@ -58,75 +62,93 @@ class ScreenAddAddress extends StatelessWidget {
                       mapToolbarEnabled: true,
                       myLocationEnabled: true,
                       onTap: (argument) {
-                        data.addMarker(
+                        addAddressController.addMarker(
                           argument.latitude,
                           argument.longitude,
                         );
                       },
                     ),
                   );
-                }
-              ),
-              // AppSpacing.ksizedBox10,
-              Consumer(
-                builder: (context, AddAddressProvider value, child) {
-                  return value.isLoading == true
-                      ? const Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.location_searching_outlined),
-                            TextButton(
-                              onPressed: () {
-                                data.getCurrentAddress();
-                              },
-                              child: const Text(
-                                'Choose Your Current Location',
-                              ),
-                            )
-                          ],
-                        );
-                },
-              ),
-              AppSpacing.ksizedBox10,
-              TextfeildWidget(
-                controller: data.homeAddressController,
-                text: 'Home Address',
-                obscureText: false,
-              ),
-              AppSpacing.ksizedBox10,
-              TextfeildWidget(
-                controller: data.cityAddressController,
-                text: 'city',
-                obscureText: false,
-              ),
-              AppSpacing.ksizedBox10,
-              TextfeildWidget(
-                controller: data.pinCodeAddressController,
-                text: 'Pin Code',
-                obscureText: false,
-              ),
-              AppSpacing.ksizedBox10,
-              TextfeildWidget(
-                controller: data.countryAddressController,
-                text: 'Country',
-                obscureText: false,
-              ),
-              AppSpacing.ksizedBox20,
-              GestureDetector(
-                onTap: () {
-                  data.navigationToAddAdress(context);
-                },
-                child: const LongButtonWidget(
-                  text: 'ADD',
+                }),
+                // AppSpacing.ksizedBox10,
+                Consumer(
+                  builder: (context, AddAddressProvider value, child) {
+                    return value.isLoading == true
+                        ? const Padding(
+                            padding: EdgeInsets.all(15.0),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.location_searching_outlined),
+                              TextButton(
+                                onPressed: () {
+                                  addAddressController.getCurrentAddress();
+                                },
+                                child: const Text(
+                                  'Choose Your Current Location',
+                                ),
+                              )
+                            ],
+                          );
+                  },
                 ),
-              ),
-            ],
+                AppSpacing.ksizedBox10,
+                TextfeildWidget(
+                  controller: addAddressController.nameAddressController,
+                  text: 'Name',
+                  obscureText: false,
+                  validator: (value) => addAddressController.validator(value),
+                ),
+                AppSpacing.ksizedBox10,
+                TextfeildWidget(
+                  controller: addAddressController.homeAddressController,
+                  text: 'Home Address',
+                  obscureText: false,
+                  validator: (value) => addAddressController.validator(value),
+                ),
+                AppSpacing.ksizedBox10,
+                TextfeildWidget(
+                  controller: addAddressController.cityAddressController,
+                  text: 'city',
+                  obscureText: false,
+                  validator: (value) => addAddressController.validator(value),
+                ),
+                AppSpacing.ksizedBox10,
+                TextfeildWidget(
+                  controller: addAddressController.pinCodeAddressController,
+                  text: 'Pin Code',
+                  obscureText: false,
+                  validator: (value) => addAddressController.validator(value),
+                   keyboardType: TextInputType.phone,
+                ),
+                AppSpacing.ksizedBox10,
+                TextfeildWidget(
+                  controller: addAddressController.phoneAddressController,
+                  text: 'Phone Number',
+                  obscureText: false,
+                  validator: (value) => addAddressController.validator(value),
+                  keyboardType: TextInputType.phone,
+                ),
+                AppSpacing.ksizedBox20,
+                GestureDetector(
+                  onTap: () {
+                    addAddressController.navigationToAddAdress(context);
+                  },
+                  child: LongButtonWidget(
+                    text: 'ADD',
+                    onTap: () {
+                      addAddressController.addAddress(
+                        _formKey,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

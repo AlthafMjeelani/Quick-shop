@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class ScreenStepperProvider with ChangeNotifier {
    StepperType stepperType = StepperType.horizontal;
@@ -16,5 +17,8 @@ class ScreenStepperProvider with ChangeNotifier {
   cancel() {
     currentStep > 0 ? currentStep -= 1 : null;
     notifyListeners();
+  }
+  void pop(){
+    Get.back();
   }
 }

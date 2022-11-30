@@ -1,4 +1,5 @@
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/address/widgets/address_stepper_widget.dart';
 import 'package:ecommerse/screens/order/view/screen_order_summery.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
@@ -16,14 +17,17 @@ class ScreenStepperOrder extends StatelessWidget {
         Provider.of<ScreenPaymentMethodeProvider>(context, listen: false);
     final stepperProvider =
         Provider.of<ScreenStepperProvider>(context, listen: false);
+    final addressProvider =
+        Provider.of<ScreenAddressProvider>(context, listen: false);
+    stepperProvider.currentStep = 0;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      stepperProvider.currentStep = 0;
+      addressProvider.getAllAddress();
     });
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            // data.navigatorPop();
+            stepperProvider.pop();
           },
           icon: const Icon(
             Icons.arrow_back_ios,

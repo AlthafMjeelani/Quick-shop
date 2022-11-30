@@ -43,8 +43,13 @@ class ScreenCartProvider with ChangeNotifier {
         size: productsize);
     isLoadingAddCart = true;
     notifyListeners();
-    CartPostService.cartPostService(cartModel);
-    AppPopUps.showToast("Add To Cart", Colors.green);
+    CartPostService.cartPostService(cartModel).then((value) {
+      if (value == true) {
+        AppPopUps.showToast("Add To Cart", Colors.green);
+        isLoadingAddCart = false;
+        notifyListeners();
+      }
+    });
     isLoadingAddCart = false;
     notifyListeners();
   }

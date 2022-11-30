@@ -10,7 +10,10 @@ class ScreenAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final data = Provider.of<ScreenAddressProvider>(context, listen: false);
+    final data = Provider.of<ScreenAddressProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      data.getAllAddress();
+    });
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -21,7 +24,7 @@ class ScreenAddress extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            //  data.popPage(context);
+            data.pop();
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -40,9 +43,9 @@ class ScreenAddress extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children:  [
+          children: [
             AppSpacing.ksizedBox10,
-            AddressListViewwidget(isStepper:data.isStepperAddressList=true ),
+            AddressListViewwidget(isStepper: data.isStepperAddressList = true),
           ],
         ),
       ),

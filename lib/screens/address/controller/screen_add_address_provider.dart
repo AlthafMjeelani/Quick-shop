@@ -1,8 +1,13 @@
 import 'dart:async';
 
+import 'package:ecommerse/screens/address/model/adddress_post_mode.dart';
+import 'package:ecommerse/screens/address/service/adress_post_service.dart';
 import 'package:ecommerse/screens/address/service/geo_locator_service.dart';
 import 'package:ecommerse/screens/address/view/screen_add_address.dart';
+import 'package:ecommerse/screens/address/view/screen_address.dart';
+import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,7 +19,8 @@ class AddAddressProvider with ChangeNotifier {
   TextEditingController homeAddressController = TextEditingController();
   TextEditingController cityAddressController = TextEditingController();
   TextEditingController pinCodeAddressController = TextEditingController();
-  TextEditingController countryAddressController = TextEditingController();
+  TextEditingController nameAddressController = TextEditingController();
+  TextEditingController phoneAddressController = TextEditingController();
   bool isLoading = false;
   Set<Marker> markers = {};
   Position? location;
@@ -41,7 +47,7 @@ class AddAddressProvider with ChangeNotifier {
 
   void navigationToAddAdress(context) {
     Get.to(
-      () => const ScreenAddAddress(),
+      () => ScreenAddAddress(),
     );
   }
 
@@ -59,7 +65,6 @@ class AddAddressProvider with ChangeNotifier {
               homeAddressController.text = value.streetAddress.toString();
               cityAddressController.text = value.city.toString();
               pinCodeAddressController.text = value.postal.toString();
-              countryAddressController.text = value.countryName.toString();
             }
           },
         );
@@ -86,7 +91,6 @@ class AddAddressProvider with ChangeNotifier {
           homeAddressController.text = value.streetAddress.toString();
           cityAddressController.text = value.city.toString();
           pinCodeAddressController.text = value.postal.toString();
-          countryAddressController.text = value.countryName.toString();
         }
       },
     );
@@ -97,6 +101,42 @@ class AddAddressProvider with ChangeNotifier {
     homeAddressController.clear();
     cityAddressController.clear();
     pinCodeAddressController.clear();
-    countryAddressController.clear();
+    nameAddressController.clear();
+    phoneAddressController.clear();
+  }
+
+  void addAddress(GlobalKey<FormState> formKey) async {
+    if (formKey.currentState!.validate()) {
+      final model = AddressPostModel(
+        address: homeAddressController.text,
+        city: cityAddressController.text,
+        name: nameAddressController.text,
+        phone: phoneAddressController.text,
+        pincode: pinCodeAddressController.text,
+      );
+      isLoading = true;
+      notifyListeners();
+      await AddressPostService.addressPostService(model).then((value) {
+        if (value == true) {
+          AppPopUps.showToast('Address Added', Colors.green);
+          disposeFeild();
+          isLoading = false;
+          notifyListeners();
+          
+          Get.off(()=>const ScreenAddress());
+        }
+      });
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  String? validator(String? value) {
+    {
+      if (value == null || value.isEmpty) {
+        return 'Please enter some text';
+      }
+      return null;
+    }
   }
 }
