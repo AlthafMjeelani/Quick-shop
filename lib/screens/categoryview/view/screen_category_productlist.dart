@@ -1,19 +1,26 @@
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/categoryview/controller/category_product_controller.dart';
 import 'package:ecommerse/screens/categoryview/widgets/category_product_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:provider/provider.dart';
 
 class ScreeenCategoryCollection extends StatelessWidget {
   const ScreeenCategoryCollection({
     super.key,
     required this.category,
+    required this.categoryId,
   });
   final String category;
+  final String categoryId;
   @override
   Widget build(BuildContext context) {
-    // final homeProvider =
-    //     Provider.of<HomeScreenProvider>(context, listen: false);
+    final categoryProductController =
+        Provider.of<CategoryProductController>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      categoryProductController.getAllCatedoryProducts(categoryId);
+    });
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -45,19 +52,10 @@ class ScreeenCategoryCollection extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            children: [
+            children: const [
               Expanded(
-                  child: GridView.builder(
-                itemCount: 10,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: 1 / 1.3),
-                itemBuilder: (BuildContext context, int index) {
-                  return const CategoryProductListWidget();
-                },
-              )),
+                child: CategoryProductListWidget(),
+              ),
             ],
           ),
         ),

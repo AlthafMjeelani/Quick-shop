@@ -1,8 +1,11 @@
-
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/categoryview/controller/category_product_controller.dart';
+import 'package:ecommerse/widget/fevorite_icon_widget.dart';
+import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CategoryProductListWidget extends StatelessWidget {
   const CategoryProductListWidget({
@@ -11,90 +14,102 @@ class CategoryProductListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(),
-            borderRadius: BorderRadius.circular(20)),
-        child: Column(
-         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              width: double.infinity,
-              height: 170,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                image: const DecorationImage(
-                  image: AssetImage(
-                 'assets/images/t shirt.jpg',
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      // data.isFaved(index);
-                    },
-                    child:
-                        // Consumer(
-                        //   builder: (BuildContext context,
-                        //       ScreenHomeProvider value, Widget? child) {
-                        //     return
-                        //   },
-                        // ),
-                        const Icon(
-                      CupertinoIcons.heart_fill,
-                      size: AppTextStyle.kIconsize32,
-                      color: Colors.grey,
-                      // color: value.favoriteBoolList[index]
-                      //     ? Colors.red
-                      //     : Colors.grey,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            AppSpacing.ksizedBox10,
-            const Text(
-              'Name Of product',
-              style: AppTextStyle.kTextBlack16Bold,
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    '₹899',
-                    style: AppTextStyle.kTextsizecrossLineSmall,
-                  ),
-                  AppSpacing.ksizedBoxW5,
-                  Text(
-                    '₹1299',
-                    style: AppTextStyle.kTextBlack20Size,
-                  ),
-                  AppSpacing.ksizedBoxW5,
-                  Text(
-                    '25% off',
-                    style: AppTextStyle.kPriceColorSmall,
-                  ),
-                ],
-              ),
-            ),
-            // Text(
-            //   '₹${product.price}',
-            //   style: AppTextStyle.kTextBlack20Size,
-            // ),
-          ],
-        ),
-      ),
+    return Consumer(
+      builder: (context, CategoryProductController value, child) {
+        return value.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : value.catedoryProductsList == null
+                ? const SizedBox()
+                : value.catedoryProductsList!.isEmpty
+                    ? const CustomNotFoundWidget(
+                        title: "Product is Empty", subtitle: '')
+                    : GestureDetector(
+                        onTap: () {},
+                        child: GridView.builder(
+                          itemCount: value.catedoryProductsList?.length ?? 0,
+                          // homeController.catedoryProductsList?.products?.length ?? 0,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                  childAspectRatio: 1 / 1.3),
+                          itemBuilder: (BuildContext context, int index) {
+                            final products = value.catedoryProductsList![index];
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 170,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          products.colors![0].images![index],
+                                        ),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Align(
+                                          alignment: Alignment.topRight,
+                                          child: AddorRemoveFavoriteWidget(
+                                            productId: value
+                                                .catedoryProductsList![index].id
+                                                .toString(),
+                                          )),
+                                    ),
+                                  ),
+                                  AppSpacing.ksizedBox10,
+                                  Text(
+                                    products.name ?? "",
+                                    style: AppTextStyle.kTextBlack16Bold,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '₹${products.price.toString()}',
+                                          style: AppTextStyle
+                                              .kTextsizecrossLineSmall,
+                                        ),
+                                        AppSpacing.ksizedBoxW5,
+                                        const Text(
+                                          '₹1299',
+                                          style: AppTextStyle.kTextBlack20Size,
+                                        ),
+                                        AppSpacing.ksizedBoxW5,
+                                        Text(
+                                          '${products.offer}off',
+                                          style: AppTextStyle.kPriceColorSmall,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  // Text(
+                                  //   '₹${product.price}',
+                                  //   style: AppTextStyle.kTextBlack20Size,
+                                  // ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      );
+      },
     );
   }
 }

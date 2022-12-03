@@ -10,10 +10,11 @@ class ScreenPaymentMethodeProvider with ChangeNotifier {
   String selectedType = 'online';
   final razorpay = Razorpay();
   bool isSuccess=false;
-
+ 
   var options = {
+    
     'key': 'rzp_test_43WHhfpaRYMT5P',
-    'amount':'10000',
+    'amount':10000,
     'name': 'Quick Shope',
     'description': 'Dresses',
     'timeout': "300",

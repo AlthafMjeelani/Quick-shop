@@ -10,7 +10,10 @@ import 'package:provider/provider.dart';
 class ScreenPaymentMethode extends StatefulWidget {
   const ScreenPaymentMethode({
     super.key,
+    required this.amount,
   });
+
+  final String amount;
   @override
   State<ScreenPaymentMethode> createState() => _ScreenPaymentMethodeState();
 }
@@ -81,11 +84,10 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                             height: 20,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(
-                                  'assets/images/razorpaybg.png',
-                                ),
-                                fit: BoxFit.cover
-                              ),
+                                  image: AssetImage(
+                                    'assets/images/razorpaybg.png',
+                                  ),
+                                  fit: BoxFit.cover),
                             ),
                           )),
                       ListTile(
@@ -112,7 +114,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
           AppSpacing.ksizedBox20,
           Container(
             width: double.infinity,
-            height: size.height * 0.18,
+            height: size.height * 0.35,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: const Color.fromARGB(179, 216, 211, 211),
@@ -121,18 +123,28 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
+                    ' SELECTED ADDRESS',
+                    style: AppTextStyle.kTextBlack16,
+                  ),
+                  AppSpacing.ksizedBox20,
+                  const Text(
+                    'Selected address',
+                    style: AppTextStyle.kTextBlack16,
+                  ),
+                  AppSpacing.ksizedBox30,
+                  const Text(
                     'PRICE DETAILS',
                     style: AppTextStyle.kTextBlack16,
                   ),
                   AppSpacing.ksizedBox20,
                   RowTowItemWidget(
-                    title1: Text('Price(items)'),
-                    title2: Text('₹7,999'),
+                    title1: const Text('Price(items)'),
+                    title2: Text('₹${widget.amount}'),
                   ),
                   AppSpacing.ksizedBox5,
-                  RowTowItemWidget(
+                  const RowTowItemWidget(
                     title1: Text('Delivery Charge'),
                     title2: Text(
                       'FREE',
@@ -141,12 +153,12 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                   ),
                   AppSpacing.ksizedBox5,
                   RowTowItemWidget(
-                    title1: Text(
+                    title1: const Text(
                       'Amount Payable',
                       style: AppTextStyle.kTextBlack16,
                     ),
                     title2: Text(
-                      '₹7,999',
+                      '₹${widget.amount}',
                       style: AppTextStyle.kTextBlack16,
                     ),
                   )

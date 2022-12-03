@@ -1,12 +1,14 @@
-import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/row_twoitem_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CheckOutBottomSheet {
   static void checkOut(context) {
+  final data=  Provider.of<ScreenCartProvider>(context,listen: false);
     showModalBottomSheet<void>(
       backgroundColor: Colors.white,
       shape: const RoundedRectangleBorder(
@@ -22,20 +24,9 @@ class CheckOutBottomSheet {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
-                RowTowItemWidget(
-                  title1: const Text(
-                    'Check Out',
-                    style: AppTextStyle.kLongButtonBlack,
-                  ),
-                  title2: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.close,
-                      color: AppColors.kBlackColor,
-                    ),
-                  ),
+                const Text(
+                  'Check Out',
+                  style: AppTextStyle.kLongButtonBlack,
                 ),
                 AppSpacing.ksizedBox20,
                 const RowTowItemWidget(
@@ -74,7 +65,7 @@ class CheckOutBottomSheet {
                 LongButtonWidget(
                   text: 'PLACE ORDER',
                   onTap: () {
-                    Navigator.pop(context);
+                  data.goTocheckOut();
                   },
                 ),
               ],

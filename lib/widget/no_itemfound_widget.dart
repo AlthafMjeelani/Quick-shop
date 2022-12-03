@@ -17,7 +17,7 @@ class CustomNotFoundWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Center(
       child: SizedBox(
-        height: size.height * 0.4,
+        height: size.height * 0.45,
         width: size.width * 0.6,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

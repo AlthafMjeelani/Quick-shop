@@ -69,24 +69,36 @@ class ScreenCart extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       final cartProductItems =
                                           value.cartProducts!.products![index];
-                                      value.calculateOfferPrice(
-                                          cartProductItems.product!);
+                                      //value.calculatePrice(index);
+                                      // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                                      //   value.calculateOfferPrice(
+                                      //     cartProductItems.product!);
+                                      // });
+                                      value.calculateOfferPrice(index);
+
                                       return GestureDetector(
                                         onTap: () {
-                                          cartController.calculateOfferPrice(
-                                              cartProductItems.product!);
-                                         context
-                                          .read<ScreenProductDetailsProvider>()
-                                          .goToDetailsPage(cartController.offerPrice.round().toString(),
-                                            cartProductItems.product!.id.toString(),
-                                          );
-                                              log(value.cartProducts!.products![index].id.toString());
+                                          cartController
+                                              .calculateOfferPrice(index);
+                                          context
+                                              .read<
+                                                  ScreenProductDetailsProvider>()
+                                              .goToDetailsPage(
+                                                cartController.offerPrice
+                                                    .round()
+                                                    .toString(),
+                                                cartProductItems.product!.id
+                                                    .toString(),
+                                              );
+                                          log(value
+                                              .cartProducts!.products![index].id
+                                              .toString());
                                         },
                                         child: Dismissible(
                                           background: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
-                                          //  638052464a845f2ac5e5dfd8
+                                            //  638052464a845f2ac5e5dfd8
                                             size: 45,
                                           ),
                                           onDismissed: (direction) {},

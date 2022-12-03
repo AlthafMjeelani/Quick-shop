@@ -10,6 +10,7 @@ import 'package:ecommerse/screens/authentication/controller/screen_login_provide
 import 'package:ecommerse/screens/authentication/controller/screen_registration_provider.dart';
 import 'package:ecommerse/screens/bottomnavigation/controller/bottom_nav_provider.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
+import 'package:ecommerse/screens/categoryview/controller/category_product_controller.dart';
 import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenOtpProvider()),
         ChangeNotifierProvider(create: (context) => ScreenSplashProvider()),
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
-        ChangeNotifierProvider(create: (context) => ScreenAllProductProvider()),
+       ChangeNotifierProvider(create: (context) => CategoryProductController()),
         ChangeNotifierProvider(create: (context) => ScreenHomeProvider()),
         ChangeNotifierProvider(
             create: (context) => ScreenProductDetailsProvider()),

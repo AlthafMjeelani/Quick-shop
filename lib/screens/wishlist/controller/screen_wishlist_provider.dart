@@ -34,7 +34,7 @@ class ScreenWishlistProvider with ChangeNotifier {
         wishListProductElement = value;
         notifyListeners();
       } else {
-        log("wishlist is Emptu");
+        log("wishlist is Empty");
         isLoading = false;
         notifyListeners();
       }

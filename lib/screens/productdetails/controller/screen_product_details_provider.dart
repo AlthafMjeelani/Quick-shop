@@ -7,7 +7,7 @@ import 'package:get/route_manager.dart';
 
 class ScreenProductDetailsProvider with ChangeNotifier {
   int selectedIndex = 1;
-  ProductElement? productElement;
+  ProductModel? productElement;
   bool isLoading = false;
 
   void popPage(context) {
@@ -19,8 +19,8 @@ class ScreenProductDetailsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void gitocheckOut() {
-    Get.to(() => const ScreenStepperOrder());
+  void gitocheckOut(String amount) {
+    Get.to(() =>  ScreenStepperOrder(amount: amount,));
   }
 
   void getSingleProductDetails(String productId) async {

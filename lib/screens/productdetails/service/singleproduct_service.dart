@@ -8,7 +8,7 @@ import 'package:ecommerse/utils/exception/dio_exception.dart';
 import 'package:ecommerse/utils/securestorage/secure_storage.dart';
 
 class GetSingleProductService {
-  static Future<ProductElement?> getSingleproductService(
+  static Future<ProductModel?> getSingleproductService(
       String productId) async {
     final dio = Dio();
     try {
@@ -27,7 +27,7 @@ class GetSingleProductService {
 
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log(response.data.toString());
-        ProductElement product = ProductElement.fromJson(response.data);
+        ProductModel product = ProductModel.fromJson(response.data);
         return product;
       }
 

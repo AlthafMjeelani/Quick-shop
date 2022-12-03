@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
@@ -32,23 +34,17 @@ class ScreenHome extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const Text(
-                          'Welcome\nAlthaf m',
-                          style: AppTextStyle.kTextBlack,
-                        ),
-                        const Spacer(),
-                        CircleAvatar(
-                          radius: 30,
-                          child: IconButton(
-                            icon: const Icon(Icons.person),
-                            onPressed: () {},
-                          ),
-                        ),
-                        AppSpacing.ksizedBoxW10,
-                      ],
+                    const Text(
+                      'Welcome',
+                      style: AppTextStyle.kTextBlack14,
+                    ),
+                    AppSpacing.ksizedBox2,
+                    const Text(
+                      'Althaf m',
+                      style: AppTextStyle.kTextBlack16Bold,
                     ),
                     AppSpacing.ksizedBox20,
                     InkWell(
@@ -117,15 +113,18 @@ class ScreenHome extends StatelessWidget {
                                                   value.categoryList[index];
                                               return GestureDetector(
                                                 onTap: () => data.categoryView(
-                                                    category.categoryName),
+                                                  category.category!,
+                                                  category.id.toString(),
+                                                 
+                                                ),
                                                 child: Row(
                                                   children: [
                                                     HomeCategoriesWidget(
-                                                      image: category?.image
+                                                      image: category?.icon
                                                               .toString() ??
                                                           'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
                                                       title: category!
-                                                          .categoryName
+                                                          .category
                                                           .toString(),
                                                     ),
                                                     AppSpacing.ksizedBoxW25,
@@ -167,15 +166,7 @@ class ScreenHome extends StatelessWidget {
                                     ],
                                   ),
                                   AppSpacing.ksizedBox10,
-                                  ProductViewWidget(
-                                    list: value.product?.products ?? [],
-                                    itemCount:
-                                        value.product?.products?.length ?? 0,
-
-                                    //  <= 4
-                                    //     ? value.product!.products!.length
-                                    //     : value.product!.products!.length = 4,
-                                  ),
+                                  const ProductViewWidget(),
                                 ],
                               );
                       },
@@ -190,3 +181,4 @@ class ScreenHome extends StatelessWidget {
     );
   }
 }
+

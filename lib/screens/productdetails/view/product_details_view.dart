@@ -3,10 +3,6 @@ import 'dart:developer';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
-import 'package:ecommerse/screens/cart/model/cart_get_model.dart';
-import 'package:ecommerse/screens/home/controller/screen_home_provider.dart';
-import 'package:ecommerse/screens/home/view/screen_home.dart';
-import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
 import 'package:ecommerse/widget/fevorite_icon_widget.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
@@ -190,7 +186,7 @@ class ScreenProductView extends StatelessWidget {
                                                 return ChoiceChip(
                                                   label: Text(
                                                     value.productElement
-                                                        ?.size![i],
+                                                        !.size![i],
                                                     style: AppTextStyle
                                                         .kTextBlack20Size,
                                                   ),
@@ -246,7 +242,7 @@ class ScreenProductView extends StatelessWidget {
                                     AppSpacing.ksizedBox20,
                                     GestureDetector(
                                       onTap: () {
-                                        value.gitocheckOut();
+                                        value.gitocheckOut(offerPrice);
                                       },
                                       child: const LongButtonWidget(
                                           text: 'BUY NOW'),

@@ -4,7 +4,7 @@ import 'package:ecommerse/screens/cart/model/cart_get_model.dart';
 import 'package:ecommerse/screens/cart/model/cart_post_model.dart';
 import 'package:ecommerse/screens/cart/service/cart_get_service.dart';
 import 'package:ecommerse/screens/cart/service/cart_post_service.dart';
-import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
+import 'package:ecommerse/screens/order/view/screen_order_stepper.dart';
 import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -17,8 +17,9 @@ class ScreenCartProvider with ChangeNotifier {
   bool isLoadingAddCart = false;
   int count = 1;
   GetCartProductsModel? cartProducts;
+  List<ProductCartElement>? cartProductList;
   num offerPrice = 0;
-  num realPrice = 0;
+  num totalPrice = 0;
 
   void countIncrement() {
     count++;
@@ -32,6 +33,10 @@ class ScreenCartProvider with ChangeNotifier {
       return;
     }
     notifyListeners();
+  }
+
+  void goTocheckOut(){
+    Get.to(()=> ScreenStepperOrder(amount: offerPrice.toString()));
   }
 
   void addToCart(
@@ -69,30 +74,23 @@ class ScreenCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void calculateOfferPrice(ProductDetails product) {
-    log(product.price.toString());
-    offerPrice = ((product.price! / 100) * (100 - product.offer!) - 1);
-    log(offerPrice.toString());
-  }
+  void calculateOfferPrice(int index) {
+    final productList = cartProductList?[index];
+//log(productList!.product!.price.toString());
+    if (productList != null) {
+      totalPrice = 0;
+      offerPrice = productList.product!.price! /
+              100 *
+              (100 - productList.product!.offer!) -
+          1;
 
-  void increaseQuantity(ProductCartElement product) {
-    product.quantity = (product.quantity! + 1);
-    offerPrice = offerPrice + realPrice;
-    notifyListeners();
-  }
-
-  void decreaseQuantity(ProductCartElement product) {
-    if (product.quantity == 1) {
-      return;
+      for (var i = 0; i < cartProductList!.length; i++) {
+        totalPrice = ((cartProductList![i].product!.price! / 100) -
+                    cartProductList![i].product!.price! / 100) *
+                (100 - cartProductList![i].product!.offer!) -
+            1;
+      }
     }
-    offerPrice = offerPrice - realPrice;
-    product.quantity;
-    notifyListeners();
+    log('total price${totalPrice.toString()}');
   }
-
-  // void goToDetailsPage(String offerPrice, String productId) {
-  //   Get.to(
-  //     () => ScreenProductView(offerPrice: offerPrice, productId: productId),
-  //   );
-  // }
 }
