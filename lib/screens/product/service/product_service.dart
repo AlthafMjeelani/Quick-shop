@@ -33,12 +33,10 @@ class GetAllProductService {
       }
 
       /*  Catch error   */
-      else {
-        log('kuuy');
-        return [];
-      }
+   
     } catch (e) {
-      log('Reg Error catched');
+      log(e.toString());
+      log('get All product Error catched');
       DioExceptionhandler.errorHandler(e);
     }
     return [];

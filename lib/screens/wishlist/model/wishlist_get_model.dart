@@ -12,11 +12,9 @@ class WishlistGetModel {
     this.ratings,
   });
 
-
-
   String? id;
   String? name;
-  Category? category;
+  dynamic category;
   int? price;
   List<String>? size;
   List<Color>? colors;
@@ -24,11 +22,12 @@ class WishlistGetModel {
   String? description;
   int? offer;
   List<dynamic>? ratings;
+
   factory WishlistGetModel.fromJson(Map<String, dynamic> json) =>
       WishlistGetModel(
         id: json["_id"],
         name: json["name"],
-        category: Category.fromJson(json["category"]),
+        category: json["category"],
         price: json["price"],
         size: List<String>.from(json["size"].map((x) => x)),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
@@ -39,16 +38,20 @@ class WishlistGetModel {
       );
 }
 
-class Category {
-  Category({
+class CategoryClass {
+  CategoryClass({
     this.id,
   });
 
   String? id;
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory CategoryClass.fromJson(Map<String, dynamic> json) => CategoryClass(
         id: json["id"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+      };
 }
 
 class Color {

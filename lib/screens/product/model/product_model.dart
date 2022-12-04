@@ -1,8 +1,8 @@
-
 class ProductModel {
     ProductModel({
         this.id,
         this.name,
+        this.category,
         this.price,
         this.size,
         this.colors,
@@ -14,25 +14,71 @@ class ProductModel {
 
     String? id;
     String? name;
-    int? price;
-    List<String>? size;
+    Category? category;
+    dynamic price;
+    List<dynamic>? size;
     List<Color>? colors;
-    int? inventory;
+    dynamic inventory;
     String? description;
-    int? offer;
+    dynamic offer;
     List<dynamic>? ratings;
 
     factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["_id"],
         name: json["name"],
+        category: Category.fromJson(json["category"]),
         price: json["price"],
-        size: List<String>.from(json["size"].map((x) => x)),
+        size: List<dynamic>.from(json["size"].map((x) => x)),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
         inventory: json["inventory"],
         description: json["description"],
         offer: json["offer"],
         ratings: List<dynamic>.from(json["ratings"].map((x) => x)),
     );
+
+
+}
+
+class Category {
+    Category({
+        this.id,
+        this.category,
+        this.icon,
+        this.categoryId,
+        this.subCategories,
+    });
+
+    String? id;
+    String? category;
+    String? icon;
+    dynamic categoryId;
+    List<SubCategory>? subCategories;
+
+    factory Category.fromJson(Map<String, dynamic> json) => Category(
+        id: json["_id"],
+        category: json["category"],
+        icon: json["icon"],
+        categoryId: json["id"],
+        subCategories: List<SubCategory>.from(json["subCategories"].map((x) => SubCategory.fromJson(x))),
+    );
+
+
+}
+
+class SubCategory {
+    SubCategory({
+        this.name,
+        this.id,
+    });
+
+    String? name;
+    String? id;
+
+    factory SubCategory.fromJson(Map<String, dynamic> json) => SubCategory(
+        name: json["name"],
+        id: json["_id"],
+    );
+
 
 }
 
@@ -52,5 +98,6 @@ class Color {
         images: List<String>.from(json["images"].map((x) => x)),
         id: json["_id"],
     );
+
 }
 

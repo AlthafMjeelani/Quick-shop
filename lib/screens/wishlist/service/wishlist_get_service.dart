@@ -25,19 +25,21 @@ class WishlistGetService {
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         log('WishList Get response :${response.data}');
         final List<WishlistGetModel> wishlistModel = (response.data as List)
-            .map((e) => WishlistGetModel.fromJson(e),)
+            .map(
+              (e) => WishlistGetModel.fromJson(e),
+            )
             .toList();
 
-            log(wishlistModel.toString());
+        // log(wishlistModel.toString());
         return wishlistModel;
-      }else{
+      } else {
         log('response null');
       }
 
       /*  Catch error   */
 
     } catch (e) {
-      log('Reg Error catched');
+      log('wishlist get Error catched');
       DioExceptionhandler.errorHandler(e);
     }
     return [];

@@ -27,7 +27,7 @@ class ProductCartElement {
   });
 
   ProductDetails? product;
-  int? quantity;
+  dynamic quantity;
   String? size;
   String? color;
   String? id;
@@ -57,9 +57,9 @@ class ProductDetails {
   String? name;
   num? price;
   List<Color>? colors;
-  int? inventory;
+  dynamic inventory;
   String? description;
-  int? offer;
+  dynamic offer;
   List<dynamic>? ratings;
 
   factory ProductDetails.fromJson(Map<String, dynamic> json) => ProductDetails(

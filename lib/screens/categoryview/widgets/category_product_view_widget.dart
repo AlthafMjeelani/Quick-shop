@@ -3,7 +3,6 @@ import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/categoryview/controller/category_product_controller.dart';
 import 'package:ecommerse/widget/fevorite_icon_widget.dart';
 import 'package:ecommerse/widget/no_itemfound_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -53,6 +53,8 @@ class ScreenHomeProvider with ChangeNotifier {
       if (value != null) {
         product = value;
         notifyListeners();
+      }else{
+        log("get all product is null");
       }
     });
     isLoading = false;

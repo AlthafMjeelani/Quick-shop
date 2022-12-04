@@ -186,7 +186,7 @@ class ScreenProductView extends StatelessWidget {
                                                 return ChoiceChip(
                                                   label: Text(
                                                     value.productElement
-                                                        !.size![i],
+                                                        !.size![i].toString(),
                                                     style: AppTextStyle
                                                         .kTextBlack20Size,
                                                   ),
@@ -220,7 +220,7 @@ class ScreenProductView extends StatelessWidget {
                                                 onTap: () {
                                                   log(value.productElement!
                                                           .size![
-                                                      value.selectedIndex]);
+                                                      value.selectedIndex].toString());
                                                   log(value
                                                       .productElement!.id!);
                                                   log(value.productElement!
@@ -228,7 +228,7 @@ class ScreenProductView extends StatelessWidget {
                                                   cartvalues.addToCart(
                                                     value.productElement!.id!,
                                                     value.productElement!.size![
-                                                        value.selectedIndex],
+                                                        value.selectedIndex].toString(),
                                                     value.productElement!
                                                         .colors![0].color!,
                                                   );

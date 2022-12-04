@@ -30,7 +30,7 @@ class ScreenWishlistProvider with ChangeNotifier {
     notifyListeners();
     await WishlistGetService.wishlistGetService().then((value) {
       if (value != null) {
-        log("wishlist is Not Emptu");
+        log("wishlist is Not Empty");
         wishListProductElement = value;
         notifyListeners();
       } else {
