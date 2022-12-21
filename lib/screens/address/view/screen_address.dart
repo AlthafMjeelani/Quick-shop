@@ -1,3 +1,4 @@
+import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
@@ -28,7 +29,7 @@ class ScreenAddress extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         title: const Text(
@@ -36,17 +37,24 @@ class ScreenAddress extends StatelessWidget {
           style: AppTextStyle.kTextSize18Black,
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            AppSpacing.ksizedBox10,
-            AddressListViewwidget(isStepper: data.isStepperAddressList = true),
-          ],
+      body: Container(
+        height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: AppColors.kBgColor,
+          ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              AppSpacing.ksizedBox10,
+              AddressListViewwidget(isStepper: data.isStepperAddressList = true),
+            ],
+          ),
         ),
       ),
     );

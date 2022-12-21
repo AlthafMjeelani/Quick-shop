@@ -40,6 +40,7 @@ class CategoryWiseProductService {
         return [];
       }
     } catch (e) {
+      log(e.toString());
       log('Reg Error catched');
       DioExceptionhandler.errorHandler(e);
     }

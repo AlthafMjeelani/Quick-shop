@@ -15,11 +15,12 @@ class ScreenAddressWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           TextButton(
-              onPressed: () {
-                data.goToAdressScreen();
-              },
-              child: const Text('EDIT ADDRESS')),
-           AddressListViewwidget(isStepper: data.isStepperAddressList=false),
+            onPressed: () {
+              data.goToAdressScreen();
+            },
+            child: const Text('EDIT ADDRESS'),
+          ),
+          AddressListViewwidget(isStepper: data.isStepperAddressList = false),
         ],
       ),
     );

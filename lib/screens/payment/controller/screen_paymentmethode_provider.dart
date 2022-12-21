@@ -1,28 +1,19 @@
 import 'dart:developer';
+import 'package:dio/dio.dart';
 import 'package:ecommerse/screens/account/view/screen_account.dart';
+import 'package:ecommerse/screens/bottomnavigation/view/bottom_navigation.dart';
+import 'package:ecommerse/screens/home/view/screen_home.dart';
 import 'package:ecommerse/screens/payment/service/razorpay_service.dart';
+import 'package:ecommerse/screens/productdetails/view/product_details_view.dart';
 import 'package:ecommerse/utils/app_popups.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class ScreenPaymentMethodeProvider with ChangeNotifier {
-  String selectedType = 'online';
+  String selectedType = 'razorpay';
   final razorpay = Razorpay();
-  bool isSuccess=false;
- 
-  var options = {
-    
-    'key': 'rzp_test_43WHhfpaRYMT5P',
-    'amount':10000,
-    'name': 'Quick Shope',
-    'description': 'Dresses',
-    'timeout': "300",
-    'prefill': {
-      'contact': '8086686886',
-      'email': 'quickshope@gmail.com',
-    }
-  };
+  bool isSuccess = false;
 
   void razorPayInitFn() {
     razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
@@ -32,13 +23,13 @@ class ScreenPaymentMethodeProvider with ChangeNotifier {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     AppPopUps.showToast('Payment Success', Colors.green);
-    Get.off(()=> const ScreenAccount());
-     isSuccess=true;
-     notifyListeners();
+    Get.offAll(() => const ScreenBottomNavbar());
+    isSuccess = true;
+    notifyListeners();
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-     AppPopUps.showToast('Payment Faild', Colors.red);
+    AppPopUps.showToast('Payment Faild', Colors.red);
     log('Payment Faild');
   }
 
@@ -51,13 +42,24 @@ class ScreenPaymentMethodeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void goToPayment() {
-    if (selectedType == 'online') {
+  void goToPayment(String amount) {
+    final options = {
+      'key': 'rzp_test_43WHhfpaRYMT5P',
+      'amount':amount*100,
+      'name': 'Quick Shope',
+      'description': 'Online Shopping',
+      'timeout': "300",
+      'prefill': {
+        'contact': '8086686886',
+        'email': 'quickshope@gmail.com',
+      }
+    };
+    if (selectedType == 'razorpay') {
       RazorPayService.razorPayService(razorpay, options);
     }
   }
 
-  void navigatorPop(){
+  void navigatorPop() {
     Get.back();
   }
 }

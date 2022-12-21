@@ -1,11 +1,10 @@
 import 'dart:developer';
-
 import 'package:ecommerse/screens/categoryview/view/screen_category_productlist.dart';
-import 'package:ecommerse/screens/product/model/product_model.dart';
-import 'package:ecommerse/screens/allproducts/view/screen_allproduct.dart';
-import 'package:ecommerse/screens/home/model/category/home_category_model.dart';
+import 'package:ecommerse/screens/home/model/carousal_model.dart';
+import 'package:ecommerse/screens/home/model/home_category_model.dart';
+import 'package:ecommerse/screens/home/service/carousal_service.dart';
 import 'package:ecommerse/screens/home/service/home_category_service.dart';
-import 'package:ecommerse/screens/categoryview/service/category_wisw_product_service.dart';
+import 'package:ecommerse/screens/product/model/product_model.dart';
 import 'package:ecommerse/screens/product/service/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -13,26 +12,17 @@ import 'package:get/route_manager.dart';
 class ScreenHomeProvider with ChangeNotifier {
   ScreenHomeProvider() {
     getAllProducts();
+    getAllCarousels();
     getAllCategories();
-    //getAllCatedoryProducts();
   }
 
   List favoriteBoolList = List.generate(4, (index) => false);
   List<HomeCategoryModel?> categoryList = [];
   bool isLoading = false;
   List<ProductModel>? product;
-  // Products? catedoryProductsList;
+  CarousalsModel? carouselModel;
   num offerPrice = 0;
 
-  // void navigatorHomeToViewAll(context) {
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //       builder: (context) {
-  //         return const ScreenAllProduct();
-  //       },
-  //     ),
-  //   );
-  // }
 
   Future<void> getAllCategories() async {
     isLoading = true;
@@ -40,6 +30,20 @@ class ScreenHomeProvider with ChangeNotifier {
     await HomeCategoryService.homeCategoryService().then((value) {
       if (value.isNotEmpty) {
         categoryList = value;
+      }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
+
+
+
+  Future<void> getAllCarousels() async {
+    isLoading = true;
+    notifyListeners();
+    await CarousalService.carousalService().then((value) {
+      if (value!=null) {
+        carouselModel = value;
       }
     });
     isLoading = false;

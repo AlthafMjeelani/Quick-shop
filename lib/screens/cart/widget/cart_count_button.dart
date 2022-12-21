@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 
 class CartCountWidget extends StatelessWidget {
   const CartCountWidget({
-    Key? key, 
+    Key? key,
     //required this.productElement,
   }) : super(key: key);
- // final ProductElement productElement;
+  // final ProductElement productElement;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,7 @@ class CartCountWidget extends StatelessWidget {
       height: 30,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.black26
+          borderRadius: BorderRadius.circular(10), color: Colors.black26
           //color: const Color.fromARGB(255, 130, 121, 121),
           ),
       child: Row(
@@ -40,11 +39,13 @@ class CartCountWidget extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 4),
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3), color: Colors.white),
+              borderRadius: BorderRadius.circular(3),
+              color: Colors.white,
+            ),
             child: Center(
               child: Text(
                 context.watch<ScreenCartProvider>().count.toString(),
-                style: AppTextStyle.kTextBlack14,
+                style: AppTextStyle.kTextblack14,
               ),
             ),
           ),

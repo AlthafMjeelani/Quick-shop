@@ -12,37 +12,34 @@ class CheckOutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final cartController =
-    //     Provider.of<ScreenCartProvider>(context, listen: false);
     return Container(
       height: 65,
       width: double.infinity,
       decoration: const BoxDecoration(
-        // borderRadius: BorderRadius.circular(),
-        color: AppColors.kBlackColor,
+        color: AppColors.kWhiteColor,
       ),
-      child: Consumer(builder: (context,ScreenCartProvider value, child) {
+      child: Consumer(builder: (context, ScreenCartProvider value, child) {
         return Center(
           child: Row(
             children: [
               AppSpacing.ksizedBoxW20,
-              const Text(
-                'GO TO CHECKOUT',
-                style: AppTextStyle.kLongButtonWite,
-              ),
-              const Spacer(),
               Column(
                 children: [
                   AppSpacing.ksizedBox10,
                   const Text(
                     'Totel Price',
-                    style: AppTextStyle.ktextWhite16,
+                    style: AppTextStyle.kTextBlack16,
                   ),
                   Text(
                     '₹${value.totalPrice.round()}',
-                    style: AppTextStyle.kLongButtonWite,
+                    style: AppTextStyle.kLongButtonBlack,
                   ),
                 ],
+              ),
+              const Spacer(),
+              const Text(
+                'GO TO CHECKOUT',
+                style: AppTextStyle.kLongButtonBlack,
               ),
               AppSpacing.ksizedBoxW20,
             ],

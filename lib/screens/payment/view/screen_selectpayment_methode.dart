@@ -1,5 +1,6 @@
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
+import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/payment/controller/screen_paymentmethode_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/row_twoitem_widget.dart';
@@ -32,7 +33,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
   @override
   Widget build(BuildContext context) {
     final data =
-        Provider.of<ScreenPaymentMethodeProvider>(context, listen: false);
+        Provider.of<ScreenAddressProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(12.0),
@@ -73,7 +74,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                           leading: Transform.scale(
                             scale: 1.5,
                             child: Radio(
-                              value: 'online',
+                              value: 'razorpay',
                               groupValue: value.selectedType,
                               onChanged: (newValue) =>
                                   value.radionButtonChange(newValue.toString()),
@@ -126,17 +127,14 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                 children: [
                   const Text(
                     ' SELECTED ADDRESS',
-                    style: AppTextStyle.kTextBlack16,
+                    style: AppTextStyle.kTextwhite16,
                   ),
                   AppSpacing.ksizedBox20,
-                  const Text(
-                    'Selected address',
-                    style: AppTextStyle.kTextBlack16,
-                  ),
+               
                   AppSpacing.ksizedBox30,
                   const Text(
                     'PRICE DETAILS',
-                    style: AppTextStyle.kTextBlack16,
+                    style: AppTextStyle.kTextwhite16,
                   ),
                   AppSpacing.ksizedBox20,
                   RowTowItemWidget(
@@ -148,18 +146,18 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
                     title1: Text('Delivery Charge'),
                     title2: Text(
                       'FREE',
-                      style: AppTextStyle.kTextBlack16,
+                      style: AppTextStyle.kTextwhite16,
                     ),
                   ),
                   AppSpacing.ksizedBox5,
                   RowTowItemWidget(
                     title1: const Text(
                       'Amount Payable',
-                      style: AppTextStyle.kTextBlack16,
+                      style: AppTextStyle.kTextwhite16,
                     ),
                     title2: Text(
                       '₹${widget.amount}',
-                      style: AppTextStyle.kTextBlack16,
+                      style: AppTextStyle.kTextwhite16,
                     ),
                   )
                 ],
@@ -170,7 +168,7 @@ class _ScreenPaymentMethodeState extends State<ScreenPaymentMethode> {
           LongButtonWidget(
             text: 'Continue',
             onTap: () {
-              data.goToPayment();
+              paymentProvider.goToPayment(widget.amount);
             },
           )
         ],

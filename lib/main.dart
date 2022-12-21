@@ -1,7 +1,6 @@
 import 'package:ecommerse/screens/account/controller/screen_account_privider.dart';
 import 'package:ecommerse/screens/address/controller/screen_add_address_provider.dart';
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
-import 'package:ecommerse/screens/allproducts/controller/all_product_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/forgot_password_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/google_signin_provider.dart';
 import 'package:ecommerse/screens/authentication/controller/new_password_provider.dart';

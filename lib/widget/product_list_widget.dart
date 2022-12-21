@@ -49,12 +49,11 @@ class ProductViewWidget extends StatelessWidget {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              border: Border.all(),
+                              border: Border.all(color: Colors.white.withOpacity(0.4)),
                               borderRadius: BorderRadius.circular(20)),
                           child: Column(
                             children: [
                               Container(
-                                // width: double.infinity,
                                 height: 170,
                                 decoration: BoxDecoration(
                                   color: Colors.white,

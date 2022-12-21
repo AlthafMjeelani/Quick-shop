@@ -44,7 +44,7 @@ class AddressListViewwidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     color: const Color.fromARGB(255, 222, 217, 217),
                   ),
-                  child: ListTile(
+                  child: ListTile(  
                     leading: value.isStepperAddressList == true
                         ? const CircleAvatar(
                             backgroundColor: Colors.white,
@@ -68,7 +68,7 @@ class AddressListViewwidget extends StatelessWidget {
                           ),
                     title: Text(
                       'Deliver to :  ${address.name ?? ""}',
-                      style: AppTextStyle.kTextBlack16Bold,
+                      style: AppTextStyle.kTextBlack16Boldblack,
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,11 +96,13 @@ class AddressListViewwidget extends StatelessWidget {
                                   DeleteItem.deleteItems(
                                     context,
                                     "Continue ?",
-                                    "Are you Sure To Delete..",
+                                    "Are you sure to delete..",
                                     () {
                                       value
                                           .addressdelete(address.id.toString());
+                                          value.getAllAddress();
                                       Get.back();
+
                                     },
                                   );
                                 },

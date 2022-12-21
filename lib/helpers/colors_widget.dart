@@ -8,8 +8,8 @@ class AppColors {
     begin: Alignment.topRight,
     end: Alignment.bottomCenter,
     colors: [
-      Colors.white,
-      Color.fromARGB(255, 255, 255, 255),
+      Color.fromARGB(255, 38, 36, 36),
+      Color.fromARGB(255, 39, 37, 37),
     ],
   );
 }

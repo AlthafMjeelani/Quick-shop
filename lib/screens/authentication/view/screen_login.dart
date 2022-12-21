@@ -89,7 +89,7 @@ class ScreenLogin extends StatelessWidget {
                         },
                         child: const Text(
                           'Forgot Password?',
-                          style: AppTextStyle.kTextBlack16,
+                          style: AppTextStyle.kTextwhite16,
                         ),
                       ),
                     ],

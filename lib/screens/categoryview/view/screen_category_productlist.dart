@@ -24,7 +24,7 @@ class ScreeenCategoryCollection extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor:const Color.fromARGB(255, 32, 32, 32),
           elevation: 0,
           leading: IconButton(
             onPressed: () {
@@ -32,7 +32,7 @@ class ScreeenCategoryCollection extends StatelessWidget {
             },
             icon: const Icon(
               Icons.arrow_back_ios,
-              color: AppColors.kBlackColor,
+              color: AppColors.kWhiteColor,
             ),
           ),
           centerTitle: true,
@@ -49,14 +49,21 @@ class ScreeenCategoryCollection extends StatelessWidget {
             ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: const [
-              Expanded(
-                child: CategoryProductListWidget(),
-              ),
-            ],
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: AppColors.kBgColor,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: const [
+                Expanded(
+                  child: CategoryProductListWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

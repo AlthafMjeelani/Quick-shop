@@ -15,12 +15,12 @@ class WishlistGetModel {
   String? id;
   String? name;
   dynamic category;
-  int? price;
-  List<String>? size;
+  dynamic price;
+  List<dynamic>? size;
   List<Color>? colors;
-  int? inventory;
+  dynamic inventory;
   String? description;
-  int? offer;
+  dynamic offer;
   List<dynamic>? ratings;
 
   factory WishlistGetModel.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +29,7 @@ class WishlistGetModel {
         name: json["name"],
         category: json["category"],
         price: json["price"],
-        size: List<String>.from(json["size"].map((x) => x)),
+        size: List<dynamic>.from(json["size"].map((x) => x)),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
         inventory: json["inventory"],
         description: json["description"],

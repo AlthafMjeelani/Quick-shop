@@ -24,25 +24,32 @@ class CategoryProductListWidget extends StatelessWidget {
                 : value.catedoryProductsList!.isEmpty
                     ? const CustomNotFoundWidget(
                         title: "Product is Empty", subtitle: '')
-                    : GestureDetector(
-                        onTap: () {},
-                        child: GridView.builder(
-                          itemCount: value.catedoryProductsList?.length ?? 0,
-                          // homeController.catedoryProductsList?.products?.length ?? 0,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                  childAspectRatio: 1 / 1.3),
-                          itemBuilder: (BuildContext context, int index) {
-                            final products = value.catedoryProductsList![index];
-                            return Container(
+                    : GridView.builder(
+                        itemCount: value.catedoryProductsList?.length ?? 0,
+                        // homeController.catedoryProductsList?.products?.length ?? 0,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                childAspectRatio: 1 / 1.3),
+                        itemBuilder: (BuildContext context, int index) {
+                          final products = value.catedoryProductsList![index];
+                          value.calculateOfferPrice(products);
+                          return GestureDetector(
+                            onTap: () {
+                              value.calculateOfferPrice(products);
+                              value.goToDeatailsPage(
+                                value.catedoryProductsList![index].id
+                                    .toString(),
+                                value.offerPrice.round().toString(),
+                              );
+                            },
+                            child: Container(
                               decoration: BoxDecoration(
                                   border: Border.all(),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Column(
-                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Container(
                                     width: double.infinity,
@@ -52,7 +59,7 @@ class CategoryProductListWidget extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(20),
                                       image: DecorationImage(
                                         image: NetworkImage(
-                                          products.colors![0].images![index],
+                                          products.colors?[0].images?[0] ?? "",
                                         ),
                                         fit: BoxFit.fill,
                                       ),
@@ -86,27 +93,23 @@ class CategoryProductListWidget extends StatelessWidget {
                                               .kTextsizecrossLineSmall,
                                         ),
                                         AppSpacing.ksizedBoxW5,
-                                        const Text(
-                                          '₹1299',
+                                        Text(
+                                          '₹${value.offerPrice.round()}',
                                           style: AppTextStyle.kTextBlack20Size,
                                         ),
                                         AppSpacing.ksizedBoxW5,
                                         Text(
-                                          '${products.offer}off',
+                                          '${products.offer}% off',
                                           style: AppTextStyle.kPriceColorSmall,
                                         ),
                                       ],
                                     ),
                                   ),
-                                  // Text(
-                                  //   '₹${product.price}',
-                                  //   style: AppTextStyle.kTextBlack20Size,
-                                  // ),
                                 ],
                               ),
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       );
       },
     );

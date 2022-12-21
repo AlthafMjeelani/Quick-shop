@@ -65,22 +65,7 @@ class ScreenProfile extends StatelessWidget {
                   style: AppTextStyle.kTextBlack,
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  DeleteItem.deleteItems(
-                    context,
-                    'Continue',
-                    'Are you sure to Log Out?',
-                    () {
-                      data.logOut(context);
-                    },
-                  );
-                },
-                child: const Text(
-                  'Log Out',
-                  style: AppTextStyle.kTextBlack,
-                ),
-              ),
+            
             ],
           ),
         ),

@@ -21,10 +21,10 @@ class ScreenBottomNavbar extends StatelessWidget {
           child: Scaffold(
             body: BottomNavPageList.screens[value.currentPageIndex],
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+              backgroundColor: const Color.fromARGB(255, 0, 0, 0),
               elevation: 0,
               selectedItemColor: const Color.fromARGB(255, 12, 133, 255),
-              unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+              unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
               currentIndex: value.currentPageIndex,
               onTap: (newIndex) {
                 value.bottomShift(newIndex);

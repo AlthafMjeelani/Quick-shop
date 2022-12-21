@@ -19,12 +19,12 @@ class LongButtonWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: AppColors.kBlackColor,
+          color: AppColors.kWhiteColor,
         ),
         child: Center(
           child: Text(
             text,
-            style: AppTextStyle.kLongButtonWite,
+            style: AppTextStyle.kLongButtonBlack,
           ),
         ),
       ),

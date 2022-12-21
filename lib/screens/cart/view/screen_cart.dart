@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/screens/cart/widget/cart_list_elements.dart';
 import 'package:ecommerse/screens/cart/widget/chechout_button.dart';
 import 'package:ecommerse/screens/productdetails/controller/screen_product_details_provider.dart';
-import 'package:ecommerse/utils/checkout_bottomsheet.dart';
+import 'package:ecommerse/screens/cart/widget/checkout_bottomsheet.dart';
 import 'package:ecommerse/widget/no_itemfound_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,11 +17,10 @@ class ScreenCart extends StatelessWidget {
     final size = MediaQuery.of(context).size.height;
     final cartController =
         Provider.of<ScreenCartProvider>(context, listen: false);
-    final productViewController =
-        Provider.of<ScreenProductDetailsProvider>(context, listen: false);
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   // cartController.getAllCartProducts();
-    // });
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      cartController.getAllCartProducts();
+    });
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
@@ -69,17 +66,11 @@ class ScreenCart extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       final cartProductItems =
                                           value.cartProducts!.products![index];
-                                      //value.calculatePrice(index);
-                                      // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                                      //   value.calculateOfferPrice(
-                                      //     cartProductItems.product!);
-                                      // });
                                       value.calculateOfferPrice(index);
 
                                       return GestureDetector(
                                         onTap: () {
-                                          cartController
-                                              .calculateOfferPrice(index);
+                                          value.calculateOfferPrice(index);
                                           context
                                               .read<
                                                   ScreenProductDetailsProvider>()
@@ -90,37 +81,34 @@ class ScreenCart extends StatelessWidget {
                                                 cartProductItems.product!.id
                                                     .toString(),
                                               );
-                                          log(value
-                                              .cartProducts!.products![index].id
-                                              .toString());
                                         },
                                         child: Dismissible(
                                           background: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
-                                            //  638052464a845f2ac5e5dfd8
                                             size: 45,
                                           ),
                                           onDismissed: (direction) {},
                                           key: Key(cartProductItems.toString()),
                                           child: Container(
-                                            height: size * 0.22,
+                                            height: size * 0.23,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
-                                                color: Colors.grey),
+                                                border: Border.all()),
                                             child: ListTileElementsWidget(
-                                              cartProductItems:
-                                                  cartProductItems,
-                                              cartController: cartController,
+                                              index: index,
                                             ),
                                           ),
                                         ),
                                       );
                                     },
                                     separatorBuilder: (context, index) {
-                                      return const Divider();
+                                      return const Divider(
+                                        thickness: 3,
+                                        color: Colors.white,
+                                      );
                                     },
                                     itemCount:
                                         value.cartProducts?.products?.length ??
@@ -130,11 +118,15 @@ class ScreenCart extends StatelessWidget {
                     },
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    CheckOutBottomSheet.checkOut(context);
-                  },
-                  child: const CheckOutButton(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      CheckOutBottomSheet.checkOut(
+                          context, cartController.totalPrice.toString());
+                    },
+                    child: const CheckOutButton(),
+                  ),
                 ),
               ],
             ),

@@ -39,6 +39,7 @@ class WishlistGetService {
       /*  Catch error   */
 
     } catch (e) {
+      log(e.toString());
       log('wishlist get Error catched');
       DioExceptionhandler.errorHandler(e);
     }

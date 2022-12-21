@@ -9,6 +9,7 @@ import 'package:ecommerse/screens/home/widget/delegate.dart';
 import 'package:ecommerse/screens/home/widget/home_category_widget.dart';
 import 'package:ecommerse/widget/product_list_widget.dart';
 import 'package:ecommerse/widget/shimmer_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,7 @@ class ScreenHome extends StatelessWidget {
                   children: [
                     const Text(
                       'Welcome',
-                      style: AppTextStyle.kTextBlack14,
+                      style: AppTextStyle.kTextwhite14,
                     ),
                     AppSpacing.ksizedBox2,
                     const Text(
@@ -47,24 +48,14 @@ class ScreenHome extends StatelessWidget {
                       style: AppTextStyle.kTextBlack16Bold,
                     ),
                     AppSpacing.ksizedBox20,
-                    InkWell(
-                      onTap: () => Delegate.showSearchfn(context),
-                      child: Container(
-                        width: double.infinity,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const ListTile(
-                          title: Text('Enter a Product name'),
-                          trailing: Icon(
-                            Icons.search,
-                            size: 32,
-                            color: Colors.black,
-                          ),
-                        ),
+                    CupertinoSearchTextField(
+                      itemColor: Colors.white,
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
                       ),
+                      backgroundColor: Colors.grey,
+                      onTap: () => Delegate.showSearchfn(context),
                     ),
                     AppSpacing.ksizedBox10,
                     Consumer(
@@ -88,13 +79,25 @@ class ScreenHome extends StatelessWidget {
                             : Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        'Special Offer',
+                                        style: AppTextStyle.kTextBlack20Size,
+                                      ),
+                                    ],
+                                  ),
+                                  AppSpacing.ksizedBox5,
+                                  const CarouselCardWidget(),
+                                  AppSpacing.ksizedBox10,
                                   const Text(
                                     'Categories',
                                     style: AppTextStyle.kTextBlack20Size,
                                   ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
-                                        0.17,
+                                        0.12,
                                     child: value.categoryList.isEmpty
                                         ? const Center(
                                             child: Text(
@@ -115,7 +118,6 @@ class ScreenHome extends StatelessWidget {
                                                 onTap: () => data.categoryView(
                                                   category.category!,
                                                   category.id.toString(),
-                                                 
                                                 ),
                                                 child: Row(
                                                   children: [
@@ -123,49 +125,22 @@ class ScreenHome extends StatelessWidget {
                                                       image: category?.icon
                                                               .toString() ??
                                                           'https://images.hasgeek.com/embed/file/65c4929262a84c78b29ad37321df2eca',
-                                                      title: category!
-                                                          .category
+                                                      title: category!.category
                                                           .toString(),
                                                     ),
-                                                    AppSpacing.ksizedBoxW25,
+                                                    AppSpacing.ksizedBoxW40,
+                                                    AppSpacing.ksizedBoxW10,
                                                   ],
                                                 ),
                                               );
                                             },
                                           ),
                                   ),
-                                  AppSpacing.ksizedBox10,
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        'Special Offer',
-                                        style: AppTextStyle.kTextBlack20Size,
-                                      ),
-                                    ],
+                                  const Text(
+                                    'Products',
+                                    style: AppTextStyle.kTextBlack20Size,
                                   ),
                                   AppSpacing.ksizedBox5,
-                                  const CarouselCardWidget(),
-                                  AppSpacing.ksizedBox20,
-                                  Row(
-                                    children: const [
-                                      Text(
-                                        'Products',
-                                        style: AppTextStyle.kTextBlack20Size,
-                                      ),
-                                      Spacer(),
-                                      // InkWell(
-                                      //   onTap: () {
-                                      //     data.navigatorHomeToViewAll(context);
-                                      //   },
-                                      //   child: const Text(
-                                      //     'View All',
-                                      //     style: AppTextStyle.kTextBlack20Size,
-                                      //   ),
-                                      // )
-                                    ],
-                                  ),
-                                  AppSpacing.ksizedBox10,
                                   const ProductViewWidget(),
                                 ],
                               );
@@ -181,4 +156,3 @@ class ScreenHome extends StatelessWidget {
     );
   }
 }
-

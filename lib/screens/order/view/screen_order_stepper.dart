@@ -1,3 +1,4 @@
+import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/address/controller/screen_address_provider.dart';
 import 'package:ecommerse/screens/address/widgets/address_stepper_widget.dart';
@@ -42,55 +43,61 @@ class ScreenStepperOrder extends StatelessWidget {
           'Order',
           style: AppTextStyle.kTextSize18Black,
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Consumer(
-              builder: (BuildContext context, ScreenStepperProvider value,
-                  Widget? child) {
-                return Stepper(
-                  controlsBuilder: (context, details) {
-                    return const SizedBox();
-                  },
-                  type: StepperType.horizontal,
-                  physics: const ScrollPhysics(),
-                  currentStep: value.currentStep,
-                  onStepContinue: value.continued,
-                  onStepCancel: value.cancel,
-                  steps: <Step>[
-                    Step(
-                      title: value.currentStep > 0
-                          ? const Divider()
-                          : const Text('Address'),
-                      content: const ScreenAddressWidget(),
-                      isActive: value.currentStep != 1,
-                      state: value.currentStep >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
-                    ),
-                    Step(
-                      title: value.currentStep >=2
-                          ? const Divider()
-                          : const Text('Payment'),
-                      content: ScreenPaymentMethode(
-                        amount: amount,
-                      ),
-                      isActive: value.currentStep >0,
-                      state: value.currentStep >= 1
-                          ? StepState.complete
-                          : StepState.disabled,
-                    ),
-                  ],
-                );
-              },
-            ),
+      body: Container(
+        height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: AppColors.kBgColor,
           ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Consumer(
+        child: Column(
+          children: [
+            Expanded(
+              child: Consumer(
+                builder: (BuildContext context, ScreenStepperProvider value,
+                    Widget? child) {
+                  return Stepper(
+                    elevation: 0,
+                    controlsBuilder: (context, details) {
+                      return const SizedBox();
+                    },
+                    type: StepperType.horizontal,
+                    physics: const ScrollPhysics(),
+                    currentStep: value.currentStep,
+                    onStepContinue: value.continued,
+                    onStepCancel: value.cancel,
+                    steps: <Step>[
+                      Step(
+                        title: value.currentStep > 0
+                            ? const Divider()
+                            : const Text('Address'),
+                        content: const ScreenAddressWidget(),
+                        isActive: value.currentStep != 1,
+                        state: value.currentStep >= 0
+                            ? StepState.complete
+                            : StepState.disabled,
+                      ),
+                      Step(
+                        title: value.currentStep >=2
+                            ? const Divider()
+                            : const Text('Payment'),
+                        content: ScreenPaymentMethode(
+                      
+                          amount: amount,
+                        ),
+                        isActive: value.currentStep >0,
+                        state: value.currentStep >= 1
+                            ? StepState.complete
+                            : StepState.disabled,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            Consumer(
               builder: (BuildContext context, ScreenStepperProvider value,
                   Widget? child) {
                 return Row(
@@ -132,9 +139,9 @@ class ScreenStepperOrder extends StatelessWidget {
                   ],
                 );
               },
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

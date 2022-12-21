@@ -10,6 +10,7 @@ class ApiEndPoints {
   /*----------------admin side---------------------------*/
 
   static String getcategory = '/admin/categories';
+  static String carousal = '/admin/carousal';
 
   /*----------------Product side---------------------------*/
 
@@ -30,7 +31,7 @@ class ApiEndPoints {
 
 
 
-      /*----------------Product Wishlist side---------------------------*/
+      /*----------------Product Addrerss side---------------------------*/
 
   static String address = '/profile/address';
   static String removeaddress='/profile/address/';

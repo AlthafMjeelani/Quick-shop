@@ -20,9 +20,9 @@ class ScreenWishlist extends StatelessWidget {
         Provider.of<ScreenCartProvider>(context, listen: false);
     final wishlistController =
         Provider.of<ScreenWishlistProvider>(context, listen: false);
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          wishlistController.getAllWishlistProducts();
-        });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      wishlistController.getAllWishlistProducts();
+    });
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
@@ -61,7 +61,6 @@ class ScreenWishlist extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: ListView.separated(
                                 shrinkWrap: true,
-                                // physics: const NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   final wishListProduct =
                                       value.wishListProductElement[index];
@@ -72,16 +71,18 @@ class ScreenWishlist extends StatelessWidget {
                                           .calculateOfferPrice(wishListProduct);
                                       context
                                           .read<ScreenProductDetailsProvider>()
-                                          .goToDetailsPage(wishlistController.offerPrice!.round().toString(),
+                                          .goToDetailsPage(
+                                            wishlistController.offerPrice!
+                                                .round()
+                                                .toString(),
                                             wishListProduct.id!,
                                           );
                                     },
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
                                       child: Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -123,6 +124,8 @@ class ScreenWishlist extends StatelessWidget {
                                                 child: Text(
                                                   wishListProduct.description ??
                                                       'No description',
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                 ),
@@ -159,13 +162,17 @@ class ScreenWishlist extends StatelessWidget {
                                                                   .color!);
                                                         },
                                                         child: Container(
-                                                          decoration: BoxDecoration(
-                                                              border:
-                                                                  Border.all(),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10)),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .white),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                              10,
+                                                            ),
+                                                          ),
                                                           child: const Padding(
                                                             padding:
                                                                 EdgeInsets.all(
@@ -183,21 +190,6 @@ class ScreenWishlist extends StatelessWidget {
                                                           value.deleteWishlistItem(
                                                               wishListProduct.id
                                                                   .toString());
-                                                          // DeleteItem
-                                                          //     .deleteItems(
-                                                          //   context,
-                                                          //   "Continue ?",
-                                                          //   "Are you Sure To Delete..",
-                                                          //   () {
-                                                          //     value.deleteWishlistItem(
-                                                          //         wishListProduct
-                                                          //             .id
-                                                          //             .toString());
-
-                                                          //     value
-                                                          //         .getAllWishlistProducts();
-                                                          //   },
-                                                          // );
                                                         },
                                                         child: const Icon(
                                                           CupertinoIcons
@@ -218,7 +210,10 @@ class ScreenWishlist extends StatelessWidget {
                                   );
                                 },
                                 separatorBuilder: (context, index) {
-                                  return const Divider();
+                                  return const Divider(
+                                    thickness: 3,
+                                    color: Colors.white,
+                                  );
                                 },
                                 itemCount: value.wishListProductElement.length),
                           );

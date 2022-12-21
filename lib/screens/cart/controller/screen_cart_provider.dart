@@ -17,7 +17,6 @@ class ScreenCartProvider with ChangeNotifier {
   bool isLoadingAddCart = false;
   int count = 1;
   GetCartProductsModel? cartProducts;
-  List<ProductCartElement>? cartProductList;
   num offerPrice = 0;
   num totalPrice = 0;
 
@@ -35,8 +34,8 @@ class ScreenCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void goTocheckOut(){
-    Get.to(()=> ScreenStepperOrder(amount: offerPrice.toString()));
+  void goTocheckOut(String amount) {
+    Get.to(() => ScreenStepperOrder(amount:amount ));
   }
 
   void addToCart(
@@ -75,22 +74,44 @@ class ScreenCartProvider with ChangeNotifier {
   }
 
   void calculateOfferPrice(int index) {
-    final productList = cartProductList?[index];
-//log(productList!.product!.price.toString());
+    final productList = cartProducts?.products?[index];
     if (productList != null) {
       totalPrice = 0;
-      offerPrice = productList.product!.price! /
-              100 *
-              (100 - productList.product!.offer!) -
-          1;
-
-      for (var i = 0; i < cartProductList!.length; i++) {
-        totalPrice = ((cartProductList![i].product!.price! / 100) -
-                    cartProductList![i].product!.price! / 100) *
-                (100 - cartProductList![i].product!.offer!) -
-            1;
+      offerPrice =
+         ( productList.product!.price! * (100-productList.product!.offer) / 100) - 1;
+      for (var i = 0; i < cartProducts!.products!.length; i++) {
+        totalPrice = (totalPrice + offerPrice);
+        // log(cartProducts!.products![i].product!.price!.toString());
+      //  log('total price       ${totalPrice.round().toString()}');
       }
+    } else {
+      log('null cart amount');
     }
-    log('total price${totalPrice.toString()}');
   }
+
+
+
+
+  //  void calculateOfferPrice(int index) {
+  //  
+    // final productList = cartProductList?[index];
+    // if (productList != null) {
+     // totalPrice = 0;
+      // offerPrice = (productList.product!.price! *
+              // (100 - productList.product!.offer) /
+              // 100) -
+          // 1;
+      // for (var i = 0; i < cartProductList!.length; i++) {
+        // totalPrice = totalPrice +
+            // (cartProductList![i].product!.price! -
+                // cartProductList![i].product!.price! *
+                    // cartProductList![i].product!.offer! /
+                    // 100);
+      // }
+      // log('total : ${totalPrice!}');
+      // totalPrice = totalPrices;
+    // } else {
+      // log('null cart amount');
+    // }
+  // }
 }

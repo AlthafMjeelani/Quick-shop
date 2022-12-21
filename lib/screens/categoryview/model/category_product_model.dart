@@ -15,12 +15,12 @@ class CategoryProductModel {
     String? id;
     String? name;
     Category? category;
-    int? price;
-    List<String>? size;
+    dynamic price;
+    List<dynamic>? size;
     List<Color>? colors;
-    int? inventory;
+    dynamic inventory;
     String? description;
-    int? offer;
+    dynamic offer;
     List<dynamic>? ratings;
 
     factory CategoryProductModel.fromJson(Map<String, dynamic> json) => CategoryProductModel(
@@ -28,7 +28,7 @@ class CategoryProductModel {
         name: json["name"],
         category: Category.fromJson(json["category"]),
         price: json["price"],
-        size: List<String>.from(json["size"].map((x) => x)),
+        size: List<dynamic>.from(json["size"].map((x) => x)),
         colors: List<Color>.from(json["colors"].map((x) => Color.fromJson(x))),
         inventory: json["inventory"],
         description: json["description"],
@@ -43,8 +43,6 @@ class Category {
         this.id,
         this.category,
         this.icon,
-        this.createdAt,
-        this.updatedAt,
         this.categoryId,
         this.subCategories,
     });
@@ -52,17 +50,13 @@ class Category {
     String? id;
     String? category;
     String? icon;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    int? categoryId;
+    dynamic categoryId;
     List<SubCategory>? subCategories;
 
     factory Category.fromJson(Map<String, dynamic> json) => Category(
         id: json["_id"],
         category: json["category"],
         icon: json["icon"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
         categoryId: json["id"],
         subCategories: List<SubCategory>.from(json["subCategories"].map((x) => SubCategory.fromJson(x))),
     );

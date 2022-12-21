@@ -1,3 +1,4 @@
+import 'package:ecommerse/helpers/colors_widget.dart';
 import 'package:ecommerse/helpers/spacing_widget.dart';
 import 'package:ecommerse/helpers/text_style_widget.dart';
 import 'package:ecommerse/screens/address/controller/screen_add_address_provider.dart';
@@ -22,7 +23,7 @@ class ScreenAddAddress extends StatelessWidget {
           },
           icon: const Icon(
             Icons.arrow_back_ios,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         title: const Text(
@@ -30,124 +31,158 @@ class ScreenAddAddress extends StatelessWidget {
           style: AppTextStyle.kTextSize18Black,
         ),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Consumer<AddAddressProvider>(builder: (context, values, _) {
-                  return SizedBox(
-                    height: 300,
-                    child: GoogleMap(
-                      myLocationButtonEnabled: true,
-                      zoomControlsEnabled: true,
-                      mapType: MapType.hybrid,
-                      initialCameraPosition: values.initialLocation,
-                      onMapCreated: (GoogleMapController controller) {
-                        if (addAddressController
-                            .googleMapController.isCompleted) {
-                          return;
-                        }
-                        addAddressController.googleMapController
-                            .complete(controller);
-                      },
-                      buildingsEnabled: true,
-                      compassEnabled: true,
-                      indoorViewEnabled: true,
-                      mapToolbarEnabled: true,
-                      myLocationEnabled: true,
-                      onTap: (argument) {
-                        addAddressController.addMarker(
-                          argument.latitude,
-                          argument.longitude,
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: AppColors.kBgColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Consumer<AddAddressProvider>(builder: (context, values, _) {
+                    return SizedBox(
+                      height: 300,
+                      child: GoogleMap(
+                        myLocationButtonEnabled: true,
+                        zoomControlsEnabled: true,
+                        mapType: MapType.hybrid,
+                        initialCameraPosition: values.initialLocation,
+                        onMapCreated: (GoogleMapController controller) {
+                          if (addAddressController
+                              .googleMapController.isCompleted) {
+                            return;
+                          }
+                          addAddressController.googleMapController
+                              .complete(controller);
+                        },
+                        buildingsEnabled: true,
+                        compassEnabled: true,
+                        indoorViewEnabled: true,
+                        mapToolbarEnabled: true,
+                        myLocationEnabled: true,
+                        onTap: (argument) {
+                          addAddressController.addMarker(
+                            argument.latitude,
+                            argument.longitude,
+                          );
+                        },
+                      ),
+                    );
+                  }),
+                  // AppSpacing.ksizedBox10,
+                  Consumer(
+                    builder: (context, AddAddressProvider value, child) {
+                      return value.isLoading == true
+                          ? const Padding(
+                              padding: EdgeInsets.all(15.0),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.location_searching_outlined,
+                                  color: Colors.white,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    addAddressController.getCurrentAddress();
+                                  },
+                                  child: const Text(
+                                    'Choose Your Current Location',
+                                  ),
+                                )
+                              ],
+                            );
+                    },
+                  ),
+                  AppSpacing.ksizedBox10,
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          AppSpacing.ksizedBox10,
+                          TextfeildWidget(
+                            controller:
+                                addAddressController.nameAddressController,
+                            text: 'Name',
+                            obscureText: false,
+                            validator: (value) =>
+                                addAddressController.validator(value),
+                          ),
+                          AppSpacing.ksizedBox10,
+                          TextfeildWidget(
+                            controller:
+                                addAddressController.homeAddressController,
+                            text: 'Home Address',
+                            obscureText: false,
+                            validator: (value) =>
+                                addAddressController.validator(value),
+                          ),
+                          AppSpacing.ksizedBox10,
+                          TextfeildWidget(
+                            controller:
+                                addAddressController.cityAddressController,
+                            text: 'city',
+                            obscureText: false,
+                            validator: (value) =>
+                                addAddressController.validator(value),
+                          ),
+                          AppSpacing.ksizedBox10,
+                          TextfeildWidget(
+                            controller:
+                                addAddressController.pinCodeAddressController,
+                            text: 'Pin Code',
+                            obscureText: false,
+                            validator: (value) =>
+                                addAddressController.validator(value),
+                            keyboardType: TextInputType.phone,
+                          ),
+                          AppSpacing.ksizedBox10,
+                          TextfeildWidget(
+                            controller:
+                                addAddressController.phoneAddressController,
+                            text: 'Phone Number',
+                            obscureText: false,
+                            validator: (value) =>
+                                addAddressController.validator(value),
+                            keyboardType: TextInputType.phone,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  AppSpacing.ksizedBox20,
+                  GestureDetector(
+                    onTap: () {
+                      addAddressController.navigationToAddAdress(context);
+                    },
+                    child: LongButtonWidget(
+                      text: 'ADD',
+                      onTap: () {
+                        addAddressController.addAddress(
+                          _formKey,
                         );
                       },
                     ),
-                  );
-                }),
-                // AppSpacing.ksizedBox10,
-                Consumer(
-                  builder: (context, AddAddressProvider value, child) {
-                    return value.isLoading == true
-                        ? const Padding(
-                            padding: EdgeInsets.all(15.0),
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                            ),
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.location_searching_outlined),
-                              TextButton(
-                                onPressed: () {
-                                  addAddressController.getCurrentAddress();
-                                },
-                                child: const Text(
-                                  'Choose Your Current Location',
-                                ),
-                              )
-                            ],
-                          );
-                  },
-                ),
-                AppSpacing.ksizedBox10,
-                TextfeildWidget(
-                  controller: addAddressController.nameAddressController,
-                  text: 'Name',
-                  obscureText: false,
-                  validator: (value) => addAddressController.validator(value),
-                ),
-                AppSpacing.ksizedBox10,
-                TextfeildWidget(
-                  controller: addAddressController.homeAddressController,
-                  text: 'Home Address',
-                  obscureText: false,
-                  validator: (value) => addAddressController.validator(value),
-                ),
-                AppSpacing.ksizedBox10,
-                TextfeildWidget(
-                  controller: addAddressController.cityAddressController,
-                  text: 'city',
-                  obscureText: false,
-                  validator: (value) => addAddressController.validator(value),
-                ),
-                AppSpacing.ksizedBox10,
-                TextfeildWidget(
-                  controller: addAddressController.pinCodeAddressController,
-                  text: 'Pin Code',
-                  obscureText: false,
-                  validator: (value) => addAddressController.validator(value),
-                   keyboardType: TextInputType.phone,
-                ),
-                AppSpacing.ksizedBox10,
-                TextfeildWidget(
-                  controller: addAddressController.phoneAddressController,
-                  text: 'Phone Number',
-                  obscureText: false,
-                  validator: (value) => addAddressController.validator(value),
-                  keyboardType: TextInputType.phone,
-                ),
-                AppSpacing.ksizedBox20,
-                GestureDetector(
-                  onTap: () {
-                    addAddressController.navigationToAddAdress(context);
-                  },
-                  child: LongButtonWidget(
-                    text: 'ADD',
-                    onTap: () {
-                      addAddressController.addAddress(
-                        _formKey,
-                      );
-                    },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

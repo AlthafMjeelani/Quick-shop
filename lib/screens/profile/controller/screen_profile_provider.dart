@@ -17,18 +17,5 @@ class ScreenProfileProvider with ChangeNotifier {
     );
   }
 
-  void logOut(context) async {
 
-    GoogleSignIn googleSignIn=GoogleSignIn();
-    /* token  set as NULL  into secure storage   */
-
-    await UserSecureStorage.setToken(null);
-    await googleSignIn.signOut();
-
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-      builder: (context) {
-        return ScreenLogin();
-      },
-    ), (route) => false);
-  }
 }

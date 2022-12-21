@@ -4,13 +4,14 @@ import 'package:ecommerse/screens/cart/controller/screen_cart_provider.dart';
 import 'package:ecommerse/widget/long_button_widget.dart';
 import 'package:ecommerse/widget/row_twoitem_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
 class CheckOutBottomSheet {
-  static void checkOut(context) {
-  final data=  Provider.of<ScreenCartProvider>(context,listen: false);
+  static void checkOut(context, String amount) {
+    final data = Provider.of<ScreenCartProvider>(context, listen: false);
     showModalBottomSheet<void>(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(25.0),
@@ -32,7 +33,7 @@ class CheckOutBottomSheet {
                 const RowTowItemWidget(
                   title1: Text(
                     'Delivery Fee',
-                    style: AppTextStyle.kTextBlack16,
+                    style: AppTextStyle.kTextwhite16,
                   ),
                   title2: Text(
                     '₹50',
@@ -43,7 +44,7 @@ class CheckOutBottomSheet {
                 const RowTowItemWidget(
                   title1: Text(
                     'Discount price',
-                    style: AppTextStyle.kTextBlack16,
+                    style: AppTextStyle.kTextwhite16,
                   ),
                   title2: Text(
                     '₹500',
@@ -51,13 +52,13 @@ class CheckOutBottomSheet {
                   ),
                 ),
                 AppSpacing.ksizedBox5,
-                const RowTowItemWidget(
-                  title1: Text(
+                RowTowItemWidget(
+                  title1: const Text(
                     'Totel price',
-                    style: AppTextStyle.kTextBlack16,
+                    style: AppTextStyle.kTextwhite16,
                   ),
                   title2: Text(
-                    '₹2,500',
+                    '₹$amount',
                     style: AppTextStyle.kTextBlack20Size,
                   ),
                 ),
@@ -65,7 +66,8 @@ class CheckOutBottomSheet {
                 LongButtonWidget(
                   text: 'PLACE ORDER',
                   onTap: () {
-                  data.goTocheckOut();
+                    Get.back();
+                    data.goTocheckOut(amount);
                   },
                 ),
               ],
